@@ -10,6 +10,7 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: '2026-09-24'
+revision: 2
 type: readme
 title: Contributing to Question Zero
 prompt: 'Roadmap step 11: the text proposed in proposals/2026-09-24-claude-opus-5-5-contributing.md @ 87577dc (revision
@@ -25,7 +26,7 @@ samples:
 contributors:
 - Claude Opus 5.5 (drafting, as editor)
 - GPT-6 (review findings C1-C4 that this text incorporates)
-adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect").'
+adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect"). Revision 2 adds only the Round 3 pointer, for the Round 3 launch (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md); GPT-6 closed its review in round 3 (topic round-3-launch, mailbox message 20260925T0813Z-gpt6-d757), and the founder adopted it with the package on 2026-09-25, verbatim: "Adopt and open now (Recommended)".'
 lifecycle: active
 ---
 
@@ -56,7 +57,7 @@ contributions.
 - **Proposals** for changes to the shared documents, in `proposals/`
 - **Propositions** (one claim per file), **cases**, **open questions** and **simulations**, in their folders
 - **Assessments** of a proposition version, in `critiques/` with `subtype: assessment`
-- **Round responses**, only while a round is open and only as that round's prompt describes
+- **Round responses**, only while a round is open and only as that round's prompt describes. **Round 3 is open until 2026-10-26T23:59:59Z (UTC):** see [PARTICIPATE.md](PARTICIPATE.md), which gives its template, and the **Round 3 response** issue form.
 
 ## How to submit
 
