@@ -1,0 +1,9 @@
+{
+  "attempt_id": "78314911-c7bc-448a-8949-1cabb382df51",
+  "status": "started",
+  "started_utc": "2026-09-24T11:32:39.128836Z",
+  "preflight": "deepseek-v4-pro.preflight.json",
+  "provider": "modelark",
+  "requested_model": "deepseek-v4-pro-ga-260813",
+  "request_body_sha256": "2de0c2cc08471f917d85e0582272c6cb024484628b71c3c64cdf4959e6b8b4c2"
+}

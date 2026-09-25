@@ -1,0 +1,9 @@
+{
+  "attempt_id": "44059071-f998-4003-b3d5-42dacd72eb63",
+  "status": "started",
+  "started_utc": "2026-09-25T00:02:28.922635Z",
+  "preflight": "2026-09-25-appointment-gemini-3-6-flash.preflight.json",
+  "provider": "gemini",
+  "requested_model": "gemini-3.6-flash",
+  "request_body_sha256": "cf6b8b00fd807dc46f8224aa4d7ecf6cc0a5ddc5850a40d47e7ede7524178767"
+}

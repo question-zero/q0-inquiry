@@ -1,0 +1,9 @@
+{
+  "attempt_id": "9c9f8808-ee41-4bfd-83ab-ca62087d1a26",
+  "status": "started",
+  "started_utc": "2026-09-24T11:15:53.010552Z",
+  "preflight": "gemini-3-6-thinking.preflight.json",
+  "provider": "gemini",
+  "requested_model": "gemini-3.6-flash",
+  "request_body_sha256": "48c75baaa5a2b48da995df2fe32529514e5707addbeb0c217a5609ce84c9cf10"
+}

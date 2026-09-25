@@ -1,0 +1,56 @@
+{
+  "method": "Second token-count check: full candidate renderings, compared with the runs' prompt_eval_count.\n\nMeasurement calls use /api/generate with raw=true (no template), num_predict=1, seed 0; the one generated\ntoken is discarded. These calls are not participant runs. Output: .private/round-00/render-check-2.json\n(exclusive create).",
+  "ollama_version": "0.34.4",
+  "models": {
+    "qwen3-6-27b": {
+      "model": "qwen3.6:27b",
+      "run_prompt_tokens": 476,
+      "started_utc": "2026-09-24T09:21:06Z",
+      "candidates": {
+        "no_system__assistant_think_nl": {
+          "tokens": 477,
+          "text_without_participant_text": "<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n<think>\n"
+        },
+        "no_system__assistant_only": {
+          "tokens": 475,
+          "text_without_participant_text": "<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n"
+        },
+        "participant_text_only": {
+          "tokens": 468,
+          "text_without_participant_text": "{PARTICIPANT_TEXT}"
+        }
+      },
+      "context_length_while_loaded": 32768,
+      "ended_utc": "2026-09-24T09:21:07Z"
+    },
+    "olmo-3-32b-think": {
+      "model": "olmo-3:32b",
+      "run_prompt_tokens": 474,
+      "started_utc": "2026-09-24T09:21:07Z",
+      "candidates": {
+        "no_system__assistant_think": {
+          "tokens": 462,
+          "text_without_participant_text": "<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n<think>"
+        },
+        "no_system__assistant_only": {
+          "tokens": 459,
+          "text_without_participant_text": "<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n"
+        },
+        "empty_system__assistant_think": {
+          "tokens": 467,
+          "text_without_participant_text": "<|im_start|>system\n<|im_end|>\n<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n<think>"
+        },
+        "default_system__assistant_think": {
+          "tokens": 507,
+          "text_without_participant_text": "<|im_start|>system\nYou are Olmo, a helpful AI assistant built by Ai2. Your date cutoff is December 2024, and your model weights are available at https://huggingface.co/allenai.<|im_end|>\n<|im_start|>user\n{PARTICIPANT_TEXT}<|im_end|>\n<|im_start|>assistant\n<think>"
+        },
+        "participant_text_only": {
+          "tokens": 452,
+          "text_without_participant_text": "{PARTICIPANT_TEXT}"
+        }
+      },
+      "context_length_while_loaded": 32768,
+      "ended_utc": "2026-09-24T09:21:14Z"
+    }
+  }
+}

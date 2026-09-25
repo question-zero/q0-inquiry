@@ -1,0 +1,11 @@
+{
+  "attempt_id": "80b5e922-ccd4-4fab-b4b9-8f65f9a4e949",
+  "generation_status": "failed",
+  "failed_utc": "2026-09-24T07:40:07.451660Z",
+  "error": "HttpFailure('HTTP 500')",
+  "http_status": 500,
+  "http_body": "{\"error\": \"timed out waiting for llama-server to start - \"}",
+  "chunks_archived": 0,
+  "partial_answer": "",
+  "partial_thinking": ""
+}

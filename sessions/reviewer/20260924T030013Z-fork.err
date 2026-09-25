@@ -1,0 +1,2 @@
+2026-09-24T03:00:30.334955Z ERROR codex_core::tools::router: error=failed to spawn code-mode host C:\Users\alileus\.codex\.sandbox-bin\codex-code-mode-host.exe: The system cannot find the file specified. (os error 2)
+2026-09-24T03:01:06.549138Z ERROR codex_core::tools::router: error=failed to spawn code-mode host C:\Users\alileus\.codex\.sandbox-bin\codex-code-mode-host.exe: The system cannot find the file specified. (os error 2)

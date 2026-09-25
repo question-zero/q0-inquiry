@@ -1,0 +1,6 @@
+=== 2026-09-24T13:46:07Z start mistral-small-3-2-24b
+cwd: /c/Users/alileus/www/q0/q0-inquiry
+head: c1e986fa53eb64d2daf20a38e058ad02d1f2e338
+command: python tools/run_local_participant.py mistral-small3.2:24b C:/Users/alileus/www/q0/.private/round-02/mistral-small-3-2-24b --tag round/02-deliberation/v1 --packet rounds/02-deliberation/packets/mistral-small-3-2-24b.md --system packaged --think default --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 90000
+mistral-small3.2:24b: done_reason=stop complete=True answer=10171 chars thinking=0 chars attribution=verified
+=== 2026-09-24T13:47:24Z end mistral-small-3-2-24b exit=0

@@ -1,0 +1,8 @@
+{
+  "agentType": "general-purpose",
+  "description": "Semantic privacy review group 4",
+  "toolUseId": "toolu_01Vydk3FoNf9BqXBLN653qSy",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

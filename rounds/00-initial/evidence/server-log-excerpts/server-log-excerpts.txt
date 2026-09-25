@@ -1,0 +1,54 @@
+Ollama server log excerpts for Round 0 local runs.
+Copied by the editor (claude-opus-5-5/af349875) on 2026-09-24 from the Claude Code preview log viewer
+(which keeps only the most recent output), verbatim except for the section headers marked "##".
+The server log for the Mistral run, Qwen attempt 1, and the OLMo run (server 6bf1e849, stopped
+2026-09-24T08:36:00Z) kept only its last lines; the sampler lines of those runs are not retained.
+
+## Server 87e6aa3c (started 2026-09-24T08:36:02Z, OLLAMA_LOAD_TIMEOUT=20m), startup
+time=2026-09-24T11:36:05.049+03:00 level=INFO source=types.go:32 msg="inference compute" id=0 filter_id=0 library=CUDA compute=8.9 name=CUDA0 description="NVIDIA GeForce RTX 4090" libdirs=ollama,cuda_v13 driver=13.4 pci_id=0000:01:00.0 type=discrete total="24.0 GiB" available="22.5 GiB"
+time=2026-09-24T11:36:05.049+03:00 level=INFO source=routes.go:2115 msg="vram-based default context" total_vram="24.0 GiB" default_num_ctx=32768
+
+## Qwen attempt 2 (1020e806), load
+time=2026-09-24T11:36:33.679+03:00 level=INFO source=llama_server.go:436 msg="starting llama-server" cmd="C:\\Users\\alileus\\www\\q0\\.tools\\ollama\\lib\\ollama\\llama-server.exe --model C:\\Users\\alileus\\.ollama\\models\\blobs\\sha256-415aad607fc297a2ad84cda238febbde295f49f17c17ad7784e2246060fb06d0 --port 52016 --host 127.0.0.1 --no-webui --offline -c 32768 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --mmproj C:\\Users\\alileus\\.ollama\\models\\blobs\\sha256-c24919d9eb66eda0af3d7a62ef49bef7948389099de880e0cb5eefe2d3c31769 --spec-type draft-mtp --spec-draft-n-max 3 --spec-draft-backend-sampling --load-mode none --flash-attn auto -b 512 -ub 512 --context-shift --keep 4"
+time=2026-09-24T11:36:33.684+03:00 level=INFO source=sched.go:625 msg="gpu memory" id=0 library=CUDA available="22.0 GiB" free="22.5 GiB" minimum="457.0 MiB" overhead="0 B"
+load_tensors: offloaded 66/66 layers to GPU
+cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+time=2026-09-24T11:56:39.431+03:00 level=INFO source=sched.go:646 msg="Load failed" model=C:\Users\alileus\.ollama\models\blobs\sha256-415aad607fc297a2ad84cda238febbde295f49f17c17ad7784e2246060fb06d0 error="timed out waiting for llama-server to start - "
+
+## Qwen attempt 3 (acb7763d), the run
+slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> ?temp-ext -> dist
+slot launch_slot_: id  0 | task -1 | sampler params:
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 20, top_p = 0.950, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 1.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 476
+slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+slot   operator(): id  0 | task 0 | cached n_tokens = 472, memory_seq_rm [472, end)
+slot init_sampler: id  0 | task 0 | init sampler, took 0.04 ms, tokens: text = 476, total = 476
+slot create_check: id  0 | task 0 | created context checkpoint 1 of 32 (pos_min = 471, pos_max = 471, n_tokens = 472, size = 151.481 MiB)
+slot print_timing: id  0 | task 0 | prompt eval time =    3751.92 ms /   476 tokens (    7.88 ms per token,   126.87 tokens per second)
+slot print_timing: id  0 | task 0 |        eval time =   57813.55 ms /  4253 tokens (   13.60 ms per token,    73.55 tokens per second)
+slot print_timing: id  0 | task 0 |       total time =   61565.47 ms /  4729 tokens
+slot print_timing: id  0 | task 0 |    graphs reused =       1675
+slot print_timing: id  0 | task 0 | draft acceptance = 0.50423 ( 2561 accepted /  5079 generated), mean len =  2.51
+slot print_timing: id  0 | task 0 |      acc per pos = (0.713, 0.480, 0.320)
+spec common_specu: statistics        draft-mtp: #calls(b,g,a) =    1   1693   1693, #gen drafts =   1693, #acc drafts =  1207, #gen tokens =   5079, #acc tokens =  2561, #mean acc len = 2.51, #acc rate/pos = (0.713, 0.480, 0.320), dur(b,g,a) = 0.002, 14368.793, 2.329 ms
+slot      release: id  0 | task 0 | stop processing: n_tokens = 4730, truncated = 0
+
+## Measurement requests after the runs (render-check.json), sampler lines. Same artifacts and server
+## version as the runs; the requests set only seed 0 and num_predict 1, like the runs set only seed 0.
+## Mistral (mistral-small3.2:24b):
+	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.150
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+## OLMo (olmo-3:32b):
+	top_k = 40, top_p = 0.950, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.600
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+
+## OLMo run (5519bf56), last lines kept by server 6bf1e849
+slot print_timing: id  0 | task 0 | prompt eval time =   42874.96 ms /   474 tokens (   90.45 ms per token,    11.06 tokens per second)
+slot print_timing: id  0 | task 0 |        eval time = 3185694.68 ms /  2010 tokens ( 1585.71 ms per token,     0.63 tokens per second)
+slot print_timing: id  0 | task 0 |       total time = 3228569.64 ms /  2484 tokens
+slot print_timing: id  0 | task 0 |    graphs reused =       2001
+slot      release: id  0 | task 0 | stop processing: n_tokens = 2483, truncated = 0

@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-09-25T00:02:27Z",
+  "role": "the backup alternate",
+  "provider": "gemini",
+  "requested_model": "gemini-3.6-flash",
+  "case": "moderation/2026-09-25-alternate-appointment.md",
+  "commit": "fcdf4e34b0c91ace288a5ea588f925e8e5548c4a",
+  "case_text_sha256": "64f92aeeed04804682be98d2f0554dd8bad02ab825360e148ad4f1c1a13ef34c",
+  "case_text_bytes": 13748,
+  "runner": {
+    "path": "tools/run_moderation_alternate.py",
+    "sha256": "87bdd1bdcdcec8024d4c35c49f378ad0a56a6d4078aed4e8af3feaa055f40cf6"
+  }
+}

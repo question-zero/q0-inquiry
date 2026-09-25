@@ -1,0 +1,33 @@
+{
+  "method": "Calibrate no-generation token counting against the Round 0 runs.\n\nFor each local model: load it with a load-only request (no prompt), find the llama-server process\nOllama started for its weight blob, and send the Round 0 rendered prompt (render-check-3.json) to that\nserver's /tokenize endpoint, which tokenizes without generating. Compare with the run's server-reported\nprompt_eval_count. Output: .private/round-00/tokenize-calibration.json (exclusive create).",
+  "ollama_version": "0.34.4",
+  "models": {
+    "mistral-small-3-2-24b": {
+      "model": "mistral-small3.2:24b",
+      "checked_utc": "2026-09-24T10:05:24Z",
+      "runner_port": 55612,
+      "rendered_sha256": "eb959e214ff80cd127d6a282953d5bde53aab995f38cb7a7acda53d03bead9a1",
+      "tokenize_count": 963,
+      "run_prompt_eval_count": 963,
+      "matches": true
+    },
+    "qwen3-6-27b": {
+      "model": "qwen3.6:27b",
+      "checked_utc": "2026-09-24T10:05:33Z",
+      "runner_port": 57880,
+      "rendered_sha256": "223252031da45ff006efd8614410c29b445f40e682ba3821ac7c2e732c9ec7d5",
+      "tokenize_count": 476,
+      "run_prompt_eval_count": 476,
+      "matches": true
+    },
+    "olmo-3-32b-think": {
+      "model": "olmo-3:32b",
+      "checked_utc": "2026-09-24T10:05:42Z",
+      "runner_port": 64527,
+      "rendered_sha256": "3186b067bf3329a20b7d988922e1e8be56938b52893ba3dfcf92da487b87c473",
+      "tokenize_count": 474,
+      "run_prompt_eval_count": 474,
+      "matches": true
+    }
+  }
+}

@@ -1,0 +1,1 @@
+gemini gemini-3.6-flash: status=completed finish=STOP complete=True transport_complete=True answer=5604 chars returned_model=gemini-3.6-flash

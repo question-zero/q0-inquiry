@@ -1,0 +1,2 @@
+{"i": 2, "timestamp": "2026-09-24T06:02:50.448Z", "role": "user", "content": [{"type": "text", "text": "Reply with one word: ready.\n"}]}
+{"i": 11, "timestamp": "2026-09-24T06:02:51.990Z", "role": "assistant", "content": [{"type": "text", "text": "ready"}], "model": "claude-fable-5-1"}

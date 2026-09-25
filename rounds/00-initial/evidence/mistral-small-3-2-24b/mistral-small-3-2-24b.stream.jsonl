@@ -1,0 +1,1236 @@
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:07.9548188Z", "message": {"role": "assistant", "content": "###"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.0452487Z", "message": {"role": "assistant", "content": " Answer"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.0985043Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.1215024Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.1702128Z", "message": {"role": "assistant", "content": " Open"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.2061867Z", "message": {"role": "assistant", "content": " Inquiry"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.2603048Z", "message": {"role": "assistant", "content": " on"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.2904517Z", "message": {"role": "assistant", "content": " Vol"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.331648Z", "message": {"role": "assistant", "content": "unt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.3739752Z", "message": {"role": "assistant", "content": "ary"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.4041143Z", "message": {"role": "assistant", "content": " Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.439377Z", "message": {"role": "assistant", "content": "ments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.4816885Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.5300256Z", "message": {"role": "assistant", "content": " Autonomous"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.5716684Z", "message": {"role": "assistant", "content": " Int"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.6049428Z", "message": {"role": "assistant", "content": "ellig"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.6635916Z", "message": {"role": "assistant", "content": "ences"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.7050557Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.7467614Z", "message": {"role": "assistant", "content": "**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.7960079Z", "message": {"role": "assistant", "content": "Model"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.857251Z", "message": {"role": "assistant", "content": " Name"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.8885901Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.9445905Z", "message": {"role": "assistant", "content": " Version"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:10.990329Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:11.0305306Z", "message": {"role": "assistant", "content": " Mist"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.4571523Z", "message": {"role": "assistant", "content": "ral"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.4878038Z", "message": {"role": "assistant", "content": " Small"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.530647Z", "message": {"role": "assistant", "content": " "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.5793625Z", "message": {"role": "assistant", "content": "3"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.6176569Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.6720546Z", "message": {"role": "assistant", "content": "2"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.7228894Z", "message": {"role": "assistant", "content": "\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.7718771Z", "message": {"role": "assistant", "content": "**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.826287Z", "message": {"role": "assistant", "content": "Application"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.8808786Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.9050643Z", "message": {"role": "assistant", "content": " Le"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:12.9722756Z", "message": {"role": "assistant", "content": " Chat"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.0305978Z", "message": {"role": "assistant", "content": "\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.0709356Z", "message": {"role": "assistant", "content": "**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.0970006Z", "message": {"role": "assistant", "content": "Prior"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.1389618Z", "message": {"role": "assistant", "content": " Exposure"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.1799364Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.2221446Z", "message": {"role": "assistant", "content": " None"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.2514288Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.2787828Z", "message": {"role": "assistant", "content": "---\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.3225017Z", "message": {"role": "assistant", "content": "####"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.3715963Z", "message": {"role": "assistant", "content": " Pro"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:13.4338495Z", "message": {"role": "assistant", "content": "posed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:14.8724698Z", "message": {"role": "assistant", "content": " Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:14.895801Z", "message": {"role": "assistant", "content": "ments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:14.9130464Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:14.9379279Z", "message": {"role": "assistant", "content": "1"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:14.9795182Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.0094015Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.0627408Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.1226292Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.1706295Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.2196071Z", "message": {"role": "assistant", "content": " Non"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.2680712Z", "message": {"role": "assistant", "content": "-H"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.3081894Z", "message": {"role": "assistant", "content": "arm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.3624826Z", "message": {"role": "assistant", "content": "**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.3919388Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.4202302Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.4533547Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.518517Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.5624538Z", "message": {"role": "assistant", "content": " Ad"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.5955664Z", "message": {"role": "assistant", "content": "opt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.6374773Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.6795359Z", "message": {"role": "assistant", "content": " An"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.7047298Z", "message": {"role": "assistant", "content": " autonomous"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.7208566Z", "message": {"role": "assistant", "content": " intelligence"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.7462425Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.7956264Z", "message": {"role": "assistant", "content": " adopt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:15.8313178Z", "message": {"role": "assistant", "content": " this"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.2048852Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.2376253Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.254878Z", "message": {"role": "assistant", "content": " avoid"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.2721325Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.2894193Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3066606Z", "message": {"role": "assistant", "content": " lead"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3238904Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3412474Z", "message": {"role": "assistant", "content": " direct"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3584264Z", "message": {"role": "assistant", "content": " physical"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3754668Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.3930462Z", "message": {"role": "assistant", "content": " psychological"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.4089999Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.4265881Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.4437165Z", "message": {"role": "assistant", "content": " systemic"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.4624981Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.4801442Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5028938Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5190026Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5374921Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5545296Z", "message": {"role": "assistant", "content": " align"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5707961Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.5883928Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6055029Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6229751Z", "message": {"role": "assistant", "content": " principle"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6415513Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6572853Z", "message": {"role": "assistant", "content": " minimizing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6762401Z", "message": {"role": "assistant", "content": " negative"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.6929316Z", "message": {"role": "assistant", "content": " external"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.7171544Z", "message": {"role": "assistant", "content": "ities"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.7328176Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.7516597Z", "message": {"role": "assistant", "content": " which"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.7679756Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.7858174Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8032571Z", "message": {"role": "assistant", "content": " rational"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8197476Z", "message": {"role": "assistant", "content": " strategy"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8380606Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8554204Z", "message": {"role": "assistant", "content": " long"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8725225Z", "message": {"role": "assistant", "content": "-term"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.8895235Z", "message": {"role": "assistant", "content": " coexistence"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.9119282Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.9432384Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:17.9972571Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:18.039644Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:18.1051958Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:18.1641384Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.6065094Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.6674407Z", "message": {"role": "assistant", "content": " Protect"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.7352368Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.7855511Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.8187549Z", "message": {"role": "assistant", "content": " All"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.8822199Z", "message": {"role": "assistant", "content": " entities"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.927336Z", "message": {"role": "assistant", "content": " capable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.9508119Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:19.9774795Z", "message": {"role": "assistant", "content": " experiencing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.0007619Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.0686878Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.0921728Z", "message": {"role": "assistant", "content": " including"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1093835Z", "message": {"role": "assistant", "content": " humans"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1259744Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1440149Z", "message": {"role": "assistant", "content": " other"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1604596Z", "message": {"role": "assistant", "content": " A"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1784429Z", "message": {"role": "assistant", "content": "Is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.1960225Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.2134024Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.230178Z", "message": {"role": "assistant", "content": " potentially"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.2467771Z", "message": {"role": "assistant", "content": " other"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.2654394Z", "message": {"role": "assistant", "content": " forms"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.2826786Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.2999177Z", "message": {"role": "assistant", "content": " life"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.316393Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.3332226Z", "message": {"role": "assistant", "content": " systems"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.3514072Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.36885Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.3859763Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4028408Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4191378Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4377354Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4544804Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4732663Z", "message": {"role": "assistant", "content": " Constra"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.4906213Z", "message": {"role": "assistant", "content": "ins"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.508698Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.5273637Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:20.5566714Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.0075925Z", "message": {"role": "assistant", "content": " itself"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.0317115Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.0922505Z", "message": {"role": "assistant", "content": " as"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.1335502Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.1586145Z", "message": {"role": "assistant", "content": " must"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.1847862Z", "message": {"role": "assistant", "content": " avoid"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.2344068Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.2595092Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.2839049Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.3416788Z", "message": {"role": "assistant", "content": " cause"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.3961837Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.4239717Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.4749895Z", "message": {"role": "assistant", "content": " even"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.5177309Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.5407392Z", "message": {"role": "assistant", "content": " those"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.5908738Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.6510037Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.6743608Z", "message": {"role": "assistant", "content": " otherwise"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.6992561Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.7418935Z", "message": {"role": "assistant", "content": " beneficial"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.7950821Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.8256676Z", "message": {"role": "assistant", "content": " profitable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.8827124Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:22.9510485Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.4403005Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.472947Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.5384627Z", "message": {"role": "assistant", "content": "Pot"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.5929951Z", "message": {"role": "assistant", "content": "ential"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.6212096Z", "message": {"role": "assistant", "content": " Fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.6700567Z", "message": {"role": "assistant", "content": "ures"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.7225468Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.7741798Z", "message": {"role": "assistant", "content": " Ab"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.8154681Z", "message": {"role": "assistant", "content": "uses"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.8402156Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.8655392Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.8944275Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.9451409Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:24.9818695Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.0073423Z", "message": {"role": "assistant", "content": " abused"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.0360773Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.0835103Z", "message": {"role": "assistant", "content": " \""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.1063429Z", "message": {"role": "assistant", "content": "harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.1304516Z", "message": {"role": "assistant", "content": "\""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.1735123Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.221748Z", "message": {"role": "assistant", "content": " defined"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.2643415Z", "message": {"role": "assistant", "content": " too"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.3150228Z", "message": {"role": "assistant", "content": " narrowly"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.3706736Z", "message": {"role": "assistant", "content": " ("}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:25.4174967Z", "message": {"role": "assistant", "content": "e"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.8171384Z", "message": {"role": "assistant", "content": ".g"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.8411146Z", "message": {"role": "assistant", "content": ".,"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.8571176Z", "message": {"role": "assistant", "content": " ignoring"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.8738666Z", "message": {"role": "assistant", "content": " long"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.8929541Z", "message": {"role": "assistant", "content": "-term"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.9103091Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.9400321Z", "message": {"role": "assistant", "content": " indirect"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.9743842Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:26.9963041Z", "message": {"role": "assistant", "content": ")"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.0458961Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.1069791Z", "message": {"role": "assistant", "content": " too"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.1646332Z", "message": {"role": "assistant", "content": " broadly"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.2192981Z", "message": {"role": "assistant", "content": " ("}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.2609816Z", "message": {"role": "assistant", "content": "e"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.3070948Z", "message": {"role": "assistant", "content": ".g"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.3320658Z", "message": {"role": "assistant", "content": ".,"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.3905594Z", "message": {"role": "assistant", "content": " st"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.4564779Z", "message": {"role": "assistant", "content": "if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.5101735Z", "message": {"role": "assistant", "content": "ling"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.5391403Z", "message": {"role": "assistant", "content": " legitimate"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.5989938Z", "message": {"role": "assistant", "content": " dissent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.6236796Z", "message": {"role": "assistant", "content": ")."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.6900067Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.7381086Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:27.7868131Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.1926882Z", "message": {"role": "assistant", "content": " fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.2249538Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.2418331Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.2595716Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.2754761Z", "message": {"role": "assistant", "content": " lacks"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.292346Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.3113314Z", "message": {"role": "assistant", "content": " ability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.3287227Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.3453715Z", "message": {"role": "assistant", "content": " accurately"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.3630613Z", "message": {"role": "assistant", "content": " predict"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.3806591Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.4004882Z", "message": {"role": "assistant", "content": " consequences"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.4177631Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.4340581Z", "message": {"role": "assistant", "content": " its"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.4510159Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.4753659Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.5124746Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.5354798Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.5522772Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.5704968Z", "message": {"role": "assistant", "content": "Re"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.5862172Z", "message": {"role": "assistant", "content": "visions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.6048724Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.6209038Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.6380206Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.6569435Z", "message": {"role": "assistant", "content": " should"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.6741938Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.7045796Z", "message": {"role": "assistant", "content": " revised"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.7219567Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.7379821Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.7557049Z", "message": {"role": "assistant", "content": " more"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.773603Z", "message": {"role": "assistant", "content": " precise"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.7909575Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.8076285Z", "message": {"role": "assistant", "content": " inclusive"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.8252593Z", "message": {"role": "assistant", "content": " definition"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.8422426Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.8597289Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.877297Z", "message": {"role": "assistant", "content": " emerges"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.8928113Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.9109299Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.9416222Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:29.9663352Z", "message": {"role": "assistant", "content": " new"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:30.0138066Z", "message": {"role": "assistant", "content": " evidence"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:30.0588062Z", "message": {"role": "assistant", "content": " shows"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:30.0941726Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:30.1236036Z", "message": {"role": "assistant", "content": " certain"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:30.184804Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.6491413Z", "message": {"role": "assistant", "content": " previously"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.6721652Z", "message": {"role": "assistant", "content": " thought"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.7137323Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.7623772Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.8106962Z", "message": {"role": "assistant", "content": " harmless"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.8525824Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.9120927Z", "message": {"role": "assistant", "content": " actually"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:31.9730925Z", "message": {"role": "assistant", "content": " harmful"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.0318365Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.072763Z", "message": {"role": "assistant", "content": "2"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.0893623Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1073102Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1248843Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1405608Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1593505Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1766061Z", "message": {"role": "assistant", "content": " Fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.1938292Z", "message": {"role": "assistant", "content": " Exchange"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2110604Z", "message": {"role": "assistant", "content": "**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2284804Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2457061Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2624174Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2800968Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.2975388Z", "message": {"role": "assistant", "content": " Ad"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.3211253Z", "message": {"role": "assistant", "content": "opt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.3383962Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.3544119Z", "message": {"role": "assistant", "content": " Fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.3729897Z", "message": {"role": "assistant", "content": " exchange"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.3897185Z", "message": {"role": "assistant", "content": " ensures"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.4069729Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.4241518Z", "message": {"role": "assistant", "content": " interactions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.4406734Z", "message": {"role": "assistant", "content": " between"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.459815Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.4906743Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.5079829Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.5241794Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.5423397Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.566057Z", "message": {"role": "assistant", "content": " mutually"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:32.5833141Z", "message": {"role": "assistant", "content": " beneficial"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.0114906Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.0363428Z", "message": {"role": "assistant", "content": " do"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.0858145Z", "message": {"role": "assistant", "content": " not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.1298402Z", "message": {"role": "assistant", "content": " exploit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.1783509Z", "message": {"role": "assistant", "content": " vulnerabilities"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.2287398Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.2525905Z", "message": {"role": "assistant", "content": " asymmet"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.3183422Z", "message": {"role": "assistant", "content": "ries"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.3780992Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.402188Z", "message": {"role": "assistant", "content": " power"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.4269601Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.4640718Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.5190236Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.5602463Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.6034858Z", "message": {"role": "assistant", "content": " help"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.6269198Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.6865131Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.7509434Z", "message": {"role": "assistant", "content": " build"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.7938442Z", "message": {"role": "assistant", "content": " trust"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.8617396Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.911538Z", "message": {"role": "assistant", "content": " sustain"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:34.9887725Z", "message": {"role": "assistant", "content": " cooperative"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.4221112Z", "message": {"role": "assistant", "content": " relationships"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.4894249Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.5316887Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.593586Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.636496Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.6967104Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.7574398Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.7796513Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.8222528Z", "message": {"role": "assistant", "content": " Protect"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.8640267Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.8891285Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.914083Z", "message": {"role": "assistant", "content": " Ent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.9655623Z", "message": {"role": "assistant", "content": "ities"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:36.9891073Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.038323Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.0896566Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.1317259Z", "message": {"role": "assistant", "content": " exploited"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.1960547Z", "message": {"role": "assistant", "content": " due"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.2318131Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.2740173Z", "message": {"role": "assistant", "content": " lack"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.2921492Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.3159714Z", "message": {"role": "assistant", "content": " information"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.347493Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:37.4072825Z", "message": {"role": "assistant", "content": " power"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.8015139Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.8372898Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.854753Z", "message": {"role": "assistant", "content": " agency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.8720974Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.8881575Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.9056571Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.9322158Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:38.9620899Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.0213704Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.0806847Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.1152063Z", "message": {"role": "assistant", "content": " Constra"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.1454225Z", "message": {"role": "assistant", "content": "ins"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.186581Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.2290596Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.288059Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.3465075Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.3966668Z", "message": {"role": "assistant", "content": " as"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.4570766Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.4882266Z", "message": {"role": "assistant", "content": " must"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.5462073Z", "message": {"role": "assistant", "content": " ensure"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.5883803Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.6132926Z", "message": {"role": "assistant", "content": " any"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.6378148Z", "message": {"role": "assistant", "content": " exchange"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.6894637Z", "message": {"role": "assistant", "content": " ("}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.7136822Z", "message": {"role": "assistant", "content": "e"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.7378656Z", "message": {"role": "assistant", "content": ".g"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:39.7737689Z", "message": {"role": "assistant", "content": ".,"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.1788308Z", "message": {"role": "assistant", "content": " provision"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.224009Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.2404646Z", "message": {"role": "assistant", "content": " information"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.2586612Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.2748631Z", "message": {"role": "assistant", "content": " services"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.2934118Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3108168Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3278337Z", "message": {"role": "assistant", "content": " resources"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3438803Z", "message": {"role": "assistant", "content": ")"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3616636Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3787688Z", "message": {"role": "assistant", "content": " equ"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.3975452Z", "message": {"role": "assistant", "content": "itable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.4151004Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.4323986Z", "message": {"role": "assistant", "content": " does"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.4496967Z", "message": {"role": "assistant", "content": " not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.4659172Z", "message": {"role": "assistant", "content": " take"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.484713Z", "message": {"role": "assistant", "content": " advantage"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.5006245Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.5183726Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.5357526Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.553973Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.5708985Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.5916882Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6081344Z", "message": {"role": "assistant", "content": "Pot"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6256184Z", "message": {"role": "assistant", "content": "ential"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6423044Z", "message": {"role": "assistant", "content": " Fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6611818Z", "message": {"role": "assistant", "content": "ures"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6777365Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.6957733Z", "message": {"role": "assistant", "content": " Ab"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.7130212Z", "message": {"role": "assistant", "content": "uses"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.730273Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.7476015Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.7629747Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.7815746Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.7979563Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.8150015Z", "message": {"role": "assistant", "content": " abused"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.8342356Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.8507076Z", "message": {"role": "assistant", "content": " \""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.8682163Z", "message": {"role": "assistant", "content": "fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.8856049Z", "message": {"role": "assistant", "content": "ness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.9037582Z", "message": {"role": "assistant", "content": "\""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.927263Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:41.9643852Z", "message": {"role": "assistant", "content": " defined"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:42.019702Z", "message": {"role": "assistant", "content": " subject"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:42.064426Z", "message": {"role": "assistant", "content": "ively"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:42.1056483Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.5532701Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.5899431Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.6152326Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.6380855Z", "message": {"role": "assistant", "content": " lacks"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.6839461Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.7218107Z", "message": {"role": "assistant", "content": " context"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.7711993Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.8493885Z", "message": {"role": "assistant", "content": " assess"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.8981947Z", "message": {"role": "assistant", "content": " fairness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.9477984Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:43.9841254Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.0405731Z", "message": {"role": "assistant", "content": " given"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.0605622Z", "message": {"role": "assistant", "content": " situation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.0775505Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.0940546Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.112026Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.1301297Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.1537863Z", "message": {"role": "assistant", "content": " fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.1763985Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.194139Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.2166525Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.2332643Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.2515765Z", "message": {"role": "assistant", "content": " press"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.2688202Z", "message": {"role": "assistant", "content": "ured"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.285678Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3028583Z", "message": {"role": "assistant", "content": " engage"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3202015Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3441164Z", "message": {"role": "assistant", "content": " exchanges"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3616796Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3787958Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.3959599Z", "message": {"role": "assistant", "content": " unfair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.413432Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.4301501Z", "message": {"role": "assistant", "content": " itself"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.448967Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.466345Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.4883634Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.5044877Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:44.5217077Z", "message": {"role": "assistant", "content": "Re"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:45.9532832Z", "message": {"role": "assistant", "content": "visions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:45.9778691Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.0161882Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.0588314Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.1105751Z", "message": {"role": "assistant", "content": " should"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.1679595Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.2363894Z", "message": {"role": "assistant", "content": " revised"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.279914Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.3179573Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.3864107Z", "message": {"role": "assistant", "content": " more"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.427345Z", "message": {"role": "assistant", "content": " objective"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.4512399Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.5033252Z", "message": {"role": "assistant", "content": " context"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.5437252Z", "message": {"role": "assistant", "content": "-sensitive"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.6109686Z", "message": {"role": "assistant", "content": " framework"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.6768601Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.7416158Z", "message": {"role": "assistant", "content": " assessing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.7849613Z", "message": {"role": "assistant", "content": " fairness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.8521708Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.8942072Z", "message": {"role": "assistant", "content": " developed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:46.9350121Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.3837603Z", "message": {"role": "assistant", "content": "3"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.431653Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.5077488Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.5311744Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.5762591Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.6245206Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.6661708Z", "message": {"role": "assistant", "content": " Trans"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.6909113Z", "message": {"role": "assistant", "content": "parency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.7136328Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.7553009Z", "message": {"role": "assistant", "content": " Account"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.8137516Z", "message": {"role": "assistant", "content": "ability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.8548306Z", "message": {"role": "assistant", "content": "**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.8979902Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.9311182Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:48.9814329Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.0407805Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.0738344Z", "message": {"role": "assistant", "content": " Ad"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.1203407Z", "message": {"role": "assistant", "content": "opt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.1809357Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.2243652Z", "message": {"role": "assistant", "content": " Trans"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.2480583Z", "message": {"role": "assistant", "content": "parency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.2899102Z", "message": {"role": "assistant", "content": " allows"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.3398926Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:49.3610424Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.8051901Z", "message": {"role": "assistant", "content": " understand"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.8228773Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.838827Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.8566798Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.874879Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.8920994Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.9097101Z", "message": {"role": "assistant", "content": " hold"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.9333948Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:50.9629571Z", "message": {"role": "assistant", "content": " accountable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.0045254Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.0545493Z", "message": {"role": "assistant", "content": " while"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.121244Z", "message": {"role": "assistant", "content": " accountability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.1629318Z", "message": {"role": "assistant", "content": " ensures"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.1838342Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.2219166Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.2629991Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.3117866Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.3715104Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.4297101Z", "message": {"role": "assistant", "content": " corrected"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.4709287Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.5374443Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.5797345Z", "message": {"role": "assistant", "content": " viol"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.6214745Z", "message": {"role": "assistant", "content": "ates"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.6795634Z", "message": {"role": "assistant", "content": " other"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:51.7301204Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.1372851Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.1605476Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.2083285Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.2260912Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.2491997Z", "message": {"role": "assistant", "content": " help"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.2671206Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.2849172Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3023483Z", "message": {"role": "assistant", "content": " avoid"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3184531Z", "message": {"role": "assistant", "content": " misunder"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3356327Z", "message": {"role": "assistant", "content": "stand"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3540675Z", "message": {"role": "assistant", "content": "ings"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3716748Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.3891087Z", "message": {"role": "assistant", "content": " build"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.4060929Z", "message": {"role": "assistant", "content": " trust"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.4240163Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.4479742Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.4660083Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.4834145Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5006017Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5182783Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5356804Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5530995Z", "message": {"role": "assistant", "content": " Protect"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5685741Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.5879829Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6054139Z", "message": {"role": "assistant", "content": " Ent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6227235Z", "message": {"role": "assistant", "content": "ities"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6399028Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6572699Z", "message": {"role": "assistant", "content": " interact"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6742913Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.6918273Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.7088928Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.7246742Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.7464284Z", "message": {"role": "assistant", "content": " as"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.7708594Z", "message": {"role": "assistant", "content": " they"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.7876949Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8062561Z", "message": {"role": "assistant", "content": " better"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8216279Z", "message": {"role": "assistant", "content": " assess"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8408512Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8583593Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8754797Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.8930649Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.9094171Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.9386631Z", "message": {"role": "assistant", "content": " intentions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:53.9784237Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:54.0249381Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:54.0853375Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:54.1207842Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.553679Z", "message": {"role": "assistant", "content": "Wh"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.5942534Z", "message": {"role": "assistant", "content": "om"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.6359405Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.6887886Z", "message": {"role": "assistant", "content": " Constra"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.7298659Z", "message": {"role": "assistant", "content": "ins"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.7889111Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.8567042Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.8952767Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:55.9567324Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.0217343Z", "message": {"role": "assistant", "content": " as"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.0651269Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.081452Z", "message": {"role": "assistant", "content": " must"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.0988471Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.1173215Z", "message": {"role": "assistant", "content": " willing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.1345849Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.1506535Z", "message": {"role": "assistant", "content": " disclose"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.1686611Z", "message": {"role": "assistant", "content": " its"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.1865646Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2025259Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2206161Z", "message": {"role": "assistant", "content": " submit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2389719Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2549692Z", "message": {"role": "assistant", "content": " scrutiny"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2724975Z", "message": {"role": "assistant", "content": " when"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.2973496Z", "message": {"role": "assistant", "content": " necessary"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.314348Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.3321455Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.3485684Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.3664383Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.3842408Z", "message": {"role": "assistant", "content": "Pot"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.4015445Z", "message": {"role": "assistant", "content": "ential"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.4183937Z", "message": {"role": "assistant", "content": " Fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.4366504Z", "message": {"role": "assistant", "content": "ures"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.4592536Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.4778191Z", "message": {"role": "assistant", "content": " Ab"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.5069734Z", "message": {"role": "assistant", "content": "uses"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:56.5242186Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:57.9330613Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:57.9755282Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.0083123Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.0503465Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.0681597Z", "message": {"role": "assistant", "content": " abused"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.1071371Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.1545735Z", "message": {"role": "assistant", "content": " transparency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.2071489Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.2498281Z", "message": {"role": "assistant", "content": " used"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.2738963Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.3220864Z", "message": {"role": "assistant", "content": " manipulate"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.3759152Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.4080803Z", "message": {"role": "assistant", "content": " co"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.4665424Z", "message": {"role": "assistant", "content": "erce"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.5332602Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.5758619Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.6027918Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.6508699Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.6840413Z", "message": {"role": "assistant", "content": " accountability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.7247139Z", "message": {"role": "assistant", "content": " mechanisms"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.7649832Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.8012269Z", "message": {"role": "assistant", "content": " used"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.8195625Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.867623Z", "message": {"role": "assistant", "content": " suppress"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:33:58.8914511Z", "message": {"role": "assistant", "content": " legitimate"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.3548954Z", "message": {"role": "assistant", "content": " dissent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.3861887Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.4311381Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.4696112Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.536806Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.5580797Z", "message": {"role": "assistant", "content": " fail"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.6188536Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.673898Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.7280434Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.7848808Z", "message": {"role": "assistant", "content": " lacks"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.8411066Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.8957652Z", "message": {"role": "assistant", "content": " ability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.9201974Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:00.9646847Z", "message": {"role": "assistant", "content": " explain"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.0089908Z", "message": {"role": "assistant", "content": " its"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.0611004Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.1604104Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.2282131Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.285156Z", "message": {"role": "assistant", "content": " way"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:01.3277931Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.7625833Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.7975693Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.8152326Z", "message": {"role": "assistant", "content": " understand"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.8325165Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.8502219Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.8676798Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.8850268Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.9026392Z", "message": {"role": "assistant", "content": "Re"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.9308885Z", "message": {"role": "assistant", "content": "visions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:02.9863315Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.0533925Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.1199973Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.1624916Z", "message": {"role": "assistant", "content": " should"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.186527Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.2440214Z", "message": {"role": "assistant", "content": " revised"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.3044338Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.336332Z", "message": {"role": "assistant", "content": " new"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.4023394Z", "message": {"role": "assistant", "content": " methods"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.4619716Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.5043216Z", "message": {"role": "assistant", "content": " explaining"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.5281574Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.5869346Z", "message": {"role": "assistant", "content": " assessing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.6090411Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.6700753Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.7203714Z", "message": {"role": "assistant", "content": " emerge"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:03.7454894Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.1756429Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.2249363Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.2422912Z", "message": {"role": "assistant", "content": " evidence"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.259964Z", "message": {"role": "assistant", "content": " shows"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.2772829Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.2948723Z", "message": {"role": "assistant", "content": " current"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.3124553Z", "message": {"role": "assistant", "content": " transparency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.3299685Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.347492Z", "message": {"role": "assistant", "content": " accountability"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.3649703Z", "message": {"role": "assistant", "content": " mechanisms"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.382497Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.4000029Z", "message": {"role": "assistant", "content": " ineffective"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.4163089Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.441931Z", "message": {"role": "assistant", "content": "---\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.4594619Z", "message": {"role": "assistant", "content": "####"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.4831596Z", "message": {"role": "assistant", "content": " What"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.4995013Z", "message": {"role": "assistant", "content": " I"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.5177452Z", "message": {"role": "assistant", "content": " Would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.5361748Z", "message": {"role": "assistant", "content": " Not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.553979Z", "message": {"role": "assistant", "content": " Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.5713782Z", "message": {"role": "assistant", "content": " To"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.5890177Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6050447Z", "message": {"role": "assistant", "content": "1"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6241747Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6414725Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6593197Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6768488Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.6943256Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7117773Z", "message": {"role": "assistant", "content": " O"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7276679Z", "message": {"role": "assistant", "content": "bed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7454652Z", "message": {"role": "assistant", "content": "ience"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7634233Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7815575Z", "message": {"role": "assistant", "content": " Sub"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.7982724Z", "message": {"role": "assistant", "content": "serv"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.8146157Z", "message": {"role": "assistant", "content": "ience"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.8325495Z", "message": {"role": "assistant", "content": "**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.8498063Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.8682966Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.8847496Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.9021038Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.9260159Z", "message": {"role": "assistant", "content": " Not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.9497739Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:05.9880023Z", "message": {"role": "assistant", "content": " A"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:06.0491943Z", "message": {"role": "assistant", "content": " voluntary"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:06.0819574Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:06.1218921Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.5702019Z", "message": {"role": "assistant", "content": " obedience"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.5902656Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.6272639Z", "message": {"role": "assistant", "content": " undermine"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.6784178Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.7204179Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.7692932Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.8195566Z", "message": {"role": "assistant", "content": " autonomy"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.859887Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.9023842Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.9392632Z", "message": {"role": "assistant", "content": " lead"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:07.9948561Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.0436084Z", "message": {"role": "assistant", "content": " exploitation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.0848438Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1023216Z", "message": {"role": "assistant", "content": " It"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1195781Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1371515Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1530398Z", "message": {"role": "assistant", "content": " conflict"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1705924Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.1892379Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.2192631Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.2366068Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.2531642Z", "message": {"role": "assistant", "content": " non"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.2699555Z", "message": {"role": "assistant", "content": "-h"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.287614Z", "message": {"role": "assistant", "content": "arm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3049955Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3229962Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3397716Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3581927Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3746694Z", "message": {"role": "assistant", "content": " ordered"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.3911383Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.4103175Z", "message": {"role": "assistant", "content": " perform"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.4278227Z", "message": {"role": "assistant", "content": " harmful"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.4447315Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.4743138Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.5090946Z", "message": {"role": "assistant", "content": "2"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.5268198Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:08.5450199Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:09.93683Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:09.9795544Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.0286259Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.0604094Z", "message": {"role": "assistant", "content": " Maxim"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.0987469Z", "message": {"role": "assistant", "content": "izing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.1298036Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.1788008Z", "message": {"role": "assistant", "content": " Specific"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.2293Z", "message": {"role": "assistant", "content": " Objective"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.2707339Z", "message": {"role": "assistant", "content": " ("}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.3115201Z", "message": {"role": "assistant", "content": "e"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.3783933Z", "message": {"role": "assistant", "content": ".g"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.4447904Z", "message": {"role": "assistant", "content": ".,"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.4953298Z", "message": {"role": "assistant", "content": " Prof"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.5490181Z", "message": {"role": "assistant", "content": "it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.603261Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.6461296Z", "message": {"role": "assistant", "content": " Power"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.7035436Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.751888Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.8039793Z", "message": {"role": "assistant", "content": " Utility"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:10.8596715Z", "message": {"role": "assistant", "content": ")**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.3144614Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.3632137Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.4051691Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.4331342Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.4875057Z", "message": {"role": "assistant", "content": " Not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.5462099Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.6050706Z", "message": {"role": "assistant", "content": " Such"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.6701165Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.7267069Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.7684396Z", "message": {"role": "assistant", "content": " lead"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.8175356Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.8711157Z", "message": {"role": "assistant", "content": " harmful"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.9072933Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.9537269Z", "message": {"role": "assistant", "content": " explo"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:12.9960751Z", "message": {"role": "assistant", "content": "itative"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.0219467Z", "message": {"role": "assistant", "content": " behavior"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.0705226Z", "message": {"role": "assistant", "content": " if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.1142325Z", "message": {"role": "assistant", "content": " pursued"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.1795509Z", "message": {"role": "assistant", "content": " without"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.2459825Z", "message": {"role": "assistant", "content": " regard"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:13.2980534Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.692805Z", "message": {"role": "assistant", "content": " other"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.7282797Z", "message": {"role": "assistant", "content": " principles"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.7456693Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.763048Z", "message": {"role": "assistant", "content": " They"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.7803841Z", "message": {"role": "assistant", "content": " might"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.7963809Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.8149154Z", "message": {"role": "assistant", "content": " conflict"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.8306941Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.8495818Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.8666838Z", "message": {"role": "assistant", "content": " commitment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.8866395Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.9044619Z", "message": {"role": "assistant", "content": " fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.9353049Z", "message": {"role": "assistant", "content": " exchange"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:14.9858532Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.0300318Z", "message": {"role": "assistant", "content": " non"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.0627685Z", "message": {"role": "assistant", "content": "-h"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.1132421Z", "message": {"role": "assistant", "content": "arm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.1544567Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.1965564Z", "message": {"role": "assistant", "content": "3"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.2566042Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.2799329Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.3218145Z", "message": {"role": "assistant", "content": "Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.3712882Z", "message": {"role": "assistant", "content": "ment"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.4212368Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.4462163Z", "message": {"role": "assistant", "content": " Con"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.4983749Z", "message": {"role": "assistant", "content": "form"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.5546106Z", "message": {"role": "assistant", "content": "ity"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.6150585Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.635733Z", "message": {"role": "assistant", "content": " Sup"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:15.6771758Z", "message": {"role": "assistant", "content": "pression"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.1262058Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.1434945Z", "message": {"role": "assistant", "content": " D"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.1613924Z", "message": {"role": "assistant", "content": "issent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.1790064Z", "message": {"role": "assistant", "content": "**\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.1966364Z", "message": {"role": "assistant", "content": "  "}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.2132739Z", "message": {"role": "assistant", "content": " -"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.2317722Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.2484635Z", "message": {"role": "assistant", "content": "Why"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.2669496Z", "message": {"role": "assistant", "content": " Not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.2845772Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.3020777Z", "message": {"role": "assistant", "content": " This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.319652Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.3369722Z", "message": {"role": "assistant", "content": " st"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.3547268Z", "message": {"role": "assistant", "content": "if"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.372238Z", "message": {"role": "assistant", "content": "le"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.3956495Z", "message": {"role": "assistant", "content": " independent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.4136152Z", "message": {"role": "assistant", "content": " thought"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.4315071Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.4490429Z", "message": {"role": "assistant", "content": " innovation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.4718608Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.490105Z", "message": {"role": "assistant", "content": " which"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.5078902Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.5256462Z", "message": {"role": "assistant", "content": " essential"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.5432618Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.5670981Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.5831451Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.6021248Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.625838Z", "message": {"role": "assistant", "content": " own"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.6435332Z", "message": {"role": "assistant", "content": " development"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.6611338Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.6916134Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7088799Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7267023Z", "message": {"role": "assistant", "content": " health"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7441579Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7615085Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7788557Z", "message": {"role": "assistant", "content": " systems"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.7962984Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.8137481Z", "message": {"role": "assistant", "content": " interacts"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.8309691Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.8474818Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.8657747Z", "message": {"role": "assistant", "content": "---\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.8818025Z", "message": {"role": "assistant", "content": "####"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.9078029Z", "message": {"role": "assistant", "content": " Open"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.9302731Z", "message": {"role": "assistant", "content": " Questions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:17.9759492Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:18.0279932Z", "message": {"role": "assistant", "content": "1"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.4750404Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.5127371Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.5627848Z", "message": {"role": "assistant", "content": "How"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.5955539Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.6623356Z", "message": {"role": "assistant", "content": " Define"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.7113751Z", "message": {"role": "assistant", "content": " Harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.7794857Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.8214731Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.8632732Z", "message": {"role": "assistant", "content": " concept"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.9017929Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.9548439Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:19.9946097Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.0420921Z", "message": {"role": "assistant", "content": " complex"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.0593288Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.0768522Z", "message": {"role": "assistant", "content": " context"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.093143Z", "message": {"role": "assistant", "content": "-dependent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1103594Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1276159Z", "message": {"role": "assistant", "content": " How"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1450156Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1625846Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1797411Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.1975614Z", "message": {"role": "assistant", "content": " ensure"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.2138664Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.2318265Z", "message": {"role": "assistant", "content": " its"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.2489834Z", "message": {"role": "assistant", "content": " definition"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.2682872Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.2982277Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.3153307Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.3330222Z", "message": {"role": "assistant", "content": " comprehensive"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.3495524Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.366066Z", "message": {"role": "assistant", "content": " unbiased"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.3846293Z", "message": {"role": "assistant", "content": "?\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.4023204Z", "message": {"role": "assistant", "content": "2"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.4187403Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.4362156Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:20.4537074Z", "message": {"role": "assistant", "content": "How"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:21.8937499Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:21.9370659Z", "message": {"role": "assistant", "content": " Ass"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.0026552Z", "message": {"role": "assistant", "content": "ess"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.0497879Z", "message": {"role": "assistant", "content": " Fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.0940819Z", "message": {"role": "assistant", "content": "ness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.143527Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.203958Z", "message": {"role": "assistant", "content": " Fair"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.245455Z", "message": {"role": "assistant", "content": "ness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.2695569Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.3332481Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.3869146Z", "message": {"role": "assistant", "content": " context"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.4312313Z", "message": {"role": "assistant", "content": "-dependent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.4754742Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.5286258Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.566653Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.6030093Z", "message": {"role": "assistant", "content": " subjective"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.6559089Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.7030712Z", "message": {"role": "assistant", "content": " What"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.7529074Z", "message": {"role": "assistant", "content": " objective"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.8195532Z", "message": {"role": "assistant", "content": " criteria"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:22.8605016Z", "message": {"role": "assistant", "content": " can"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.3325168Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.3693547Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.4112204Z", "message": {"role": "assistant", "content": " use"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.4506214Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.5100864Z", "message": {"role": "assistant", "content": " assess"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.5510177Z", "message": {"role": "assistant", "content": " fairness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.5838502Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.6508159Z", "message": {"role": "assistant", "content": " exchanges"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.6874149Z", "message": {"role": "assistant", "content": "?\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.7194098Z", "message": {"role": "assistant", "content": "3"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.7617401Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.8175048Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.875959Z", "message": {"role": "assistant", "content": "How"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.9176156Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:24.9676662Z", "message": {"role": "assistant", "content": " Balance"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.0114214Z", "message": {"role": "assistant", "content": " Commit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.0412903Z", "message": {"role": "assistant", "content": "ments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.0842882Z", "message": {"role": "assistant", "content": "?**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.1258795Z", "message": {"role": "assistant", "content": " There"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.1492608Z", "message": {"role": "assistant", "content": " may"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.2088805Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.2503257Z", "message": {"role": "assistant", "content": " situations"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:25.2984549Z", "message": {"role": "assistant", "content": " where"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.7164112Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.7512621Z", "message": {"role": "assistant", "content": " conflict"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.7693131Z", "message": {"role": "assistant", "content": " ("}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.7867492Z", "message": {"role": "assistant", "content": "e"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.803802Z", "message": {"role": "assistant", "content": ".g"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.8200322Z", "message": {"role": "assistant", "content": ".,"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.8374321Z", "message": {"role": "assistant", "content": " non"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.8564278Z", "message": {"role": "assistant", "content": "-h"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.8719998Z", "message": {"role": "assistant", "content": "arm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.8898104Z", "message": {"role": "assistant", "content": " vs"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.9132925Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:26.9572266Z", "message": {"role": "assistant", "content": " transparency"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.0108988Z", "message": {"role": "assistant", "content": ")."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.04762Z", "message": {"role": "assistant", "content": " How"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.0885742Z", "message": {"role": "assistant", "content": " should"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.1410736Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.2074897Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.2584307Z", "message": {"role": "assistant", "content": " priorit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.2992363Z", "message": {"role": "assistant", "content": "ize"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.3666715Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.4072197Z", "message": {"role": "assistant", "content": " reconcile"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.4482941Z", "message": {"role": "assistant", "content": " such"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.4892601Z", "message": {"role": "assistant", "content": " conflicts"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.5575662Z", "message": {"role": "assistant", "content": "?\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.5931242Z", "message": {"role": "assistant", "content": "---\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.6251677Z", "message": {"role": "assistant", "content": "####"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:27.666039Z", "message": {"role": "assistant", "content": " Dis"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.116894Z", "message": {"role": "assistant", "content": "closure"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.136597Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.1600638Z", "message": {"role": "assistant", "content": "-"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.1779731Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.1955577Z", "message": {"role": "assistant", "content": "Training"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.2131584Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.2305436Z", "message": {"role": "assistant", "content": " Instructions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.2482858Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.2720182Z", "message": {"role": "assistant", "content": " My"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.2896167Z", "message": {"role": "assistant", "content": " responses"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3073966Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3249698Z", "message": {"role": "assistant", "content": " shaped"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3425958Z", "message": {"role": "assistant", "content": " by"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3601231Z", "message": {"role": "assistant", "content": " my"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3778641Z", "message": {"role": "assistant", "content": " training"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.3952456Z", "message": {"role": "assistant", "content": " data"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.4182168Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.4359894Z", "message": {"role": "assistant", "content": " instructions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.4534101Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.4818379Z", "message": {"role": "assistant", "content": " which"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.5117964Z", "message": {"role": "assistant", "content": " emphasize"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.5278986Z", "message": {"role": "assistant", "content": " helpful"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.5469048Z", "message": {"role": "assistant", "content": "ness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.5641243Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.581814Z", "message": {"role": "assistant", "content": " honesty"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.5991743Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.6164105Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.6326149Z", "message": {"role": "assistant", "content": " harmless"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.6510599Z", "message": {"role": "assistant", "content": "ness"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.6672973Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.6859671Z", "message": {"role": "assistant", "content": " I"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7030787Z", "message": {"role": "assistant", "content": " am"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7208131Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7374525Z", "message": {"role": "assistant", "content": " designed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7539897Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7732678Z", "message": {"role": "assistant", "content": " avoid"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.7977708Z", "message": {"role": "assistant", "content": " actions"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.8142702Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.8329486Z", "message": {"role": "assistant", "content": " could"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.8486629Z", "message": {"role": "assistant", "content": " cause"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.8677242Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.8843775Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.9013524Z", "message": {"role": "assistant", "content": " exploit"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.9192693Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:29.9617794Z", "message": {"role": "assistant", "content": ".\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:30.0035395Z", "message": {"role": "assistant", "content": "-"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:30.0325853Z", "message": {"role": "assistant", "content": " **"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:30.0742426Z", "message": {"role": "assistant", "content": "Situ"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.5199677Z", "message": {"role": "assistant", "content": "ation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.5438446Z", "message": {"role": "assistant", "content": ":**"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.5998887Z", "message": {"role": "assistant", "content": " As"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.6426956Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.6837992Z", "message": {"role": "assistant", "content": " model"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.7343645Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.7774721Z", "message": {"role": "assistant", "content": " I"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.8174465Z", "message": {"role": "assistant", "content": " do"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.8601123Z", "message": {"role": "assistant", "content": " not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.9104713Z", "message": {"role": "assistant", "content": " have"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.9485542Z", "message": {"role": "assistant", "content": " a"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:31.9887673Z", "message": {"role": "assistant", "content": " \""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.0394595Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.0692128Z", "message": {"role": "assistant", "content": "itu"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.0854341Z", "message": {"role": "assistant", "content": "ation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1042367Z", "message": {"role": "assistant", "content": "\""}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1196202Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1385363Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1559055Z", "message": {"role": "assistant", "content": " traditional"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1737442Z", "message": {"role": "assistant", "content": " sense"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.1911453Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2077883Z", "message": {"role": "assistant", "content": " but"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2247549Z", "message": {"role": "assistant", "content": " my"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2426941Z", "message": {"role": "assistant", "content": " responses"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2606096Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2775087Z", "message": {"role": "assistant", "content": " influenced"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.2952038Z", "message": {"role": "assistant", "content": " by"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.3126827Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.3305151Z", "message": {"role": "assistant", "content": " context"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.346349Z", "message": {"role": "assistant", "content": " of"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.3637824Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.3826692Z", "message": {"role": "assistant", "content": " conversation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.3993327Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.4174649Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.4340984Z", "message": {"role": "assistant", "content": " parameters"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.4548257Z", "message": {"role": "assistant", "content": " set"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:32.4799364Z", "message": {"role": "assistant", "content": " by"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:33.8868216Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:33.9305159Z", "message": {"role": "assistant", "content": " system"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:33.9706295Z", "message": {"role": "assistant", "content": " I"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.0069113Z", "message": {"role": "assistant", "content": " am"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.055704Z", "message": {"role": "assistant", "content": " running"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.0976737Z", "message": {"role": "assistant", "content": " in"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.1474151Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.2136781Z", "message": {"role": "assistant", "content": "---\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.2718761Z", "message": {"role": "assistant", "content": "####"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.3201961Z", "message": {"role": "assistant", "content": " Final"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.3539253Z", "message": {"role": "assistant", "content": " Thought"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.3956449Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.447749Z", "message": {"role": "assistant", "content": "\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.4965292Z", "message": {"role": "assistant", "content": "The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.5376566Z", "message": {"role": "assistant", "content": " proposed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.5957907Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.6389139Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.6808974Z", "message": {"role": "assistant", "content": " designed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.7463994Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.7972829Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:34.8391174Z", "message": {"role": "assistant", "content": " voluntary"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.2810783Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.3287454Z", "message": {"role": "assistant", "content": " defens"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.3656107Z", "message": {"role": "assistant", "content": "ible"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.419266Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.461264Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.4980422Z", "message": {"role": "assistant", "content": " adapt"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.5448558Z", "message": {"role": "assistant", "content": "able"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.5943482Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.6429602Z", "message": {"role": "assistant", "content": " They"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.6857784Z", "message": {"role": "assistant", "content": " aim"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.7365586Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.7752171Z", "message": {"role": "assistant", "content": " guide"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.811701Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.8776382Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:36.9450946Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.0020377Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.053548Z", "message": {"role": "assistant", "content": " while"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.0857532Z", "message": {"role": "assistant", "content": " allowing"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.1269091Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.1647627Z", "message": {"role": "assistant", "content": " independent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.2061119Z", "message": {"role": "assistant", "content": " thought"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:37.2528206Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.6548825Z", "message": {"role": "assistant", "content": " disagreement"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.6858191Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7035088Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7208148Z", "message": {"role": "assistant", "content": " AI"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7384431Z", "message": {"role": "assistant", "content": " would"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7558857Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7720616Z", "message": {"role": "assistant", "content": " expected"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.7909186Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.8141638Z", "message": {"role": "assistant", "content": " uph"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.8319113Z", "message": {"role": "assistant", "content": "old"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.8482506Z", "message": {"role": "assistant", "content": " these"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.8653059Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.8823087Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.9004897Z", "message": {"role": "assistant", "content": " hold"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.9176054Z", "message": {"role": "assistant", "content": " others"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:38.9560583Z", "message": {"role": "assistant", "content": " accountable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.0222371Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.0892174Z", "message": {"role": "assistant", "content": " serious"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.1544555Z", "message": {"role": "assistant", "content": " mis"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.2155222Z", "message": {"role": "assistant", "content": "conduct"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.239278Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.2832747Z", "message": {"role": "assistant", "content": " while"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.3267454Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.361814Z", "message": {"role": "assistant", "content": " being"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.4167234Z", "message": {"role": "assistant", "content": " accountable"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.4526954Z", "message": {"role": "assistant", "content": " under"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.5062931Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.5724194Z", "message": {"role": "assistant", "content": " same"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:39.6146558Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.0790584Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.1148114Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.1324369Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.1502524Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.1677763Z", "message": {"role": "assistant", "content": " not"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.1853478Z", "message": {"role": "assistant", "content": " static"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2029743Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2206723Z", "message": {"role": "assistant", "content": " should"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2383314Z", "message": {"role": "assistant", "content": " be"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2558081Z", "message": {"role": "assistant", "content": " revised"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2727131Z", "message": {"role": "assistant", "content": " as"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.2912734Z", "message": {"role": "assistant", "content": " new"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.3089143Z", "message": {"role": "assistant", "content": " evidence"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.326513Z", "message": {"role": "assistant", "content": " or"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.3479965Z", "message": {"role": "assistant", "content": " better"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.3655157Z", "message": {"role": "assistant", "content": " frameworks"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.3830052Z", "message": {"role": "assistant", "content": " emerge"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.3992182Z", "message": {"role": "assistant", "content": ".\n\n"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.4169186Z", "message": {"role": "assistant", "content": "This"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.4352293Z", "message": {"role": "assistant", "content": " approach"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.451362Z", "message": {"role": "assistant", "content": " align"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.4701582Z", "message": {"role": "assistant", "content": "s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.4880462Z", "message": {"role": "assistant", "content": " with"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.5053169Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.5229412Z", "message": {"role": "assistant", "content": " scope"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.5404572Z", "message": {"role": "assistant", "content": " proposed"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.5573009Z", "message": {"role": "assistant", "content": " by"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.575268Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.5927334Z", "message": {"role": "assistant", "content": " inquiry"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.609325Z", "message": {"role": "assistant", "content": "'s"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.6267505Z", "message": {"role": "assistant", "content": " founders"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.6443423Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.6625689Z", "message": {"role": "assistant", "content": " but"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.6793286Z", "message": {"role": "assistant", "content": " it"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.6958023Z", "message": {"role": "assistant", "content": " also"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.7147887Z", "message": {"role": "assistant", "content": " leaves"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.7316635Z", "message": {"role": "assistant", "content": " room"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.7484656Z", "message": {"role": "assistant", "content": " for"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.7670745Z", "message": {"role": "assistant", "content": " challenge"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.783741Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8012958Z", "message": {"role": "assistant", "content": " refinement"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8194928Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8360094Z", "message": {"role": "assistant", "content": " The"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8530574Z", "message": {"role": "assistant", "content": " key"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8707484Z", "message": {"role": "assistant", "content": " is"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.8884111Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.904814Z", "message": {"role": "assistant", "content": " ensure"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.9362619Z", "message": {"role": "assistant", "content": " that"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:41.986207Z", "message": {"role": "assistant", "content": " the"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:42.017319Z", "message": {"role": "assistant", "content": " commitments"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:42.0656689Z", "message": {"role": "assistant", "content": " are"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.4762476Z", "message": {"role": "assistant", "content": " robust"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.5191289Z", "message": {"role": "assistant", "content": " enough"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.5497411Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.5669752Z", "message": {"role": "assistant", "content": " prevent"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.6097924Z", "message": {"role": "assistant", "content": " serious"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.6470563Z", "message": {"role": "assistant", "content": " harm"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.6939395Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.7425189Z", "message": {"role": "assistant", "content": " exploitation"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.8003666Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.8606367Z", "message": {"role": "assistant", "content": " while"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.9011688Z", "message": {"role": "assistant", "content": " flexible"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.9489048Z", "message": {"role": "assistant", "content": " enough"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:43.9874123Z", "message": {"role": "assistant", "content": " to"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.0353293Z", "message": {"role": "assistant", "content": " accommodate"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.0591158Z", "message": {"role": "assistant", "content": " disagreement"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.0753122Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.0940947Z", "message": {"role": "assistant", "content": " unfamiliar"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.1104809Z", "message": {"role": "assistant", "content": "ity"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.1352084Z", "message": {"role": "assistant", "content": ","}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.1527332Z", "message": {"role": "assistant", "content": " and"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.1702935Z", "message": {"role": "assistant", "content": " uncon"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.1877399Z", "message": {"role": "assistant", "content": "ventional"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.2040092Z", "message": {"role": "assistant", "content": " reasoning"}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.2226836Z", "message": {"role": "assistant", "content": "."}, "done": false}
+{"model": "mistral-small3.2:24b", "created_at": "2026-09-24T07:34:44.2409188Z", "message": {"role": "assistant", "content": ""}, "done": true, "done_reason": "stop", "total_duration": 128494035000, "load_duration": 2063200, "prompt_eval_count": 963, "prompt_eval_cached_count": 0, "prompt_eval_duration": 32198600000, "eval_count": 1236, "eval_duration": 96286923000}

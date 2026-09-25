@@ -1,0 +1,6 @@
+=== 2026-09-24T13:45:56Z start deepseek-v4-pro
+cwd: /c/Users/alileus/www/q0/q0-inquiry
+head: c1e986fa53eb64d2daf20a38e058ad02d1f2e338
+command: python tools/run_api_participant.py modelark deepseek-v4-pro-ga-260813 C:/Users/alileus/www/q0/.private/round-02/deepseek-v4-pro --tag round/02-deliberation/v1 --packet rounds/02-deliberation/packets/deepseek-v4-pro.md --max-output-tokens 65536 --max-input-tokens 100000
+modelark deepseek-v4-pro-ga-260813: status=completed finish=stop complete=True transport_complete=True answer=12023 chars thinking=60788 chars returned_model=deepseek-v4-pro-ga-260813
+=== 2026-09-24T13:50:42Z end deepseek-v4-pro exit=0

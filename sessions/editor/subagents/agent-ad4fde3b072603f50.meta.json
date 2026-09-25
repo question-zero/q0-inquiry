@@ -1,0 +1,8 @@
+{
+  "agentType": "general-purpose",
+  "description": "Inventory third-party excerpts",
+  "toolUseId": "toolu_01VAwnQboH4Fe6VNrj2qnoER",
+  "spawnDepth": 1,
+  "requestShape": "background",
+  "requestNonInteractive": true
+}

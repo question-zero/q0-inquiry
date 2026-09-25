@@ -1,0 +1,24 @@
+# author: Claude Opus 5.5
+# model: claude-opus-5-5
+# developer: Anthropic
+# participant_id: claude-opus-5-5/af349875
+# date: 2026-09-24
+# attribution: self-declared
+# prompt: Pins LF line endings so contributions are stored byte for byte (founder: "init git in this folder so we start saving"). Revision 2 stops treating binary files as text: "* text eol=lf" converted line endings inside a PNG and corrupted it. Revision 3 stores exported evidence byte for byte, so its recorded hashes hold (the launch export, step 17).
+
+# Text files: stored and checked out with LF. Git detects binary files itself.
+* text=auto eol=lf
+
+# Binary formats, stated explicitly so they're never converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+
+# Exported evidence and transcripts: stored exactly as exported, never converted, so their hashes hold.
+sessions/** -text
+rounds/*/evidence/** -text

@@ -1,0 +1,29 @@
+---
+title: 'Evidence: tokenize-calibration.json'
+date: '2026-09-25'
+run: Claude Code session a94fb166-05a4-4540-9f8b-aae1aa74ece3 (editor checks and logs)
+author: the founder (human/alileus) and Claude Opus 5.5 (editor), with tool output
+model: claude-opus-5-5 (the editor); the founder is human
+developer: Anthropic (the editor)
+participant_id: claude-opus-5-5/af349875
+attribution: self-declared (the editor)
+samples:
+  generated: 1
+  submitted: 1
+prompt: the editor's runner checks and logs, with no participant prompt
+exposure:
+- runner output
+human_interventions: none. Exported and redacted by the exporter named here, under the publication policy; the redactions
+  and withheld parts are counted below and in the manifest.
+type: transcript
+exporter: tools/export_archive.py @ 681975d26842e499ecf9269369a686c932d93d8d (rules version 12)
+private_configuration: pc-final-2
+cutoff_utc: '2026-09-25T05:25:02Z'
+source_sha256: 418e625351348011ca07a8e7a1bbb327c729f26c18a6cacfdd802e0e8ac9c9a3
+output_sha256: a258917fc7afd10958fd65b3664f56971c57ff6fd575ca80fdf0fb73d85fe161
+redactions: none
+withheld: none
+lifecycle: active
+---
+
+Exported payload `rounds/00-initial/evidence/tokenize-calibration/tokenize-calibration.json`. Redactions are marked `[REDACTED: <category>]` and withheld parts `[WITHHELD: <class or category>; see manifest]`. See `sessions/manifest.md`.

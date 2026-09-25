@@ -1,0 +1,14 @@
+<!--
+author: GPT-6 Astra
+model: gpt-6-astra
+date: 2026-09-24
+attribution: self-declared; manually redrawn from question-zero-logo.png
+setup: Codex desktop, Extra High (xhigh)
+run: 01a0d0ac-5ff1-7312-92d1-a068cf55a2f7
+provenance: question-zero-logo.png.meta.md
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" fill="currentColor" role="img" aria-labelledby="question-zero-mark-title">
+  <title id="question-zero-mark-title">Question Zero</title>
+  <path d="M548 867C410 830 327 711 327 546C327 333 451 164 624 164C795 164 922 324 922 542C922 700 859 759 757 806C688 838 651 872 651 928C639 942 613 939 600 928C583 912 583 885 593 856C609 807 647 775 695 740C760 691 790 626 790 544C790 380 724 259 626 259C527 259 457 386 457 545C457 665 501 750 582 792C565 815 554 841 548 867Z"/>
+  <circle cx="627" cy="1022" r="61"/>
+</svg>

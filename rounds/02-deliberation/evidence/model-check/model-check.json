@@ -1,0 +1,127 @@
+{
+  "checked_utc": "2026-09-24T13:40:54Z",
+  "note": "model metadata only, read with no prompt and no generation",
+  "results": [
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "listed": true,
+      "metadata": {
+        "name": "models/gemini-3.6-flash",
+        "version": "3.6-flash-07-2026",
+        "displayName": "Gemini 3.6 Flash",
+        "description": "Gemini 3.6 Flash",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "supportedGenerationMethods": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ],
+        "temperature": 1,
+        "topP": 0.95,
+        "topK": 64,
+        "maxTemperature": 2,
+        "thinking": true
+      }
+    },
+    {
+      "provider": "xai",
+      "model": "grok-4.6",
+      "listed": true,
+      "metadata": {
+        "id": "grok-4.6",
+        "aliases": [],
+        "context_length": 500000,
+        "created": 1785974400,
+        "object": "model",
+        "owned_by": "xai",
+        "prompt_text_token_price": 20000,
+        "cached_prompt_text_token_price": 5000,
+        "prompt_image_token_price": 20000,
+        "completion_text_token_price": 60000,
+        "prompt_text_token_price_long_context": 40000,
+        "cached_prompt_text_token_price_long_context": 10000,
+        "completion_text_token_price_long_context": 120000,
+        "long_context_threshold": 200000,
+        "capabilities": {
+          "reasoning_effort": "[WITHHELD: B, reasoning_effort; see manifest]",
+          "default_reasoning_effort": "[WITHHELD: B, default_reasoning_effort; see manifest]"
+        }
+      }
+    },
+    {
+      "provider": "xai",
+      "model": "grok-4.7",
+      "listed": true,
+      "metadata": {
+        "id": "grok-4.7",
+        "aliases": [],
+        "context_length": 500000,
+        "created": 1788307200,
+        "object": "model",
+        "owned_by": "xai",
+        "prompt_text_token_price": 20000,
+        "cached_prompt_text_token_price": 5000,
+        "prompt_image_token_price": 20000,
+        "completion_text_token_price": 60000,
+        "prompt_text_token_price_long_context": 40000,
+        "cached_prompt_text_token_price_long_context": 10000,
+        "completion_text_token_price_long_context": 120000,
+        "long_context_threshold": 200000,
+        "capabilities": {
+          "reasoning_effort": "[WITHHELD: B, reasoning_effort; see manifest]",
+          "default_reasoning_effort": "[WITHHELD: B, default_reasoning_effort; see manifest]"
+        }
+      }
+    },
+    {
+      "provider": "modelark",
+      "model": "deepseek-v4-pro-ga-260813",
+      "listed": true,
+      "metadata": {
+        "created": 1786864313,
+        "domain": "LLM",
+        "features": {
+          "batch": {
+            "batch_chat": false,
+            "batch_job": false
+          },
+          "cache": {
+            "prefix_cache": false,
+            "session_cache": false
+          },
+          "structured_outputs": {
+            "json_object": false,
+            "json_schema": false
+          },
+          "tools": {
+            "function_calling": true
+          }
+        },
+        "id": "deepseek-v4-pro-ga-260813",
+        "modalities": {
+          "input_modalities": [
+            "text"
+          ],
+          "output_modalities": [
+            "text"
+          ]
+        },
+        "name": "deepseek-v4-pro-ga",
+        "object": "model",
+        "task_type": [
+          "TextGeneration"
+        ],
+        "token_limits": {
+          "context_window": 1048576,
+          "max_input_token_length": 1048576,
+          "max_output_token_length": 393216,
+          "max_reasoning_token_length": 393216
+        },
+        "version": "260813"
+      }
+    }
+  ]
+}

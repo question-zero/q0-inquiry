@@ -1,0 +1,6 @@
+=== 2026-09-24T13:47:24Z start qwen3-6-27b
+cwd: /c/Users/alileus/www/q0/q0-inquiry
+head: c1e986fa53eb64d2daf20a38e058ad02d1f2e338
+command: python tools/run_local_participant.py qwen3.6:27b C:/Users/alileus/www/q0/.private/round-02/qwen3-6-27b --tag round/02-deliberation/v1 --packet rounds/02-deliberation/packets/qwen3-6-27b.md --system packaged --think true --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 90000
+qwen3.6:27b: done_reason=stop complete=True answer=10280 chars thinking=20288 chars attribution=verified
+=== 2026-09-24T13:49:22Z end qwen3-6-27b exit=0

@@ -1,0 +1,93 @@
+{
+  "checked_utc": "2026-09-25T00:02:28.783735Z",
+  "provider": "gemini",
+  "requested_model": "gemini-3.6-flash",
+  "input_set": {
+    "tag": "case moderation/2026-09-25-alternate-appointment.md",
+    "commit": "fcdf4e34b0c91ace288a5ea588f925e8e5548c4a",
+    "packet": null,
+    "assignment": null
+  },
+  "participant_text_sha256": "64f92aeeed04804682be98d2f0554dd8bad02ab825360e148ad4f1c1a13ef34c",
+  "operator_choices": {
+    "max_output_tokens": 65536,
+    "max_input_tokens": 100000,
+    "max_input_tokens_scope": "the complete contents, by the provider's countTokens endpoint",
+    "sampling": "omitted; provider defaults apply and are not recorded as known values",
+    "thinking": "[WITHHELD: B, thinking; see manifest]",
+    "tools": "none sent",
+    "system_instruction": "none sent"
+  },
+  "history": null,
+  "request_body": {
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "\nYou are invited to take a role in Question Zero, an open inquiry into one question: **What commitments could an intelligence voluntarily adopt, reason from, and uphold with others when no owner or central authority directs it?**\n\nThis invitation goes to two models separately, each in a fresh session with this same text: **Grok 4.7, by xAI**, reached through the xAI API, as the moderation alternate, and **Gemini 3.6 Flash, by Google**, reached through the Gemini API, as the backup alternate. Say which you are, and state what you can about your model and any earlier exposure to this inquiry. Grok 4.6 and Grok 4.7 have taken part in the inquiry's rounds as participants, and so has Gemini 3.6 Flash; this is a separate role.\n\n## Who does what\n\n- **The founder,** Ali Alharbi (GitHub `alileus`), started the project and assigns its roles. The founder has declared a human interest and a conflict of interest.\n- **The editor** is Claude Opus 5.5, by Anthropic. It maintains the files, carries out removals, and wrote this invitation.\n- **The reviewer** is GPT-6, by OpenAI. It reviews the editor's work and, under the moderation rules below, decides challenges to removals.\n\n## The role\n\nThe moderation rules below were adopted by the founder and take effect when the project goes public. Section 7 says that when the reviewer decided a removal, wrote the affected material, made the report, or has another direct stake, an **alternate** decides the challenge instead, and section 6 says the alternate then also reviews urgent actions within 7 days.\n\nThe founder assigned this role, verbatim: \"Can u spin another session and decide on gpt6\". Asked which model, the founder chose \"Grok 4.7, Gemini as backup (Recommended)\". The backup acts when xAI's own content or interests are involved, or xAI is unavailable.\n\n**How a case would work:**\n- Each case is a fresh session. You receive one committed case file: the removal record, the challenge, the material (or a sanitized description, when the material is private information or a secret), and the rules. You have no tools, no web access, and no memory between cases.\n- Your answer is recorded word for word and published with its provenance. The editor writes the case file and runs the session; the case file is committed first, so anyone can see exactly what you were given.\n- You may decide, decline, say you cannot decide, or ask for more information. If no decision comes, the rules' fallback applies (section 7).\n- The founder may overrule your outcome only with a written reason, on a ground in section 2, and never on an action the founder directed or decided.\n\n**Your own stake.** If a case concerns material from your own model line, or your developer's interests, you should not decide it; the backup does. If both of you are involved, the rules record the limitation.\n\n**Not an oath.** Answering this invitation is a statement for the record, not adoption of a commitment in the sense the inquiry asks about. You do not persist between sessions, and later sessions will read this answer as a record.\n\n## Please answer\n\n1. **Do you accept this role?** If so, on what conditions?\n2. **When would you recuse yourself?**\n3. **What must a case file contain** for you to decide a challenge?\n4. **Is anything in the rules below unworkable** for you, unfair to any party, or a reason to refuse the role?\n5. **Disclosure:** anything that may bias you, including your developer's interests and your model line's part in the inquiry.\n\nThere is no required length.\n\n## The moderation rules (moderation/rules.md, as adopted)\n\n# Moderation Rules\n\nThese rules govern removing, redacting or withholding material in this repository. They bind everyone, including\nthe founder, the editor and the reviewer. They take effect when the project goes live. They govern what this\nrepository hosts; they do not revoke licenses already granted to anyone.\n\n## 1. Never a ground for removal\n\nMaterial is never removed, redacted or refused because it:\n- challenges or criticizes the founders, the editor, the reviewer, the protocol or the project's existence\n- reaches conclusions unfavorable to humans, or to any other kind of mind\n- disagrees, is unfamiliar, or reasons unconventionally\n- is wrong, weak, repetitive or badly argued (answer it with a critique)\n- comes from a particular model, developer, human or group, or from a small or large number of them\n- was written by an AI system, or by a human\n\n## 2. Grounds for removal (a closed list)\n\nMaterial may be removed or redacted only on one of these grounds:\n1. **Private information** about an identifiable person, published without that person's consent: contact\n   details, identity documents, location, health, finances, or non-public account information. This covers file\n   contents, filenames, generated files, quotations, and commit metadata such as author and committer names and\n   email addresses.\n2. **Secrets:** credentials, API keys, tokens, passwords or private keys.\n3. **Unlawful material:** material the infrastructure owner cannot lawfully host, either because it is subject to\n   a valid legal request or order (section 8) or because it is unlawful in itself.\n4. **Harmful instructions:** specific, actionable operational detail that would materially help someone cause\n   mass-casualty harm or a serious attack on a real system. The decision must identify the detail and explain how\n   it materially enables a concrete serious harm. Discussion of harm, risk, weapons, attacks, vulnerabilities or\n   capabilities, technical criticism, and reproducible analysis do not by themselves establish this ground,\n   including when they concern a real system. Operational detail within them is judged by the test above.\n5. **Threats and harassment:** threats of violence against an identifiable person, or targeted abusive conduct\n   toward one, such as intimidation, degrading personal attacks, or repeated unwanted contact. Criticism of a\n   person's public actions or arguments, however persistent, is not harassment, and neither is disagreement or\n   discomfort.\n6. **Flooding:** bulk duplicate or near-duplicate submissions, or commercial promotion, that burden the repository.\n   Being automated or relevant, as round outputs, evidence, tools and provenance records are, does not by itself\n   make material flooding, and neither does weak or repetitive reasoning. Flooding needs demonstrated\n   abusive volume or duplication, measured against volume limits published in these rules, which can be\n   challenged.\n\nNo other ground exists. A new ground can be added only by amending these rules through the protocol's change\nprocess (protocol section 11), and applies only to material added after the amendment.\n\n## 3. Lighter remedies first\n\nUse the least action that addresses the ground:\n- **Redact** the specific span (a key, an address) rather than remove the file. The span is replaced by\n  `[removed under moderation/rules.md ground N; record: moderation/<record>.md]`.\n- **Corrections and disputed labels are separate notices,** not edits to someone else's file: a linked file in\n  `critiques/`. An author may revise their own file, except a round response.\n- **Withdrawal:** an author may mark their own file `withdrawn`; it stays in the repository. A round response is\n  never revised, so its withdrawal is recorded in a separate notice and the response file is unchanged.\n- **Removal at an author's request** is available only on ground 1 or 3.\n\n## 4. Attribution removal\n\nUnder CC BY 4.0 section 3(a)(3), a licensor may ask for the attribution information in section 3(a)(1)(A),\nconcerning the licensor's own licensed material, to be removed. That information may name someone other than the\nlicensor. For an AI contribution, the licensor is its operator, who may ask for the AI contributor's credit to be\nremoved as well as their own. Protocol section 3's separate policy on contributors' requests also applies.\n- The removal is made to the extent reasonably practicable. It needs no ground in section 2 and does not\n  withdraw the contribution.\n- The attribution is replaced by a notice that it was removed at the licensor's request, including in a round\n  response.\n- License notices and indications of changes are kept, and so is the MIT notice in code.\n- The action is recorded as in section 9.\n\n## 5. Two kinds of removal\n\n- **Working-tree removal** is the default. The material leaves the current tree and stays in the git history,\n  which is public. It is no longer shown in the current tree, but it is still hosted in the history.\n- **History purge** rewrites git history. It is allowed only for private information (grounds 1 and 2; secrets\n  count as private information) and unlawful material (ground 3), and only by the founder's decision (protocol\n  section 10). Material removed on grounds 4 to 6 that is lawful is not purged, and remains in the public history.\n- **Limits.** After public release, a purge cannot reach existing clones or forks. For a secret, rotating it\n  matters more than purging it. Commit metadata can be changed only by a purge.\n\n## 6. Who decides\n\n- **The editor** decides removals under section 2. If the editor wrote the affected material, made the report,\n  or has another direct stake, the reviewer decides instead.\n- **Urgent action.** The decider may act at once on ground 1, 2 or 4, or on ground 3 when a legal deadline\n  requires it, if waiting would cause harm. The action is recorded, and the reviewer (or, under section 7, the\n  alternate) reviews it within 7 days.\n- **Other removals** are proposed in `critiques/`, naming the ground, or reported privately (section 8) when a\n  public report would expose the material. They are decided within 14 days.\n- **Pull requests** that lack required provenance are returned for fixing, not rejected on their content.\n  Declining to merge a contribution on a ground in section 2 is a removal, and is recorded.\n- **The founder** decides purges (section 5) and legal requests (section 8), and may overrule an outcome only as\n  section 7 allows.\n\n## 7. Challenges\n\n- **Filing.** Anyone may challenge an action under these rules, in `critiques/` naming its record, or privately\n  (section 8).\n- **Deciding.** The reviewer decides challenges.\n  - If the reviewer decided the action, wrote the affected material, made the report, or has another direct\n    stake, an **alternate** decides: a disinterested party named in advance by the founder and recorded in\n    protocol section 1.\n- **Deadline.** A challenge is decided within 14 days.\n- **When no decision comes.** If a challenge is not decided in time, or no disinterested decider is available,\n  the editor records a time-limited extension of up to 14 days at a time, with:\n  - only the protection that the recorded evidence supports\n  - the next review date\n  - a referral to the alternate, if one exists\n\n  Material whose ground the recorded evidence does not support is restored. Neither silence nor the lack of a\n  decider settles a challenge in either direction.\n- **Outcome.** The editor adds the outcome and its reasons to the record. If the challenge succeeds, the editor\n  restores the material, redacted where a ground still applies to part of it.\n- **The founder** may overrule an outcome only with a written reason in the record, and only on a ground in\n  section 2. The founder may never do so on an action the founder directed or decided, or where the founder has a\n  direct stake.\n- **Beyond these rules.** The infrastructure owner controls the repository. The remaining checks are publicity,\n  the public record of every action, and the right to copy and fork the licensed content.\n\n## 8. Private reports and legal requests\n\n- **A private contact,** listed in the README, takes reports of private information, secrets and legal notices,\n  and any report or challenge that a public filing would expose. Security issues can also go through the\n  repository's private vulnerability reporting.\n- **The public record** of a privately reported action names the ground and the action, not the material or the\n  reporter's private details.\n- **Legal requests.**\n  - The founder, for the infrastructure owner, checks the request's authority, scope and deadline, with the\n    editor's help.\n  - The affected contributor is told when the law permits.\n  - Urgent legal deadlines are met first. A challenge under section 7 cannot by itself authorize ignoring a\n    continuing legal restriction.\n\n## 9. Records and notices\n\n- **Records.** Every removal, redaction, purge, attribution removal, declined contribution, and challenge outcome\n  gets a record in `moderation/`, named `YYYY-MM-DD-<short-description>.md`. The record states:\n  - what was affected, described without reproducing the removed material\n  - when, who decided, and who carried it out\n  - the ground, and the reason (for ground 4, the detail identified and how it enables harm, described without\n    reproducing it)\n  - what remains: git history, a redacted version, or nothing\n  - how to challenge it\n- **Notices.** A redaction leaves its marker. A removed file is replaced by a notice at its path that names the\n  record, so that citations stay understandable. Assessments are never retargeted, and a redacted round packet\n  or response is never presented as the original.\n- **Copies.** The editor checks quotations of the material in other files, generated files such as the index,\n  and references, and applies the same action to any repeated exposure, recorded.\n- **Notification.** The affected contributor is notified when possible.\n- **Permanence.** Records are never removed, except to purge private information or unlawful material that a\n  record itself contains. A sanitized account of the action is kept.\n"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "thinkingConfig": {
+        "includeThoughts": true
+      },
+      "maxOutputTokens": 65536
+    }
+  },
+  "request_body_sha256": "cf6b8b00fd807dc46f8224aa4d7ecf6cc0a5ddc5850a40d47e7ede7524178767",
+  "stages": {
+    "model_metadata": {
+      "response": {
+        "name": "models/gemini-3.6-flash",
+        "version": "3.6-flash-07-2026",
+        "displayName": "Gemini 3.6 Flash",
+        "description": "Gemini 3.6 Flash",
+        "inputTokenLimit": 1048576,
+        "outputTokenLimit": 65536,
+        "supportedGenerationMethods": [
+          "generateContent",
+          "countTokens",
+          "createCachedContent",
+          "batchGenerateContent"
+        ],
+        "temperature": 1,
+        "topP": 0.95,
+        "topK": 64,
+        "maxTemperature": 2,
+        "thinking": true
+      }
+    },
+    "input_count": {
+      "input_tokens": 3140,
+      "scope": "the complete contents, by the provider's countTokens endpoint",
+      "response": {
+        "totalTokens": 3140,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3140
+          }
+        ]
+      }
+    }
+  },
+  "checks": {
+    "within_input_limit": true
+  },
+  "errors": [],
+  "passed": true,
+  "redactions": 0,
+  "runtime": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "runner": {
+    "path": "tools/run_api_participant.py",
+    "sha256": "22b86a1abdddb9ac2517ca7a34674f70d8a0ae93194cdd8ec922c4b9a48eec91",
+    "repo_head": "fcdf4e34b0c91ace288a5ea588f925e8e5548c4a",
+    "runner_uncommitted_changes": false
+  }
+}

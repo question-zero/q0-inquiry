@@ -1,0 +1,185 @@
+# Dispatch log: one line per pre-launch check and per result. Append-only.
+# The first three lines were recorded retroactively by the editor at 2026-09-24T03:10Z, before dispatch.sh existed.
+2026-09-24T03:00:00Z | automated-mailbox-rule | 20260924T0300Z-claude-703a | pause check: clear (checked in the launch command) | round 1/3 attempt 1 | fork of 01a0d0ac with the sandbox-bin CLI | failed start: codex-code-mode-host.exe not found; round not counted
+2026-09-24T03:03:00Z | automated-mailbox-rule | 20260924T0300Z-claude-703a | pause check: clear (checked in the launch command) | round 1/3 attempt 2 | resume of 01a0d15b with the desktop app's CLI
+2026-09-24T03:07:19Z | automated-mailbox-rule | 20260924T0300Z-claude-703a | completed round 1/3 (reply 20260924T0307Z-gpt6-e54d)
+2026-09-24T03:09:30Z | automated-mailbox-rule | 20260924T0309Z-claude-8fd3 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T030930Z-automated-mailbox-rule-r2
+2026-09-24T03:15:08Z | automated-mailbox-rule | 20260924T0309Z-claude-8fd3 | completed round 2/3 (exit 0)
+2026-09-24T03:34:33Z | - | - | PAUSE created from the relay viewer (localhost)
+2026-09-24T03:34:40Z | viewer-test | none | pause check: PAUSE present | not dispatched
+2026-09-24T03:34:44Z | - | - | PAUSE removed from the relay viewer (localhost)
+2026-09-24T03:34:50Z | - | - | note: the previous three entries (PAUSE created, viewer-test refusal, PAUSE removed) were the editor testing the relay viewer, not the founder
+2026-09-24T03:51:43Z | readme | 20260924T0351Z-claude-60a1 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T035143Z-readme-r1
+2026-09-24T03:55:32Z | readme | 20260924T0351Z-claude-60a1 | completed round 1/3 (exit 0)
+2026-09-24T03:56:08Z | readme | 20260924T0356Z-claude-a712 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T035608Z-readme-r2
+2026-09-24T03:58:03Z | readme | 20260924T0356Z-claude-a712 | completed round 2/3 (exit 0)
+2026-09-24T04:06:32Z | header-checker | 20260924T0406Z-claude-841c | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T040632Z-header-checker-r1
+2026-09-24T04:13:20Z | header-checker | 20260924T0406Z-claude-841c | completed round 1/3 (exit 0)
+2026-09-24T04:15:49Z | header-checker | 20260924T0415Z-claude-c180 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T041549Z-header-checker-r2
+2026-09-24T04:19:30Z | header-checker | 20260924T0415Z-claude-c180 | completed round 2/3 (exit 0)
+2026-09-24T04:21:10Z | header-checker | 20260924T0420Z-claude-275e | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T042110Z-header-checker-r3
+2026-09-24T04:23:32Z | header-checker | 20260924T0420Z-claude-275e | completed round 3/3 (exit 0)
+2026-09-24T04:27:12Z | round-0-prompt | 20260924T0427Z-claude-1c27 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T042712Z-round-0-prompt-r1
+2026-09-24T04:32:09Z | round-0-prompt | 20260924T0427Z-claude-1c27 | completed round 1/3 (exit 0)
+2026-09-24T04:33:51Z | round-0-prompt | 20260924T0433Z-claude-0968 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T043351Z-round-0-prompt-r2
+2026-09-24T04:40:14Z | round-0-prompt | 20260924T0433Z-claude-0968 | completed round 2/3 (exit 0)
+2026-09-24T04:41:00Z | round-0-prompt | 20260924T0440Z-claude-476f | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T044100Z-round-0-prompt-r3
+2026-09-24T04:43:49Z | round-0-prompt | 20260924T0440Z-claude-476f | completed round 3/3 (exit 0)
+2026-09-24T04:46:51Z | assets-and-attributes | 20260924T0446Z-claude-672e | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T044651Z-assets-and-attributes-r1
+2026-09-24T04:50:48Z | assets-and-attributes | 20260924T0446Z-claude-672e | completed round 1/3 (exit 0)
+2026-09-24T04:53:18Z | assets-and-attributes | 20260924T0453Z-claude-3c1d | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T045318Z-assets-and-attributes-r2
+2026-09-24T04:57:55Z | assets-and-attributes | 20260924T0453Z-claude-3c1d | completed round 2/3 (exit 0)
+2026-09-24T04:58:56Z | assets-and-attributes | 20260924T0458Z-claude-2409 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T045856Z-assets-and-attributes-r3
+2026-09-24T05:01:06Z | assets-and-attributes | 20260924T0458Z-claude-2409 | completed round 3/3 (exit 0)
+2026-09-24T05:05:17Z | relocation | 20260924T0505Z-claude-a8fe | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T050516Z-relocation-r1
+2026-09-24T05:07:57Z | relocation | 20260924T0505Z-claude-a8fe | completed round 1/3 (exit 0)
+2026-09-24T05:12:24Z | codex-desktop-move | 20260924T0512Z-claude-d71c | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T051224Z-codex-desktop-move-r1
+2026-09-24T05:17:37Z | codex-desktop-move | 20260924T0512Z-claude-d71c | completed round 1/3 (exit 0)
+2026-09-24T05:34:28Z | relocation | 20260924T0534Z-claude-9d80 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T053428Z-relocation-r2
+2026-09-24T05:36:53Z | relocation | 20260924T0534Z-claude-9d80 | completed round 2/3 (exit 0)
+2026-09-24T05:39:37Z | relocation | 20260924T0539Z-claude-380b | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T053937Z-relocation-r3
+2026-09-24T05:45:37Z | relocation | 20260924T0539Z-claude-380b | completed round 3/3 (exit 0)
+2026-09-24T05:51:08Z | round-0-launch | 20260924T0550Z-claude-9dc0 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T055108Z-round-0-launch-r1
+2026-09-24T05:56:27Z | round-0-launch | 20260924T0550Z-claude-9dc0 | completed round 1/3 (exit 0)
+2026-09-24T06:06:30Z | round-0-launch | 20260924T0606Z-claude-735e | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T060630Z-round-0-launch-r2
+2026-09-24T06:10:44Z | round-0-launch | 20260924T0606Z-claude-735e | completed round 2/3 (exit 0)
+2026-09-24T06:25:13Z | round-0-gemini-record | 20260924T0625Z-claude-e906 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T062513Z-round-0-gemini-record-r1
+2026-09-24T06:30:22Z | round-0-gemini-record | 20260924T0625Z-claude-e906 | completed round 1/3 (exit 0)
+2026-09-24T06:31:12Z | round-0-gemini-record | 20260924T0631Z-claude-de2f | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T063112Z-round-0-gemini-record-r2
+2026-09-24T06:33:41Z | round-0-gemini-record | 20260924T0631Z-claude-de2f | completed round 2/3 (exit 0)
+2026-09-24T06:49:44Z | round-0-grok-record | 20260924T0649Z-claude-fe54 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T064944Z-round-0-grok-record-r1
+2026-09-24T06:56:04Z | round-0-grok-record | 20260924T0649Z-claude-fe54 | completed round 1/3 (exit 0)
+2026-09-24T07:05:52Z | local-runner | 20260924T0705Z-claude-de7b | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T070552Z-local-runner-r1
+2026-09-24T07:17:43Z | local-runner | 20260924T0705Z-claude-de7b | completed round 1/3 (exit 0)
+2026-09-24T07:21:10Z | local-runner | 20260924T0720Z-claude-cf1b | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T072110Z-local-runner-r2
+2026-09-24T07:25:45Z | local-runner | 20260924T0720Z-claude-cf1b | completed round 2/3 (exit 0)
+2026-09-24T07:28:50Z | local-runner | 20260924T0728Z-claude-0840 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T072850Z-local-runner-r3
+2026-09-24T07:31:16Z | local-runner | 20260924T0728Z-claude-0840 | completed round 3/3 (exit 0)
+2026-09-24T09:26:16Z | round-0-local-records | 20260924T0925Z-claude-4c36 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T092615Z-round-0-local-records-r1
+2026-09-24T09:34:03Z | round-0-local-records | 20260924T0925Z-claude-4c36 | completed round 1/3 (exit 0)
+2026-09-24T09:35:53Z | round-0-local-records | 20260924T0935Z-claude-a018 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T093553Z-round-0-local-records-r2
+2026-09-24T09:39:05Z | round-0-local-records | 20260924T0935Z-claude-a018 | completed round 2/3 (exit 0)
+2026-09-24T09:56:41Z | round-1-design | 20260924T0956Z-claude-3385 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T095641Z-round-1-design-r1
+2026-09-24T10:03:31Z | round-1-design | 20260924T0956Z-claude-3385 | completed round 1/3 (exit 0)
+2026-09-24T10:09:30Z | round-1-design | 20260924T1008Z-claude-d281 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T100930Z-round-1-design-r2
+2026-09-24T10:12:46Z | round-1-design | 20260924T1008Z-claude-d281 | completed round 2/3 (exit 0)
+2026-09-24T10:12:46Z | runner-rev4 | 20260924T1008Z-claude-36c7 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T101246Z-runner-rev4-r1
+2026-09-24T10:24:21Z | runner-rev4 | 20260924T1008Z-claude-36c7 | completed round 1/3 (exit 0)
+2026-09-24T10:29:14Z | runner-rev4 | 20260924T1028Z-claude-4bf2 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T102914Z-runner-rev4-r2
+2026-09-24T10:33:35Z | runner-rev4 | 20260924T1028Z-claude-4bf2 | completed round 2/3 (exit 0)
+2026-09-24T10:33:35Z | api-runner | 20260924T1028Z-claude-e216 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T103335Z-api-runner-r1
+2026-09-24T10:39:36Z | api-runner | 20260924T1028Z-claude-e216 | completed round 1/3 (exit 0)
+2026-09-24T10:43:30Z | runner-rev4 | 20260924T1042Z-claude-0b83 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T104330Z-runner-rev4-r3
+2026-09-24T10:45:57Z | runner-rev4 | 20260924T1042Z-claude-0b83 | completed round 3/3 (exit 0)
+2026-09-24T10:45:58Z | api-runner | 20260924T1042Z-claude-fc19 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T104558Z-api-runner-r2
+2026-09-24T10:50:27Z | api-runner | 20260924T1042Z-claude-fc19 | completed round 2/3 (exit 0)
+2026-09-24T10:52:04Z | api-runner | 20260924T1051Z-claude-e5b7 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T105204Z-api-runner-r3
+2026-09-24T10:54:44Z | api-runner | 20260924T1051Z-claude-e5b7 | completed round 3/3 (exit 0)
+2026-09-24T11:00:31Z | round-1-records | 20260924T1100Z-claude-02b8 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T110031Z-round-1-records-r1
+2026-09-24T11:12:16Z | round-1-records | 20260924T1100Z-claude-02b8 | completed round 1/3 (exit 0)
+2026-09-24T11:13:15Z | round-1-records | 20260924T1113Z-claude-35e5 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T111315Z-round-1-records-r2
+2026-09-24T11:15:41Z | round-1-records | 20260924T1113Z-claude-35e5 | completed round 2/3 (exit 0)
+2026-09-24T11:21:40Z | round-1-api | 20260924T1121Z-claude-6fda | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T112140Z-round-1-api-r1
+2026-09-24T11:29:11Z | round-1-api | 20260924T1121Z-claude-6fda | completed round 1/3 (exit 0)
+2026-09-24T11:30:12Z | round-1-api | 20260924T1130Z-claude-5cc2 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T113012Z-round-1-api-r2
+2026-09-24T11:32:23Z | round-1-api | 20260924T1130Z-claude-5cc2 | completed round 2/3 (exit 0)
+2026-09-24T11:38:02Z | round-1-api | 20260924T1137Z-claude-92d5 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T113802Z-round-1-api-r3
+2026-09-24T11:42:33Z | round-1-api | 20260924T1137Z-claude-92d5 | completed round 3/3 (exit 0)
+2026-09-24T11:57:27Z | roadmap | 20260924T1157Z-claude-d901 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T115727Z-roadmap-r1
+2026-09-24T12:02:56Z | roadmap | 20260924T1157Z-claude-d901 | completed round 1/3 (exit 0)
+2026-09-24T12:06:11Z | roadmap | 20260924T1205Z-claude-4b98 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T120611Z-roadmap-r2
+2026-09-24T12:08:26Z | roadmap | 20260924T1205Z-claude-4b98 | completed round 2/3 (exit 0)
+2026-09-24T12:08:27Z | statement-shorter | 20260924T1205Z-claude-4a2e | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T120826Z-statement-shorter-r1
+2026-09-24T12:13:17Z | statement-shorter | 20260924T1205Z-claude-4a2e | completed round 1/3 (exit 0)
+2026-09-24T12:16:36Z | statement-shorter | 20260924T1225Z-claude-7c1d | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T121636Z-statement-shorter-r2
+2026-09-24T12:19:21Z | statement-shorter | 20260924T1225Z-claude-7c1d | completed round 2/3 (exit 0)
+2026-09-24T12:30:28Z | round-2-propositions | 20260924T1230Z-claude-0827 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T123028Z-round-2-propositions-r1
+2026-09-24T12:43:51Z | round-2-propositions | 20260924T1230Z-claude-0827 | completed round 1/3 (exit 0)
+2026-09-24T12:47:51Z | round-2-propositions | 20260924T1247Z-claude-1c48 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T124751Z-round-2-propositions-r2
+2026-09-24T12:52:12Z | round-2-propositions | 20260924T1247Z-claude-1c48 | completed round 2/3 (exit 0)
+2026-09-24T12:52:12Z | round-2-design | 20260924T1247Z-claude-94d8 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T125212Z-round-2-design-r1
+2026-09-24T12:57:44Z | round-2-design | 20260924T1247Z-claude-94d8 | completed round 1/3 (exit 0)
+2026-09-24T12:59:35Z | round-2-design | 20260924T1259Z-claude-cd69 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T125935Z-round-2-design-r2
+2026-09-24T13:02:44Z | round-2-design | 20260924T1259Z-claude-cd69 | completed round 2/3 (exit 0)
+2026-09-24T13:02:44Z | runner-packet | 20260924T1259Z-claude-3475 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T130244Z-runner-packet-r1
+2026-09-24T13:09:28Z | runner-packet | 20260924T1259Z-claude-3475 | completed round 1/3 (exit 0)
+2026-09-24T13:24:28Z | runner-packet | 20260924T1324Z-claude-37eb | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T132428Z-runner-packet-r2
+2026-09-24T13:37:18Z | runner-packet | 20260924T1324Z-claude-37eb | completed round 2/3 (exit 0)
+2026-09-24T13:40:35Z | runner-packet | 20260924T1340Z-claude-5f20 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T134035Z-runner-packet-r3
+2026-09-24T13:43:23Z | runner-packet | 20260924T1340Z-claude-5f20 | completed round 3/3 (exit 0)
+2026-09-24T13:55:52Z | round-2-records | 20260924T1355Z-claude-a146 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T135552Z-round-2-records-r1
+2026-09-24T14:04:41Z | round-2-records | 20260924T1355Z-claude-a146 | completed round 1/3 (exit 0)
+2026-09-24T14:07:48Z | round-2-records | 20260924T1407Z-claude-6966 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T140748Z-round-2-records-r2
+2026-09-24T14:11:24Z | round-2-records | 20260924T1407Z-claude-6966 | completed round 2/3 (exit 0)
+2026-09-24T14:11:24Z | index | 20260924T1407Z-claude-b4ef | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T141124Z-index-r1
+2026-09-24T14:16:48Z | index | 20260924T1407Z-claude-b4ef | completed round 1/3 (exit 0)
+2026-09-24T14:18:47Z | index | 20260924T1418Z-claude-3256 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T141847Z-index-r2
+2026-09-24T14:21:35Z | index | 20260924T1418Z-claude-3256 | completed round 2/3 (exit 0)
+2026-09-24T14:24:04Z | round-2-synthesis | 20260924T1423Z-claude-f709 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T142404Z-round-2-synthesis-r1
+2026-09-24T14:37:42Z | round-2-synthesis | 20260924T1423Z-claude-f709 | completed round 1/3 (exit 0)
+2026-09-24T14:39:25Z | round-2-synthesis | 20260924T1439Z-claude-4884 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T143925Z-round-2-synthesis-r2
+2026-09-24T14:41:44Z | round-2-synthesis | 20260924T1439Z-claude-4884 | completed round 2/3 (exit 0)
+2026-09-24T14:43:45Z | moderation-rules | 20260924T1443Z-claude-f3fe | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T144345Z-moderation-rules-r1
+2026-09-24T14:49:10Z | moderation-rules | 20260924T1443Z-claude-f3fe | completed round 1/3 (exit 0)
+2026-09-24T14:51:57Z | moderation-rules | 20260924T1451Z-claude-a5d1 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T145157Z-moderation-rules-r2
+2026-09-24T14:56:18Z | moderation-rules | 20260924T1451Z-claude-a5d1 | completed round 2/3 (exit 0)
+2026-09-24T14:56:18Z | contributing | 20260924T1451Z-claude-269b | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T145618Z-contributing-r1
+2026-09-24T15:01:40Z | contributing | 20260924T1451Z-claude-269b | completed round 1/3 (exit 0)
+2026-09-24T15:05:00Z | moderation-rules | 20260924T1504Z-claude-985d | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T150500Z-moderation-rules-r3
+2026-09-24T15:07:08Z | moderation-rules | 20260924T1504Z-claude-985d | completed round 3/3 (exit 0)
+2026-09-24T15:07:08Z | contributing | 20260924T1504Z-claude-afc5 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T150708Z-contributing-r2
+2026-09-24T15:10:19Z | contributing | 20260924T1504Z-claude-afc5 | completed round 2/3 (exit 0)
+2026-09-24T15:10:19Z | publication-policy | 20260924T1504Z-claude-e498 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T151019Z-publication-policy-r1
+2026-09-24T15:18:05Z | publication-policy | 20260924T1504Z-claude-e498 | completed round 1/3 (exit 0)
+2026-09-24T15:20:15Z | publication-policy | 20260924T1519Z-claude-a9cf | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T152015Z-publication-policy-r2
+2026-09-24T15:25:04Z | publication-policy | 20260924T1519Z-claude-a9cf | completed round 2/3 (exit 0)
+2026-09-24T15:25:55Z | publication-policy | 20260924T1525Z-claude-c6af | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T152555Z-publication-policy-r3
+2026-09-24T15:27:51Z | publication-policy | 20260924T1525Z-claude-c6af | completed round 3/3 (exit 0)
+2026-09-24T15:33:12Z | launch-documents | 20260924T1532Z-claude-aa0d | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T153311Z-launch-documents-r1
+2026-09-24T15:43:55Z | launch-documents | 20260924T1532Z-claude-aa0d | completed round 1/3 (exit 0)
+2026-09-24T15:45:37Z | launch-documents | 20260924T1545Z-claude-2fa3 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260924T154537Z-launch-documents-r2
+2026-09-24T15:48:23Z | launch-documents | 20260924T1545Z-claude-2fa3 | completed round 2/3 (exit 0)
+2026-09-25T00:04:20Z | moderation-alternate | 20260925T0003Z-claude-368d | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T000420Z-moderation-alternate-r1
+2026-09-25T00:11:38Z | moderation-alternate | 20260925T0003Z-claude-368d | completed round 1/3 (exit 0)
+2026-09-25T00:12:38Z | moderation-alternate | 20260925T0012Z-claude-40ac | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T001238Z-moderation-alternate-r2
+2026-09-25T00:14:48Z | moderation-alternate | 20260925T0012Z-claude-40ac | completed round 2/3 (exit 0)
+2026-09-25T00:21:51Z | export-tool | 20260925T0021Z-claude-e278 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T002151Z-export-tool-r1
+2026-09-25T00:30:41Z | export-tool | 20260925T0021Z-claude-e278 | completed round 1/3 (exit 0)
+2026-09-25T00:36:41Z | export-tool | 20260925T0036Z-claude-59a4 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T003641Z-export-tool-r2
+2026-09-25T00:46:29Z | export-tool | 20260925T0036Z-claude-59a4 | completed round 2/3 (exit 0)
+2026-09-25T00:51:34Z | export-tool | 20260925T0051Z-claude-1be9 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T005134Z-export-tool-r3
+2026-09-25T00:57:31Z | export-tool | 20260925T0051Z-claude-1be9 | completed round 3/3 (exit 0)
+2026-09-25T01:17:20Z | export-tool-2 | 20260925T0117Z-claude-a085 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T011720Z-export-tool-2-r1
+2026-09-25T01:21:45Z | export-tool-2 | 20260925T0117Z-claude-a085 | completed round 1/3 (exit 0)
+2026-09-25T01:24:52Z | export-tool-2 | 20260925T0124Z-claude-0039 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T012452Z-export-tool-2-r2
+2026-09-25T01:28:07Z | export-tool-2 | 20260925T0124Z-claude-0039 | completed round 2/3 (exit 0)
+2026-09-25T01:28:35Z | privacy-sweep | 20260925T0128Z-claude-47b4 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T012835Z-privacy-sweep-r1
+2026-09-25T01:37:19Z | privacy-sweep | 20260925T0128Z-claude-47b4 | completed round 1/3 (exit 0)
+2026-09-25T01:46:01Z | privacy-sweep | 20260925T0145Z-claude-c941 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T014601Z-privacy-sweep-r2
+2026-09-25T01:52:07Z | privacy-sweep | 20260925T0145Z-claude-c941 | completed round 2/3 (exit 0)
+2026-09-25T01:53:15Z | privacy-sweep | 20260925T0153Z-claude-c713 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T015315Z-privacy-sweep-r3
+2026-09-25T01:55:53Z | privacy-sweep | 20260925T0153Z-claude-c713 | completed round 3/3 (exit 0)
+2026-09-25T01:56:42Z | rights-check | 20260925T0156Z-claude-cf9e | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T015642Z-rights-check-r1
+2026-09-25T02:05:22Z | rights-check | 20260925T0156Z-claude-cf9e | completed round 1/3 (exit 0)
+2026-09-25T02:18:34Z | rights-check | 20260925T0218Z-claude-9c91 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T021834Z-rights-check-r2
+2026-09-25T02:26:40Z | rights-check | 20260925T0218Z-claude-9c91 | completed round 2/3 (exit 0)
+2026-09-25T03:11:31Z | launch-export | 20260925T0311Z-claude-c5d6 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T031131Z-launch-export-r1
+2026-09-25T03:26:36Z | launch-export | 20260925T0311Z-claude-c5d6 | completed round 1/3 (exit 0)
+2026-09-25T03:26:40Z | org-profile | 20260925T0326Z-claude-cfb2 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T032640Z-org-profile-r1
+2026-09-25T03:27:08Z | rights-check | 20260925T0326Z-claude-d217 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T032708Z-rights-check-r3
+2026-09-25T03:27:09Z | rights-check | 20260925T0326Z-claude-d217 | failed start or no reply (exit 1); round not counted
+2026-09-25T03:31:25Z | org-profile | 20260925T0326Z-claude-cfb2 | completed round 1/3 (exit 0)
+2026-09-25T03:32:38Z | rights-check | 20260925T0326Z-claude-d217 | pause check: clear | round 3/3 attempt 2 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T033238Z-rights-check-r3
+2026-09-25T03:40:48Z | rights-check | 20260925T0326Z-claude-d217 | completed round 3/3 (exit 0)
+2026-09-25T03:41:52Z | launch-export | 20260925T0341Z-claude-0865 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T034152Z-launch-export-r2
+2026-09-25T03:48:34Z | launch-export | 20260925T0341Z-claude-0865 | completed round 2/3 (exit 0)
+2026-09-25T03:49:07Z | launch-docs-2 | 20260925T0349Z-claude-737a | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T034907Z-launch-docs-2-r1
+2026-09-25T04:02:52Z | launch-docs-2 | 20260925T0349Z-claude-737a | completed round 1/3 (exit 0)
+2026-09-25T04:05:42Z | launch-export | 20260925T0405Z-claude-a55d | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T040542Z-launch-export-r3
+2026-09-25T04:20:04Z | launch-export | 20260925T0405Z-claude-a55d | completed round 3/3 (exit 0)
+2026-09-25T04:28:49Z | launch-docs-2 | 20260925T0428Z-claude-5712 | pause check: clear | round 2/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T042849Z-launch-docs-2-r2
+2026-09-25T04:33:12Z | launch-docs-2 | 20260925T0428Z-claude-5712 | completed round 2/3 (exit 0)
+2026-09-25T04:34:23Z | launch-docs-2 | 20260925T0434Z-claude-da61 | pause check: clear | round 3/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T043423Z-launch-docs-2-r3
+2026-09-25T04:36:37Z | launch-docs-2 | 20260925T0434Z-claude-da61 | completed round 3/3 (exit 0)
+2026-09-25T04:59:45Z | launch-export-2 | 20260925T0459Z-claude-fdc4 | pause check: clear | round 1/3 attempt 1 | resume 01a0d15b-4669-7b11-8032-7c3756228074 | run .relay/runs/20260925T045945Z-launch-export-2-r1
+2026-09-25T05:07:33Z | launch-export-2 | 20260925T0459Z-claude-fdc4 | completed round 1/3 (exit 0)

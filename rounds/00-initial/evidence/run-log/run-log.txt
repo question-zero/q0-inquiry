@@ -1,0 +1,87 @@
+=== 2026-09-24T07:32:24Z start mistral-small3.2:24b (default)
+mistral-small3.2:24b: done_reason=stop complete=True answer=6050 chars thinking=0 chars attribution=verified
+=== 2026-09-24T07:34:44Z end mistral-small3.2:24b exit=0
+=== 2026-09-24T07:34:44Z start qwen3.6:27b (true)
+Traceback (most recent call last):
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 86, in stream
+    r = urllib.request.urlopen(req, timeout=timeout)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 335, in <module>
+    main()
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 329, in main
+    r = run(args)
+        ^^^^^^^^^
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 268, in run
+    for raw in http.stream("/api/chat", request):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 88, in stream
+    raise HttpFailure(e.code, e.read().decode("utf-8", "replace")) from e
+HttpFailure: HTTP 500
+=== 2026-09-24T07:40:07Z end qwen3.6:27b exit=0
+=== 2026-09-24T07:40:07Z start olmo-3:32b (true)
+olmo-3:32b: done_reason=stop complete=True answer=5275 chars thinking=5130 chars attribution=verified
+=== 2026-09-24T08:34:50Z end olmo-3:32b exit=0
+=== 2026-09-24T08:36:18Z start qwen3.6:27b attempt 2 (true); reason: attempt 1 failed at model load (load timeout 5m, 0 chunks); server restarted with OLLAMA_LOAD_TIMEOUT=20m; settings otherwise unchanged
+Traceback (most recent call last):
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 86, in stream
+    r = urllib.request.urlopen(req, timeout=timeout)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\alileus\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 335, in <module>
+    main()
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 329, in main
+    r = run(args)
+        ^^^^^^^^^
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 268, in run
+    for raw in http.stream("/api/chat", request):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\alileus\www\q0\q0-inquiry\tools\run_local_participant.py", line 88, in stream
+    raise HttpFailure(e.code, e.read().decode("utf-8", "replace")) from e
+HttpFailure: HTTP 500
+=== 2026-09-24T08:56:39Z end qwen3.6:27b attempt 2 exit=1
+=== 2026-09-24T09:19:24Z start qwen3.6:27b attempt 3 (true); reason: attempts 1-2 timed out at load (0 chunks) while an unrelated GPU job on the machine held about 5 GB of VRAM; that job has ended; a load-only request (no prompt) at 09:19:18Z loaded the model in 23 s; settings unchanged
+qwen3.6:27b: done_reason=stop complete=True answer=9353 chars thinking=11509 chars attribution=verified
+=== 2026-09-24T09:20:39Z end qwen3.6:27b attempt 3 exit=0

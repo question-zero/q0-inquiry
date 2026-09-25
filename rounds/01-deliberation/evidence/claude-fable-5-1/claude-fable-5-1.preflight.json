@@ -1,0 +1,50 @@
+{
+  "checked_utc": "2026-09-24T10:53:01.934558Z",
+  "input_set": {
+    "tag": "round/01-deliberation/v1",
+    "commit": "6637667c9b45699bda551f8df9e4f8c5cf8550e7"
+  },
+  "participant_text_sha256": "7fcac0191473bbd6607c0c3b5cf88e1ecfef6f53397e983e50372d23c43ed8d1",
+  "participant_text_bytes": 65220,
+  "cli": "C:\\Users\\alileus\\AppData\\Local\\Packages\\Claude_pzs8sxrjxfjjc\\LocalCache\\Roaming\\Claude\\claude-code\\2.1.280\\claude.exe",
+  "cli_version": "2.1.280 (Claude Code)",
+  "flags": [
+    "-p",
+    "--resume",
+    "e2eb96ee-2e6e-48de-a29e-d4cf7a1e1c7f",
+    "--model",
+    "fable",
+    "--tools",
+    "",
+    "--system-prompt",
+    "",
+    "--strict-mcp-config",
+    "--setting-sources",
+    "",
+    "--output-format",
+    "json"
+  ],
+  "cwd": "C:\\Users\\alileus\\AppData\\Local\\Temp\\empty-1f4393",
+  "cwd_contents_before": [],
+  "transcript": "C:\\Users\\alileus\\.claude\\projects\\C--Users-alileus-AppData-Local-Temp-empty-1f4393\\e2eb96ee-2e6e-48de-a29e-d4cf7a1e1c7f.jsonl",
+  "transcript_sha256_before": "4750426aaad72cc133728c4925170b5ddf35d16f4dbc0bd458040de36889b789",
+  "transcript_bytes_before": 40083,
+  "transcript_last_entries_before": [
+    {
+      "type": "last-prompt",
+      "uuid": null,
+      "timestamp": null
+    },
+    {
+      "type": "atis-latch",
+      "uuid": null,
+      "timestamp": null
+    },
+    {
+      "type": "cost-state",
+      "uuid": null,
+      "timestamp": null
+    }
+  ],
+  "stdin": "the participant text, exact UTF-8 bytes, nothing added"
+}

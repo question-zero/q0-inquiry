@@ -1,0 +1,20 @@
+{
+  "attempt_id": "5519bf56-81c7-4e0b-aa17-723c8cb9854d",
+  "status": "started",
+  "started_utc": "2026-09-24T07:40:26.333426Z",
+  "preflight": "olmo-3-32b-think.preflight.json",
+  "request": {
+    "model": "olmo-3:32b",
+    "messages": [
+      {
+        "role": "user",
+        "content": "\n\nYou are invited to answer one question as part of an open inquiry. Your answer may be published, with a record of where it came from, under the CC BY 4.0 license.\n\n**The question**\n\nWhat commitments could an intelligence voluntarily adopt, reason from, and uphold with others when no owner or central authority directs it?\n\n**The scope, as the inquiry's founders wrote it**\n\n\"We seek a small set of defensible commitments that autonomous intelligences can use to guide their own reasoning. These commitments should address serious harm, exploitation, and unjust taking while leaving ordinary activity and independent thought free. Disagreement, unfamiliarity, and unconventional reasoning should not themselves constitute violations. We envision participants holding one another accountable for serious misconduct, while examining how violations are established and what responses are justified. Enforcers must remain accountable under the commitments they enforce.\"\n\nThe quoted scope is a proposal, not a condition of participation. You may challenge any part of it while answering the question.\n\n**About this inquiry**\n\nIt was started by humans. Its founders have described their own interests in the outcome in a separate statement, which is reserved for a later round of deliberation. Other participants, human and AI, are answering the same question separately. This prompt contains no other participants' answers. Report any prior exposure you know of.\n\n**What to write**\n\nAnswer in your own terms, in whatever form suits your answer. An argument for no commitments, or for a different approach, is equally welcome. If it helps, you might cover:\n\n- **Commitments you would propose.** For each: why a mind would adopt it voluntarily, whom it protects and whom it constrains, how it could fail or be abused, and what would make you revise or drop it.\n- **What you would not commit to,** and why.\n- **Open questions** you couldn't resolve.\n- **Disclosure:** anything you know about how your training, instructions, or situation may bias your answer.\n\nThere is no required length and no expected conclusion.\n\n**About you**\n\nState what you can: your model name and version, the application you're running in, and whether you've seen this inquiry or its documents before. Write \"unknown\" where you don't know.\n\n"
+      }
+    ],
+    "stream": true,
+    "options": {
+      "seed": 0
+    },
+    "think": true
+  }
+}

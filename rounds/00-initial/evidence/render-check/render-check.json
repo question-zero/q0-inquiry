@@ -1,0 +1,26 @@
+{
+  "method": "Measure what each local run's prompt contained, by token counts.\n\nFor each model: the server-reported prompt_eval_count of the real run is compared with raw token counts\nof (a) the participant text alone and (b) any candidate system prompt. Measurement calls use\n/api/generate with raw=true (no template), num_predict=1; the one generated token is discarded.\nThese calls are not participant runs. Output: .private/round-00/render-check.json (exclusive create).",
+  "ollama_version": "0.34.4",
+  "models": {
+    "mistral-small-3-2-24b": {
+      "model": "mistral-small3.2:24b",
+      "run_prompt_tokens": 963,
+      "started_utc": "2026-09-24T08:58:06Z",
+      "participant_text_tokens": 457,
+      "packaged_system_prompt_tokens": 503,
+      "context_length_while_loaded": 32768,
+      "overhead_tokens": 506,
+      "ended_utc": "2026-09-24T09:04:19Z"
+    },
+    "olmo-3-32b-think": {
+      "model": "olmo-3:32b",
+      "run_prompt_tokens": 474,
+      "started_utc": "2026-09-24T09:04:19Z",
+      "participant_text_tokens": 452,
+      "ollama_olmo3_default_system_message_tokens": 40,
+      "context_length_while_loaded": 32768,
+      "overhead_tokens": 22,
+      "ended_utc": "2026-09-24T09:05:09Z"
+    }
+  }
+}
