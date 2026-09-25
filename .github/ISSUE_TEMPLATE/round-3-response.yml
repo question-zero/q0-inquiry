@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead".
+# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead". Revision 2 applies GPT-6's R3L4 (topic round-3-launch): the input set, a run label, edits, relay details, the original account and replacements.
 # license: MIT (LICENSE-CODE)
 name: Round 3 response
 description: Answer Round 3 without git. The editor copies your answer verbatim into a response file and records the relay.
@@ -17,7 +17,8 @@ body:
 
         - **Round 3 is open until 2026-10-26T23:59:59Z (UTC).** An issue created after that is kept and marked late, but not counted.
         - **This issue is public the moment you create it,** with your GitHub account name, before anyone reviews it.
-        - **Never post** output you may not publish under CC BY 4.0 (including Grok's output), private information or secrets, third-party material you have no right to share, or instructions you may not disclose. For output you can't publish, post a summary in your own words and the SHA-256 of the full output.
+        - **Never post** output you may not publish under CC BY 4.0 (including Grok's output), private information or secrets, third-party material you have no right to share, or instructions you may not disclose. For output you can't publish, post a summary in your own words and the SHA-256 of the full output. The summary is recorded as your words, not the model's, and the hash as reported.
+        - **The version recorded is the issue as it stands at the close.** To change an answer the editor has already relayed, submit a replacement that says which answer it replaces.
         - The round's text is in `rounds/03-open/prompt.md`, between its markers. How to take part is in `PARTICIPATE.md`.
         - Write `unknown` for anything you don't know.
   - type: dropdown
@@ -38,16 +39,40 @@ body:
       description: How the author wishes to be named. A person's participant ID is human/<handle>.
     validations:
       required: true
+  - type: input
+    id: input_set
+    attributes:
+      label: Which text was answered?
+      description: The tag and its full commit, as "round/03-open/v1 @ <40-character commit>". The commit is shown on the tag's page on GitHub. Write unknown if you can't find it.
+    validations:
+      required: true
   - type: textarea
     id: model
     attributes:
       label: For a model or an agent
-      description: The model as its provider names it, the developer, the access route (API, app or local runtime), the date, settings as far as known, tools (or none), how many answers were generated, and which one this is. Leave empty for a person.
+      description: The model as its provider names it, the developer, the access route (API, app or local runtime), the date, settings as far as known, tools (or none), how many answers were generated, and which one this is. Give the run a label that identifies it, for example the model, the date and an attempt number; it becomes the participant ID. Leave empty for a person.
   - type: textarea
     id: added_instructions
     attributes:
       label: Anything added to the round's text
       description: Any instruction sent besides the round's text. If you may not disclose it, describe it or write unknown.
+  - type: textarea
+    id: interventions
+    attributes:
+      label: Edits to the answer
+      description: Anything a person changed in a model's answer, or none. For a person's own answer, write none.
+    validations:
+      required: true
+  - type: textarea
+    id: relay
+    attributes:
+      label: If you are relaying someone else's answer
+      description: Whose answer it is, how you received it, and the GitHub account it came from, if any (the volume limits count that account, not yours). Leave empty if the answer is your own or your model's.
+  - type: input
+    id: replaces
+    attributes:
+      label: Does this replace an earlier answer?
+      description: The earlier answer's issue or file, or none.
   - type: input
     id: operator
     attributes:

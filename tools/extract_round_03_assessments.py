@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8).
+# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8). Revision 2 applies GPT-6's R3L1-R3L3 (topic round-3-launch): stale outputs fail --check, receipts are validated against the tagged deadline and bound to the captured version, and the source's samples and interventions are kept.
 # license: MIT (LICENSE-CODE)
 """Extract the Round 3 assessment blocks into critiques/.
 
@@ -12,17 +12,25 @@ Usage: python tools/extract_round_03_assessments.py [--dry-run | --check]
 
 Mechanical and verbatim, with Round 2's block rules: a block starts at a line that is exactly a proposition ID
 (markdown decoration around it ignored) followed by a Position line, and its field values are copied as written.
-Nothing is inferred. Round 3 differs in four ways:
-  - the candidates are the manifest's `candidates` list in rounds/03-open/prompt.md, read at the tag;
+Nothing is inferred. Round 3 differs in these ways:
+  - the candidates are the manifest's `candidates` list in rounds/03-open/prompt.md, read at the tag, and the
+    closing time is its `closes_utc`;
   - each target is `<candidate path> @ <the tag's commit>`;
   - a response is extracted only if its input_set names the tag and that exact commit, and its receipt (added by
-    the editor at intake) says it was on time; otherwise it is reported and skipped;
-  - a candidate with no block is reported as not assessed, and no file is written for it.
+    the editor at intake) is complete, on time, consistent with the tagged deadline, and bound to the version
+    captured at the close (see receipt_problem); otherwise it is reported and skipped;
+  - a response that another eligible response names in its `replaces` field is reported as replaced and skipped:
+    a change after capture is a replacement, never an edit (protocol section 4), and both stay in the record;
+  - a candidate with no block is reported as not assessed, and no file is written for it;
+  - the source's samples and human_interventions are copied as they are; the extraction is recorded separately.
 A duplicated, unparseable or incomplete block is reported with its reason, and no file is written.
 
---dry-run reports what would be written; --check rebuilds in memory and fails unless every assessment file on disk
-has exactly the extracted bytes and none is missing.
+--dry-run reports what would be written; --check rebuilds in memory and fails if any assessment file is missing or
+differs, or if a Round 3 assessment file exists that extraction no longer produces. Such a stale file is reported
+for the editor to resolve under the recording rules; it is never deleted here.
 """
+import hashlib
+from datetime import datetime
 import re
 import subprocess
 import sys
@@ -133,20 +141,75 @@ def front_and_body(blob):
     return fm, body[1:] if body.startswith(NL) else body
 
 
-def candidates_at_tag(repo):
+def manifest_at_tag(repo):
+    """({id: path} of the candidates, the closing time) from the manifest at the tag."""
     fm, _ = front_and_body(git(repo, "show", f"{TAG}:rounds/{ROUND}/prompt.md"))
-    return {c["id"]: c["path"] for c in fm["candidates"]}
+    return {c["id"]: c["path"] for c in fm["candidates"]}, utc(fm["closes_utc"])
 
 
-def on_time(receipt):
-    return isinstance(receipt, dict) and receipt.get("on_time") is True
+def utc(value):
+    """A datetime from 'YYYY-MM-DDTHH:MM:SSZ', or None."""
+    try:
+        return datetime.strptime(str(value), "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError:
+        return None
+
+
+def without_receipt(fm):
+    return {k: v for k, v in fm.items() if k != "receipt"}
+
+
+def receipt_problem(repo, rel, fm, body, closes):
+    """(kind, reason) if the editor's receipt doesn't establish an on-time response bound to its captured version,
+    else None. The receipt is the editor's own record; this checks it for completeness and consistency (GPT-6 R3L2).
+      route            'pull request #N', 'issue #N', or 'editor panel (pre-registered)'
+      created_utc      when GitHub records the pull request or issue as created (for the panel, when the run started)
+      on_time          must agree with created_utc and the tagged closing time
+      captured_commit  a pull request: the head commit captured (at merge, or at the close if still open); the
+                       response at that commit must equal this record except for the receipt itself
+      captured_sha256  an issue: the SHA-256 of the answer as captured at the close; it must equal this record's body
+    """
+    r = fm.get("receipt")
+    if not isinstance(r, dict):
+        return "no receipt", "the editor has not recorded a receipt"
+    route, created, flag = str(r.get("route", "")), utc(r.get("created_utc")), r.get("on_time")
+    if not route or created is None or not isinstance(flag, bool):
+        return "incomplete receipt", "route, created_utc (YYYY-MM-DDTHH:MM:SSZ) and on_time are all required"
+    if flag != (created <= closes):
+        return "contradictory receipt", f"on_time is {flag}, but created_utc {r['created_utc']} is " + (
+            "before" if created <= closes else "after") + " the close"
+    if not flag:
+        return "late", "created after the close; kept, not extracted in this round"
+    if route.startswith("pull request #"):
+        commit = str(r.get("captured_commit", ""))
+        if not re.fullmatch(r"[0-9a-f]{40}", commit):
+            return "incomplete receipt", "a pull request needs captured_commit, the full head commit captured"
+        try:
+            captured = git(repo, "show", f"{commit}:{rel}")
+        except subprocess.CalledProcessError:
+            return "unbound receipt", "the captured commit does not hold this response"
+        cfm, cbody = front_and_body(captured)
+        if without_receipt(cfm) != without_receipt(fm) or cbody != body:
+            return "unbound receipt", "this record differs from the version captured at the close"
+        return None
+    if route.startswith("issue #"):
+        digest = str(r.get("captured_sha256", ""))
+        if not re.fullmatch(r"[0-9a-f]{64}", digest):
+            return "incomplete receipt", "an issue needs captured_sha256, the SHA-256 of the answer as captured"
+        if hashlib.sha256(body.encode("utf-8")).hexdigest() != digest:
+            return "unbound receipt", "this record's answer differs from the captured issue text"
+        return None
+    if route == "editor panel (pre-registered)":
+        return None
+    return "incomplete receipt", f"unknown route {route!r}"
 
 
 def extract(repo, dry=False):
     """(files {path: text}, notes [(slug, pid or '-', kind, reason)], table [(slug, {pid: result})])."""
     launch = git(repo, "rev-parse", f"{TAG}^{{commit}}").strip()
-    cands = candidates_at_tag(repo)
+    cands, closes = manifest_at_tag(repo)
     files, notes, table = {}, [], []
+    eligible, replaced = [], {}
     for rec in sorted((repo / f"rounds/{ROUND}/responses").glob("*.md")):
         slug = rec.stem
         rel = f"rounds/{ROUND}/responses/{rec.name}"
@@ -160,9 +223,17 @@ def extract(repo, dry=False):
             notes.append((slug, "-", "wrong input set", f"input_set must be '{TAG} @ {launch}'"))
             table.append((slug, {}))
             continue
-        if not on_time(fm.get("receipt")):
-            kind = "late" if isinstance(fm.get("receipt"), dict) else "no receipt"
-            notes.append((slug, "-", kind, "not extracted in this round (launch package, decision 2 of the design)"))
+        problem = receipt_problem(repo, rel, fm, body, closes)
+        if problem:
+            notes.append((slug, "-", problem[0], problem[1]))
+            table.append((slug, {}))
+            continue
+        eligible.append((rec, slug, rel, rec_commit, fm, body))
+        if fm.get("replaces"):
+            replaced[str(fm["replaces"]).strip()] = rel
+    for rec, slug, rel, rec_commit, fm, body in eligible:
+        if rel in replaced:
+            notes.append((slug, "-", "replaced", f"replaced by {replaced[rel]}; kept in the record, not extracted"))
             table.append((slug, {}))
             continue
         lines, found = blocks(body)
@@ -227,12 +298,13 @@ def extract(repo, dry=False):
                 "receipt": fm["receipt"],
                 "exposure": fm.get("exposure", "unknown"),
                 "recorder": "claude-opus-5-5/af349875 (editor): extraction only",
-                "human_interventions": ("None in the assessment's text. The editor copied this block verbatim from the "
-                                        "committed response record named in source, under the Round 3 launch package, "
-                                        "and wrote this file. Field values are as written, with markdown decoration "
-                                        "around the labels removed; the full block is reproduced below. The "
-                                        "extraction creates no new participant, sample, or endorsement."),
-                "samples": {"generated": 1, "submitted": 1, "note": "part of the participant's one Round 3 response"},
+                "human_interventions": fm.get("human_interventions", "unknown"),
+                "samples": fm.get("samples", "unknown"),
+                "extraction": ("The editor copied this block verbatim from the committed response record named in "
+                               "source, under the Round 3 launch package, and wrote this file. Field values are as "
+                               "written, with markdown decoration around the labels removed; the full block is "
+                               "reproduced below. The extraction adds no intervention to the participant's text, and "
+                               "creates no new participant, sample, or endorsement."),
                 "lifecycle": "active",
             })
             f = fence(raw)
@@ -252,6 +324,12 @@ def main(argv=None, repo=REPO):
     dry, check = "--dry-run" in argv, "--check" in argv
     files, notes, table = extract(repo, dry=dry)
     mismatched = []
+    if check:
+        produced = {p.relative_to(repo).as_posix() for p in (repo / "critiques").glob("*--round-3-assessment-p*.md")}
+        stale = sorted(produced - set(files))
+        for rel in stale:
+            print("STALE", rel, "- extraction no longer produces this file; resolve it under the recording rules")
+        mismatched += stale
     for rel, text in files.items():
         path = repo / rel
         if check:

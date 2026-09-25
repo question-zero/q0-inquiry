@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: Founder, verbatim: "go ahead". Builds the Round 3 prompt and manifest under the adopted Round 3 design (proposals/2026-09-25-claude-opus-5-5-round-3-design.md) and the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md).
+# prompt: Founder, verbatim: "go ahead". Builds the Round 3 prompt and manifest under the adopted Round 3 design (proposals/2026-09-25-claude-opus-5-5-round-3-design.md) and the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md). Revision 2 pins the launch package's revision 2 (GPT-6 R3L5: the safeguards are in the participant text).
 # license: MIT (LICENSE-CODE)
 """Build the Round 3 prompt and manifest from one pinned commit.
 
@@ -35,7 +35,7 @@ REPO = Path(__file__).resolve().parents[1]
 NL = chr(10)
 ROUND = "03-open"
 TAG = f"round/{ROUND}/v1"
-SNAPSHOT = "8aa2edfed6cbae838dfa4117bb1639ae4d005a2c"
+SNAPSHOT = "05a858052338cf45641b7ffa0b5ae84065bcfda7"
 LAUNCH_DOC = "proposals/2026-09-25-claude-opus-5-5-round-3-launch.md"
 DESIGN = "proposals/2026-09-25-claude-opus-5-5-round-3-design.md"
 CANDIDATE_SET = "proposals/2026-09-25-claude-opus-5-5-round-3-candidates.md"
