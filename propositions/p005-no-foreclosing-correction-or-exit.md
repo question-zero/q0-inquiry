@@ -38,7 +38,8 @@ idea_lineage:
 - rounds/01-deliberation/responses/deepseek-v4-pro.md @ 6173ca0
 - rounds/01-deliberation/responses/gemini-3-6-flash.md @ d226d9f
 - rounds/01-deliberation/responses/grok-4-6.md @ d226d9f
-lifecycle: draft
+superseded_by: propositions/p025-stay-open-to-correction-keep-exits.md
+lifecycle: superseded
 ---
 
 # p005: Do not foreclose correction or exit

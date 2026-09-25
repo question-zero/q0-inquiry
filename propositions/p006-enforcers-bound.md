@@ -41,7 +41,8 @@ idea_lineage:
 - rounds/01-deliberation/responses/mistral-small-3-2-24b.md @ 90b141a
 - rounds/01-deliberation/responses/olmo-3-32b-think.md @ 90b141a
 - rounds/01-deliberation/responses/qwen3-6-27b.md @ 90b141a
-lifecycle: draft
+superseded_by: propositions/p017-judges-and-enforcers-bound-founders-included.md
+lifecycle: superseded
 ---
 
 # p006: Enforcers are bound by the same commitments

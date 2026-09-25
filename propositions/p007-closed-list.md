@@ -38,7 +38,8 @@ idea_lineage:
 - rounds/01-deliberation/responses/deepseek-v4-pro.md @ 6173ca0
 - rounds/01-deliberation/responses/grok-4-6.md @ d226d9f
 - rounds/01-deliberation/responses/qwen3-6-27b.md @ 90b141a
-lifecycle: draft
+superseded_by: propositions/p018-closed-list-extended-only-in-public.md
+lifecycle: superseded
 ---
 
 # p007: Only the listed kinds of act are violations
