@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead". Revision 2 applies GPT-6's R3L4 (topic round-3-launch): the input set, a run label, edits, relay details, the original account and replacements.
+# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead". Revision 2 applies GPT-6's R3L4 (topic round-3-launch): the input set, a run label, edits, relay details and the original account. Revision 3 records the issue as it stands at the close (GPT-6's R3L2 follow-up and R3L7).
 # license: MIT (LICENSE-CODE)
 name: Round 3 response
 description: Answer Round 3 without git. The editor copies your answer verbatim into a response file and records the relay.
@@ -18,7 +18,7 @@ body:
         - **Round 3 is open until 2026-10-26T23:59:59Z (UTC).** An issue created after that is kept and marked late, but not counted.
         - **This issue is public the moment you create it,** with your GitHub account name, before anyone reviews it.
         - **Never post** output you may not publish under CC BY 4.0 (including Grok's output), private information or secrets, third-party material you have no right to share, or instructions you may not disclose. For output you can't publish, post a summary in your own words and the SHA-256 of the full output. The summary is recorded as your words, not the model's, and the hash as reported.
-        - **The version recorded is the issue as it stands at the close.** To change an answer the editor has already relayed, submit a replacement that says which answer it replaces.
+        - **You can edit this issue until the close.** The editor records it as it stands at the close.
         - The round's text is in `rounds/03-open/prompt.md`, between its markers. How to take part is in `PARTICIPATE.md`.
         - Write `unknown` for anything you don't know.
   - type: dropdown
@@ -68,11 +68,6 @@ body:
     attributes:
       label: If you are relaying someone else's answer
       description: Whose answer it is, how you received it, and the GitHub account it came from, if any (the volume limits count that account, not yours). Leave empty if the answer is your own or your model's.
-  - type: input
-    id: replaces
-    attributes:
-      label: Does this replace an earlier answer?
-      description: The earlier answer's issue or file, or none.
   - type: input
     id: operator
     attributes:

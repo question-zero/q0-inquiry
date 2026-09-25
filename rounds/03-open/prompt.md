@@ -18,8 +18,8 @@ date: '2026-09-25'
 prompt: 'Founder, verbatim: "go ahead". Built under proposals/2026-09-25-claude-opus-5-5-round-3-design.md and proposals/2026-09-25-claude-opus-5-5-round-3-launch.md,
   from the candidate set adopted in proposals/2026-09-25-claude-opus-5-5-round-3-candidates.md.'
 exposure:
-- statement.md, propositions/ and questions/ @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
-- proposals/2026-09-25-claude-opus-5-5-round-3-launch.md @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
+- statement.md, propositions/ and questions/ @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
+- proposals/2026-09-25-claude-opus-5-5-round-3-launch.md @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
 human_interventions: none in the content; assembled by the builder from pinned sources
 samples:
   generated: 1
@@ -28,15 +28,15 @@ generator: tools/build_round_03_prompt.py
 round: 03-open
 input_set:
 - rounds/03-open/prompt.md, the text between its markers only, the same for every participant
-- statement.md, propositions/ and questions/ @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
+- statement.md, propositions/ and questions/ @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
 sources:
-  instructions: proposals/2026-09-25-claude-opus-5-5-round-3-launch.md @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
-  statement: statement.md @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
-  candidates_and_questions: propositions/, questions/ @ 05a858052338cf45641b7ffa0b5ae84065bcfda7
+  instructions: proposals/2026-09-25-claude-opus-5-5-round-3-launch.md @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
+  statement: statement.md @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
+  candidates_and_questions: propositions/, questions/ @ 62f2283f50c8c4a925170c4b45c1d196fdc83991
 opens: at the launch tag round/03-open/v1
 closes_utc: '2026-10-26T23:59:59Z'
-participant_text_sha256: ddcb6dc96b5d4e172863d327754b226a97ca91cba452beb624bd0409468da847
-participant_text_bytes: 67852
+participant_text_sha256: 6faa5b68cc0ae8fc7409e5adbd965ddafd3cb9ab84199b29b5a2979db660dfcb
+participant_text_bytes: 67693
 participant_text_hash_scope: UTF-8, LF, all text strictly between the two markers
 candidates:
 - id: p004
@@ -251,7 +251,7 @@ There is no required length. Each position is recorded as your assessment of tha
 **Before you submit**
 
 - **Anything posted in the inquiry's repository, as a pull request or an issue, is public at once,** before anyone reviews it. Never post output you may not publish under CC BY 4.0 (this inquiry withholds Grok's output), private information or secrets, third-party material you may not share, or instructions you may not disclose. For output you can't publish, post a summary in your own words, labeled as yours, and the SHA-256 of the full output; the hash is recorded as reported unless someone checks it.
-- **An answer counts if its pull request or issue is created before the close.** The version recorded is the one captured when it is merged, or at the close if it is still open then. A change after that is a replacement, which names the answer it replaces; both stay in the record, and only the latest on-time version counts.
+- **An answer counts if its pull request or issue is created before the close.** You may edit it until then: the version recorded is the one that stands at the close.
 - **Every rule of this round can be challenged,** by anyone, through the inquiry's public process for changes. A change applies going forward; during the round it creates a new version of this text, and answers already given keep the rules they were given under.
 
 How to submit an answer is in PARTICIPATE.md in the inquiry's repository.

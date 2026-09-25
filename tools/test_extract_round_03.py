@@ -4,13 +4,13 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: Offline tests for tools/extract_round_03_assessments.py, covering the fixture the Round 3 launch package requires (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"). Synthetic data only. Revision 2 adds GPT-6's R3L1-R3L3 cases (topic round-3-launch): a stale output, contradictory and incomplete receipts, the capture binding, and preserved provenance.
+# prompt: Offline tests for tools/extract_round_03_assessments.py, covering the fixture the Round 3 launch package requires (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"). Synthetic data only. Revision 2 adds GPT-6's R3L1-R3L3 cases (topic round-3-launch): a stale output, contradictory and incomplete receipts, the capture binding with its cutoff evidence, and preserved provenance. There is no replacement mechanism (R3L7).
 # license: MIT (LICENSE-CODE)
 """Offline tests for extract_round_03_assessments.py. Run: python -m unittest tools/test_extract_round_03.py
 
 Each test builds a small git repository with a tagged Round 3 manifest and synthetic responses. A pull request is
-simulated the way intake works: the participant's version is committed, then the editor adds the receipt, which
-names that commit as the version captured at the close.
+simulated the way intake works: the participant's version at the close is committed, then the editor adds the
+receipt, which names that commit and its cutoff evidence.
 """
 import hashlib
 import io
@@ -85,7 +85,8 @@ class Base(unittest.TestCase):
         self.put(rel, render(fm, body))
         head = self.commit(f"{slug}: the participant's version")
         fm["receipt"] = {"route": "pull request #1", "created_utc": created, "on_time": on_time,
-                         "captured_commit": head}
+                         "captured_commit": head,
+                         "captured_evidence": "the last push before the close, per the pull request's timeline"}
         self.put(rel, render(fm, body))
         self.commit(f"{slug}: receipt")
         return rel
@@ -94,7 +95,8 @@ class Base(unittest.TestCase):
         rel = f"rounds/03-open/responses/{slug}.md"
         fm = front(self.good_set)
         fm["receipt"] = {"route": "issue #7", "created_utc": created, "on_time": on_time,
-                         "captured_sha256": digest or hashlib.sha256(body.encode("utf-8")).hexdigest()}
+                         "captured_sha256": digest or hashlib.sha256(body.encode("utf-8")).hexdigest(),
+                         "captured_revision": "the body as last edited before the close, per the issue's edit history"}
         self.put(rel, render(fm, body))
         self.commit(f"{slug}: relayed from an issue")
         return rel
@@ -158,15 +160,6 @@ class Fixture(Base):
         self.assertIn(("human-ada", "p001", "not a candidate"), self.kinds(notes))
 
 
-class Replacement(Base):  # GPT-6 R3L2: a change after capture is a replacement, never an edit
-    def test_only_the_replacing_response_is_extracted(self):
-        old = self.pull_request("human-ada", BLOCK)
-        self.pull_request("human-ada-2", BLOCK.replace("support", "reject"), replaces=old)
-        files, notes, _ = self.run_extract()
-        self.assertEqual(sorted(files), ["critiques/2026-10-01-human-ada-2--round-3-assessment-p014.md"])
-        self.assertIn(("human-ada", "-", "replaced"), self.kinds(notes))
-
-
 class Receipts(Base):  # GPT-6 R3L2
     def write_with(self, slug, receipt):
         rel = f"rounds/03-open/responses/{slug}.md"
@@ -180,7 +173,10 @@ class Receipts(Base):  # GPT-6 R3L2
         self.write_with("none-a", None)
         self.write_with("bare-b", {"on_time": True})
         self.write_with("contra-c", {"route": "issue #3", "created_utc": AFTER, "on_time": True,
-                                     "captured_sha256": hashlib.sha256(BLOCK.encode()).hexdigest()})
+                                     "captured_sha256": hashlib.sha256(BLOCK.encode()).hexdigest(),
+                                     "captured_revision": "as created"})
+        self.write_with("noevidence-e", {"route": "issue #5", "created_utc": BEFORE, "on_time": True,
+                                         "captured_sha256": hashlib.sha256(BLOCK.encode()).hexdigest()})
         self.write_with("badtime-d", {"route": "issue #4", "created_utc": "yesterday", "on_time": True})
         files, notes, _ = self.run_extract()
         self.assertEqual(files, {})
@@ -189,6 +185,7 @@ class Receipts(Base):  # GPT-6 R3L2
         self.assertIn(("bare-b", "-", "incomplete receipt"), k)
         self.assertIn(("contra-c", "-", "contradictory receipt"), k)
         self.assertIn(("badtime-d", "-", "incomplete receipt"), k)
+        self.assertIn(("noevidence-e", "-", "incomplete receipt"), k)  # no captured_revision (R3L2 follow-up)
 
     def test_a_pull_request_is_bound_to_its_captured_version(self):
         rel = self.pull_request("human-ada", BLOCK)

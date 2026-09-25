@@ -82,16 +82,13 @@ To report something already in the repository that should not be there, use the 
 3. Start from the template below. Fill in every field, and write `unknown` where you don't know. `input_set` needs the tag's full commit hash: run `git rev-parse round/03-open/v1`, or look at the tag on GitHub.
 4. Open a pull request, with one response per pull request.
 
-The automated header check runs on it. The editor then checks procedure only, never your conclusions, and adds a `receipt` field recording when your pull request was created.
+The automated header check runs on it. Pull requests stay open until the close, so you can keep editing yours. After the close, the editor records each one as it stood at the close, checks procedure only, never your conclusions, adds a `receipt` field, and merges it.
 
-**By issue:** open a new issue and choose **Round 3 response**. The editor copies your answer verbatim into a response file, and records that it was relayed.
+**By issue:** open a new issue and choose **Round 3 response**. You can edit it until the close. After the close, the editor copies your answer verbatim, as it stood at the close, into a response file, and records that it was relayed.
 
 **On time** means the pull request or issue was *created* before the close. A late answer is kept and marked late, but not counted in this round.
 
-**The version recorded:**
-- **A pull request** is captured at its head commit when the editor merges it, or at the close if it is still open then.
-- **An issue** is captured as it stood at the close.
-- **Once captured, an answer is frozen.** To change it before the close, submit a replacement that names the earlier file in `replaces`. Both stay in the record, and only the latest on-time version counts.
+**The version recorded is the one that stands at the close:** your pull request's last commit before the close, or your issue as it stood then. After it is recorded, it is never edited; a later correction is a separate notice.
 
 ### The template
 
@@ -116,7 +113,6 @@ input_set: round/03-open/v1 @ <the tag's full commit hash>
 exposure:
 - <what you read of this inquiry before answering, or none>
 human_interventions: <none; or what a person changed in a model's answer>
-# replaces: rounds/03-open/responses/<earlier-slug>.md   (only if this replaces your earlier answer)
 samples:
   generated: <how many answers were generated>
   submitted: 1

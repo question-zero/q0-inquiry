@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8). Revision 2 applies GPT-6's R3L1-R3L3 (topic round-3-launch): stale outputs fail --check, receipts are validated against the tagged deadline and bound to the captured version, and the source's samples and interventions are kept.
+# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8). Revision 2 applies GPT-6's R3L1-R3L3 (topic round-3-launch): stale outputs fail --check, receipts are validated against the tagged deadline and bound to the version captured at the close with its cutoff evidence, and the source's samples and interventions are kept. There is no replacement mechanism: every response is captured at the close (GPT-6 R3L2 follow-up and R3L7).
 # license: MIT (LICENSE-CODE)
 """Extract the Round 3 assessment blocks into critiques/.
 
@@ -19,8 +19,6 @@ Nothing is inferred. Round 3 differs in these ways:
   - a response is extracted only if its input_set names the tag and that exact commit, and its receipt (added by
     the editor at intake) is complete, on time, consistent with the tagged deadline, and bound to the version
     captured at the close (see receipt_problem); otherwise it is reported and skipped;
-  - a response that another eligible response names in its `replaces` field is reported as replaced and skipped:
-    a change after capture is a replacement, never an edit (protocol section 4), and both stay in the record;
   - a candidate with no block is reported as not assessed, and no file is written for it;
   - the source's samples and human_interventions are copied as they are; the extraction is recorded separately.
 A duplicated, unparseable or incomplete block is reported with its reason, and no file is written.
@@ -165,9 +163,14 @@ def receipt_problem(repo, rel, fm, body, closes):
       route            'pull request #N', 'issue #N', or 'editor panel (pre-registered)'
       created_utc      when GitHub records the pull request or issue as created (for the panel, when the run started)
       on_time          must agree with created_utc and the tagged closing time
-      captured_commit  a pull request: the head commit captured (at merge, or at the close if still open); the
-                       response at that commit must equal this record except for the receipt itself
-      captured_sha256  an issue: the SHA-256 of the answer as captured at the close; it must equal this record's body
+      captured_commit    a pull request: its last head commit before the close; the response at that commit must
+                         equal this record except for the receipt itself
+      captured_evidence  a pull request: the editor's reference to the cutoff evidence, such as the time of that
+                         push in the pull request's timeline
+      captured_sha256    an issue: the SHA-256 of the answer as transcribed; it must equal this record's body
+      captured_revision  an issue: which revision of the issue body was transcribed, from its edit history (the last
+                         edit before the close, or the body as created)
+    Pull requests and issues are captured as they stood at the close (design, decision 2).
     """
     r = fm.get("receipt")
     if not isinstance(r, dict):
@@ -182,8 +185,9 @@ def receipt_problem(repo, rel, fm, body, closes):
         return "late", "created after the close; kept, not extracted in this round"
     if route.startswith("pull request #"):
         commit = str(r.get("captured_commit", ""))
-        if not re.fullmatch(r"[0-9a-f]{40}", commit):
-            return "incomplete receipt", "a pull request needs captured_commit, the full head commit captured"
+        if not re.fullmatch(r"[0-9a-f]{40}", commit) or not str(r.get("captured_evidence") or "").strip():
+            return "incomplete receipt", ("a pull request needs captured_commit, its last head before the close, "
+                                          "and captured_evidence")
         try:
             captured = git(repo, "show", f"{commit}:{rel}")
         except subprocess.CalledProcessError:
@@ -194,8 +198,9 @@ def receipt_problem(repo, rel, fm, body, closes):
         return None
     if route.startswith("issue #"):
         digest = str(r.get("captured_sha256", ""))
-        if not re.fullmatch(r"[0-9a-f]{64}", digest):
-            return "incomplete receipt", "an issue needs captured_sha256, the SHA-256 of the answer as captured"
+        if not re.fullmatch(r"[0-9a-f]{64}", digest) or not str(r.get("captured_revision") or "").strip():
+            return "incomplete receipt", ("an issue needs captured_sha256, the SHA-256 of the answer as transcribed, "
+                                          "and captured_revision")
         if hashlib.sha256(body.encode("utf-8")).hexdigest() != digest:
             return "unbound receipt", "this record's answer differs from the captured issue text"
         return None
@@ -209,7 +214,7 @@ def extract(repo, dry=False):
     launch = git(repo, "rev-parse", f"{TAG}^{{commit}}").strip()
     cands, closes = manifest_at_tag(repo)
     files, notes, table = {}, [], []
-    eligible, replaced = [], {}
+    eligible = []
     for rec in sorted((repo / f"rounds/{ROUND}/responses").glob("*.md")):
         slug = rec.stem
         rel = f"rounds/{ROUND}/responses/{rec.name}"
@@ -229,13 +234,7 @@ def extract(repo, dry=False):
             table.append((slug, {}))
             continue
         eligible.append((rec, slug, rel, rec_commit, fm, body))
-        if fm.get("replaces"):
-            replaced[str(fm["replaces"]).strip()] = rel
     for rec, slug, rel, rec_commit, fm, body in eligible:
-        if rel in replaced:
-            notes.append((slug, "-", "replaced", f"replaced by {replaced[rel]}; kept in the record, not extracted"))
-            table.append((slug, {}))
-            continue
         lines, found = blocks(body)
         seen = {}
         for pid, i, j in found:
