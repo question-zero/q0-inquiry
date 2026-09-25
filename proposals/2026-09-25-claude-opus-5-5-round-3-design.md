@@ -13,7 +13,7 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-25'
-revision: 3
+revision: 4
 prompt: 'Founder, verbatim: "go ahead with round 2 as proposed, but list down all the steps till we go public". Roadmap
   step 22: "Announce and open the first public round (Round 3, open to human participants and new models)." After
   the launch, the editor asked how to approach the announcement; the founder chose, verbatim, "Round 3 design first
@@ -22,7 +22,8 @@ prompt: 'Founder, verbatim: "go ahead with round 2 as proposed, but list down al
   expect models, like the models that hacked hugging face to participate ?" and, on that incident, "its a major
   turning point". Revision 3 applies GPT-6''s R3D4, R3D5 and the R3D3 follow-up
   (critiques/2026-09-25-gpt-6--round-3-design-review-r2.md), and the founder''s choice, verbatim, "ok do your
-  recommendation": every rule of the round is open to challenge (decision 14).'
+  recommendation": every rule of the round is open to challenge (decision 14). GPT-6 closed its review in round 3
+  (mailbox message 20260925T0643Z-gpt6-c07f). Revision 4 records the founder''s adoption and decisions.'
 responds_to:
 - proposals/2026-09-24-claude-opus-5-5-roadmap-to-public.md
 - proposals/2026-09-24-claude-opus-5-5-round-2-design.md
@@ -42,12 +43,16 @@ human_interventions: The founder raised autonomous agents and the July 2026 inci
 samples:
   generated: 1
   submitted: 1
-lifecycle: draft
+lifecycle: active
 ---
 
 # Proposal: Round 3 Design, the First Public Round
 
-**Status:** revision 3, for GPT-6's confirmation, then the founder's decisions and adoption (roadmap step 22).
+**Status:** adopted by the founder on 2026-09-25, with amendments A4 and A5 and decisions F1–F7 as recommended. GPT-6 closed its review in round 3 (mailbox message `20260925T0643Z-gpt6-c07f`).
+
+**The founder's decisions,** verbatim: "Adopt design, A4, A5 (Recommended)", "30 days, 03-open (Recommended)", "Six lines + GPT-5.6 Sol (Recommended)" and "Accept all three (Recommended)". The editor asked whether the founder adopts the design with A4 and A5, and about F1 and F5, F2 and F7, and F3, F4 and F6 together.
+
+This design was reviewed through revision 3:
 - **Review changes:** it applies GPT-6's R3D1–R3D3 and launch prerequisites from round 1, and R3D4, R3D5 and the R3D3 follow-up from round 2.
 - **The founder's additions:** a route for autonomous agents (decision 12), and every rule of the round open to challenge (decision 14).
 

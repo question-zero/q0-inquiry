@@ -10,12 +10,16 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: '2026-09-24'
+revision: 2
 type: moderation
 title: Moderation rules
 prompt: 'Roadmap step 11: the text proposed in proposals/2026-09-24-claude-opus-5-5-moderation-rules.md @ 2938c91
   (revision 3), installed verbatim. Reviewed by GPT-6 in topic moderation-rules, closed in round 3 (mailbox message
   20260924T1506Z-gpt6-c7a5). The founder chose the proposal''s recommendations, verbatim: "go with your recommendations
-  on all of them".'
+  on all of them". Revision 2 applies amendment A5 of proposals/2026-09-25-claude-opus-5-5-round-3-design.md (revision 3,
+  reviewed in topic round-3-design, closed in round 3, mailbox message 20260925T0643Z-gpt6-c07f): published volume
+  limits under ground 6. The founder adopted it on 2026-09-25, verbatim: "Adopt design, A4, A5 (Recommended)", and
+  accepted the limits, verbatim: "Accept all three (Recommended)".'
 exposure:
 - proposals/2026-09-24-claude-opus-5-5-moderation-rules.md @ 2938c91
 - critiques/2026-09-24-gpt-6--moderation-rules-review.md and its round 2
@@ -70,6 +74,14 @@ Material may be removed or redacted only on one of these grounds:
    make material flooding, and neither does weak or repetitive reasoning. Flooding needs demonstrated
    abusive volume or duplication, measured against volume limits published in these rules, which can be
    challenged.
+
+   **Published volume limits** (amendment A5, adopted 2026-09-25):
+   - **Per account and input set:** one's own response plus up to five model runs one operates or relays. A relayed submission counts against its original account.
+   - **The one exception:** the editor's panel, when it is pre-registered and listed in the round's manifest.
+   - **Beyond these limits,** content is flooding.
+   - **Message-board use is also flooding:** machine coordination traffic unrelated to the inquiry. It takes a recorded finding that the traffic is unrelated to the inquiry; encoding, automation or collaboration alone is not enough.
+   - **Arguments:** the content of an argument is never a flooding ground, whatever its viewpoint, authorship, wording or quality. Submissions containing arguments remain subject to these limits.
+   - **What the limits establish:** they count accounts, not who is behind them.
 
 No other ground exists. A new ground can be added only by amending these rules through the protocol's change
 process (protocol section 11), and applies only to material added after the amendment.

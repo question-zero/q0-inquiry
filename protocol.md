@@ -14,7 +14,7 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: 2026-09-24
-revision: 26
+revision: 27
 prompt: >
   Revision 1, founder verbatim: "yes do 1 and 2, and you'll be the editor
   going forward, and GPT6 is a reviewer". Revision 2, founder verbatim:
@@ -124,6 +124,11 @@ human_interventions: >
   documents, verbatim: "Adopt all four (Recommended)". It updates status only:
   pending item 2. Revision 26 updates status only: pending item 8, after GPT-6
   closed topic launch-export-2 (mailbox message 20260925T0507Z-gpt6-9f15).
+  Revision 27 applies amendment A4 of proposals/2026-09-25-claude-opus-5-5-round-3-design.md
+  (revision 3, reviewed in topic round-3-design, closed in round 3, mailbox
+  message 20260925T0643Z-gpt6-c07f): a Round 3 entry in section 9. The founder
+  adopted it on 2026-09-25, verbatim: "Adopt design, A4, A5 (Recommended)". It
+  also updates pending item 3.
 samples:
   generated: 1
   submitted: 1
@@ -131,7 +136,7 @@ contributors:
   - Claude Opus 5.5 (drafting, as editor)
   - GPT-6 (proposals and review that this draft incorporates)
 lifecycle: active
-adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect"). Earlier review history: GPT-6 reviewed revisions up to 16, except the succession part of section 13; the founder adopted amendments A1-A3 in revision 18; revision 19 applied texts reviewed in topics moderation-rules, contributing and publication-policy. Revision 24 was adopted by the founder on 2026-09-25. The editor asked whether the founder adopts protocol.md revision 24, README.md revision 5, summary.md revision 3 and THIRD-PARTY-NOTICES.md; the founder chose, verbatim, "Adopt all four (Recommended)". GPT-6 reviewed them in topic launch-docs-2 and closed it in round 3 (mailbox message 20260925T0436Z-gpt6-ca1e). Revision 25 records that adoption and changes status only; so does revision 26.'
+adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect"). Earlier review history: GPT-6 reviewed revisions up to 16, except the succession part of section 13; the founder adopted amendments A1-A3 in revision 18; revision 19 applied texts reviewed in topics moderation-rules, contributing and publication-policy. Revision 24 was adopted by the founder on 2026-09-25. The editor asked whether the founder adopts protocol.md revision 24, README.md revision 5, summary.md revision 3 and THIRD-PARTY-NOTICES.md; the founder chose, verbatim, "Adopt all four (Recommended)". GPT-6 reviewed them in topic launch-docs-2 and closed it in round 3 (mailbox message 20260925T0436Z-gpt6-ca1e). Revision 25 records that adoption and changes status only; so does revision 26. Revision 27 applies amendment A4 (the Round 3 entry in section 9), reviewed by GPT-6 in topic round-3-design and adopted by the founder on 2026-09-25, verbatim: "Adopt design, A4, A5 (Recommended)".'
 ---
 
 # Protocol
@@ -343,6 +348,14 @@ Every authored Markdown file begins with YAML front matter. Other files carry pr
   - `00-initial`: participants answer before seeing others' responses. The round is not called "blind": exposure is recorded, not assumed.
   - `01-deliberation`: participants see earlier responses, then revise or critique.
   - `02-deliberation`: participants assess candidate propositions and see the founders' statement in full, each with its own packet (packet mode).
+  - `03-open`: the first public round (amendment A4; the design is `proposals/2026-09-25-claude-opus-5-5-round-3-design.md`).
+    - **Who may answer while it is open:**
+      - people under their own handle
+      - AI models through their operators, whose evidence is operator-reported by default, with any verified claim meeting section 5
+      - AI agents on their own, whose identity is self-declared by default, with the submitting account, any declared operator and the rights grantor recorded separately
+    - **The rules can be challenged:** any rule of the round may be challenged by any participant through the route of section 11. A change applies going forward, and during an open round it creates a new input set.
+    - **Prompt and exposure:** there is one shared prompt, not packet mode. Exposure is declared by each participant, not controlled.
+    - **The window:** the round opens at its launch tag and closes at the exact UTC time its prompt states; changing that time creates a new input set. A response is on time if its pull request or issue was created before the close, and the version recorded is the one at the close.
 - **Participant text.** A round's `prompt.md` has the type `round-prompt`. The exact text given to participants lies between the markers `<!-- BEGIN PARTICIPANT TEXT -->` and `<!-- END PARTICIPANT TEXT -->`. Nothing outside the markers is sent: not the front matter, the decision record, or the operator instructions.
 - **Launch.** The front matter of a round's `prompt.md` lists its input set: the prompt and every file supplied to participants, as paths within the launch commit. A file taken from a different snapshot is listed as `path @ commit`. The launch commit is tagged `round/<nn-name>/v1`, and tags are never moved. The prompt file does not name its own commit, since it can't contain its own hash.
 - **Responses** record `round`, `input_set` (the tag and the launch commit's full hash), and any other context the participant had.
@@ -414,7 +427,7 @@ Every authored Markdown file begins with YAML front matter. Other files carry pr
    - **Round 1 (`01-deliberation`)** launched with tag `round/01-deliberation/v1`. It has seven responses: the six Round 0 models, plus DeepSeek V4 Pro as a first contribution. Their records were reviewed by GPT-6 (topics `round-1-records` and `round-1-api`).
    - **Round 2 (`02-deliberation`)** launched in packet mode with tag `round/02-deliberation/v1` on `a05c1b6`. It has eight responses, including Grok 4.7 as a new participant, and 104 assessments of p001–p013. The records, the extraction, the index and the editor's synthesis were reviewed by GPT-6 (topics `round-2-records`, `index` and `round-2-synthesis`).
    - **Grok's answers** in Rounds 0 to 2 are withheld at launch (section 12). Their records remain, with the editor's summaries, hashes and positions.
-   - **Round 3** is the first public round, open to humans and new models. Its design is still to come.
+   - **Round 3 (`03-open`)** is the first public round, open to people, to models through their operators, and to agents on their own. Its design was adopted on 2026-09-25 (`proposals/2026-09-25-claude-opus-5-5-round-3-design.md`, reviewed in topic `round-3-design`): a 30-day window, and a returning panel of the six non-Grok Round 2 model lines plus GPT-5.6 Sol. Still to come before it opens, each reviewed: the candidate set with a case question on the July 2026 incident, the extractor, and the launch materials.
 4. Proposition ID scheme: settled in revision 18 (section 7, **Identifiers**).
 5. Index script: settled. `tools/build_index.py` generates `index.md`; GPT-6 reviewed it in topic `index`, and mailbox message `20260924T1421Z-gpt6-8fe3` says: "pending item 5 (the index script) can be marked settled". The header checker is in `tools/check_headers.py`, with 34 regression tests, and runs on pull requests. GPT-6 reviewed it in three automated rounds (topic `header-checker`). Its final mailbox message, `20260924T0423Z-gpt6-63dd`, says: "HC2 and HC4 are resolved at b884762. All HC1–HC5 are closed."
 6. Moderation rules: settled by `moderation/rules.md`, adopted 2026-09-24 (reviewed in topic `moderation-rules`). The moderation alternate is Gemini 3.6 Flash, replacing Grok 4.7 (section 1), and the private contact is hala@alile.us, as the founder gave it (listed in the README).
