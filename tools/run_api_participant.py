@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Founder, verbatim: "if more rounds require llms participation, we can just start by generating api keys for each one of the paid services (openai, xai, byteplus etc..)". Round 1 design decision 8 (proposals/2026-09-24-claude-opus-5-5-round-1-design.md), which GPT-6 supported with prerequisites. Revision 2 applies GPT-6 findings API1-API4 (topic api-runner); revision 3 closes API4 (keys split across reads; sanitized errors); revision 7 applies GPT-6 RPK1 and RPK2 (the manifest's assignment is checked for the provider and model); revision 6 adds --packet for per-participant packets; revision 5 requires ModelArk token IDs (GPT-6 R1API1); revision 4 adds BytePlus ModelArk, after the founder reported: "deepseek-v4-pro-ga-260813 is also active and api key in env file".
+# prompt: Founder, verbatim: "if more rounds require llms participation, we can just start by generating api keys for each one of the paid services (openai, xai, byteplus etc..)". Round 1 design decision 8 (proposals/2026-09-24-claude-opus-5-5-round-1-design.md), which GPT-6 supported with prerequisites. Revision 2 applies GPT-6 findings API1-API4 (topic api-runner); revision 3 closes API4 (keys split across reads; sanitized errors); revision 7 applies GPT-6 RPK1 and RPK2 (the manifest's assignment is checked for the provider and model); revision 6 adds --packet for per-participant packets; revision 5 requires ModelArk token IDs (GPT-6 R1API1); revision 4 adds BytePlus ModelArk, after the founder reported: "deepseek-v4-pro-ga-260813 is also active and api key in env file"; revision 8 adds OpenAI (Chat Completions, streamed) for GPT-5.6 Sol in the Round 3 panel, after the founder reported: "apikey added".
 # license: MIT (LICENSE-CODE)
 """Run one round participant through a provider API and keep the evidence.
 
@@ -14,8 +14,10 @@ Usage:
         [--history-record RECORD_PATH [--history-tag round/00-initial/v1]]
         [--max-output-tokens N] [--max-input-tokens N] [--keys-file PATH]
 
-PROVIDER is gemini (Google Gemini API, streamGenerateContent), xai (xAI chat completions), or
-modelark (BytePlus ModelArk chat completions, OpenAI-compatible).
+PROVIDER is gemini (Google Gemini API, streamGenerateContent), xai (xAI chat completions),
+modelark (BytePlus ModelArk chat completions, OpenAI-compatible), or openai (OpenAI Chat Completions; the
+input is counted by the Responses API's input-token endpoint, and a reasoning model's reasoning text is not
+returned, only its token count in usage).
 
 Keys come from a private file of KEY=value lines (default: .private/api-keys.env
 next to the repository folder). A key is sent only in a request header and never
@@ -349,7 +351,34 @@ class ModelArk(XAI):
         return n, r
 
 
-PROVIDERS = {"gemini": Gemini, "xai": XAI, "modelark": ModelArk}
+class OpenAI(XAI):
+    """OpenAI Chat Completions, streamed. A reasoning model takes max_completion_tokens rather than max_tokens, and
+    this endpoint returns none of its reasoning text: only the reasoning token count, in usage. No reasoning effort
+    is sent, so the provider's default applies. The input is counted, without generating, by the Responses API's
+    input-token endpoint, over the same messages."""
+    name, key_name = "openai", "OPENAI_API_KEY"
+    base = "https://api.openai.com/v1"
+    count_scope = ("the same messages as a Responses API input, by the provider's input-token endpoint "
+                   "(POST /v1/responses/input_tokens); the chat endpoint may frame messages slightly differently, "
+                   "so this is not a complete request budget")
+    thinking_note = "OpenAI Chat Completions returns no reasoning text; its token count is in usage"
+
+    def build(self, model, history, text, max_output_tokens):
+        body = super().build(model, history, text, None)
+        if max_output_tokens is not None:
+            body["max_completion_tokens"] = max_output_tokens
+        return body
+
+    def count(self, http, model, key, body):
+        r = http.json("POST", f"{self.base}/responses/input_tokens", self.headers(key),
+                      {"model": model, "input": [{"role": m["role"], "content": m["content"]} for m in body["messages"]]})
+        n = r.get("input_tokens") if isinstance(r, dict) else None
+        if isinstance(n, bool) or not isinstance(n, int) or n <= 0:
+            raise ValueError("the input-token endpoint returned no valid positive input_tokens")
+        return n, r
+
+
+PROVIDERS = {"gemini": Gemini, "xai": XAI, "modelark": ModelArk, "openai": OpenAI}
 
 
 class SSE:
@@ -539,8 +568,9 @@ def run(args, http=None, prompt=None, history=None, key=None):
         "partial_final_event": state["partial_event"],
         "answer": "".join(state["answer"]),
         "thinking": "".join(state["thinking"]),
-        "thinking_note": ("Gemini returns thought summaries, not raw reasoning" if provider.name == "gemini"
-                          else f"{provider.name} reasoning_content, if the model returns it"),
+        "thinking_note": getattr(provider, "thinking_note", None) or (
+            "Gemini returns thought summaries, not raw reasoning" if provider.name == "gemini"
+            else f"{provider.name} reasoning_content, if the model returns it"),
         "events": n,
         "returned_model": state.get("returned_model"),
         "response_id": state.get("response_id"),

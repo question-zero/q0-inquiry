@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Offline tests for tools/run_api_participant.py (Round 1 design decision 8). Revision 2 adds regressions for GPT-6 findings API1-API4; revision 3 adds the remaining API4 cases; revision 4 adds ModelArk; revision 5 adds the R1API1 cases; revision 6 adds GPT-6 RPK2 regressions (the manifest's assignment is checked for the provider and model).
+# prompt: Offline tests for tools/run_api_participant.py (Round 1 design decision 8). Revision 2 adds regressions for GPT-6 findings API1-API4; revision 3 adds the remaining API4 cases; revision 4 adds ModelArk; revision 5 adds the R1API1 cases; revision 6 adds GPT-6 RPK2 regressions (the manifest's assignment is checked for the provider and model); revision 7 adds the OpenAI route.
 # license: MIT (LICENSE-CODE)
 """Offline tests for run_api_participant.py. Run: python -m unittest tools/test_run_api_participant.py
 
@@ -69,6 +69,9 @@ class FakeHttp:
         if url.endswith("/tokenization"):
             return self.count_response if self.count_response is not None else {
                 "data": [{"index": 0, "total_tokens": 100, "token_ids": list(range(100))}]}
+        if url.endswith("/responses/input_tokens"):
+            return self.count_response if self.count_response is not None else {"object": "response.input_tokens",
+                                                                               "input_tokens": 100}
         if url.endswith("/api/v3/models"):
             return self.model_response or {"data": [{"id": "m-1", "owned_by": "x"}, {"id": "other"}]}
         if self.model_error:
@@ -423,6 +426,43 @@ class PacketMode(Base):  # GPT-6 RPK2
                          ("xai", "grok-4.7", P47, "grok-4-7"))
         self.assertEqual(pre["participant_text_sha256"], a["participant_text_sha256"])
         self.assertEqual(pre["requested_model"], "grok-4.7")
+
+
+class OpenAIRoute(Base):  # revision 7: GPT-5.6 Sol in the Round 3 panel
+    STREAM = [
+        sse({"id": "chatcmpl-1", "model": "gpt-x-2026", "system_fingerprint": "fp1",
+             "choices": [{"delta": {"role": "assistant", "content": "Hel"}}]}),
+        sse({"id": "chatcmpl-1", "model": "gpt-x-2026", "choices": [{"delta": {"content": "lo"}, "finish_reason": "stop"}]}),
+        sse({"id": "chatcmpl-1", "model": "gpt-x-2026", "choices": [],
+             "usage": {"prompt_tokens": 10, "completion_tokens": 7,
+                       "completion_tokens_details": {"reasoning_tokens": 5}}}),
+        b"data: [DONE]\n\n",
+    ]
+
+    def test_success_counts_with_the_responses_endpoint_and_streams_chat(self):
+        http = FakeHttp(self.STREAM)
+        r = ra.run(args(self.prefix, "openai", max_output_tokens=4000), http, PROMPT, [], key=KEY)
+        self.assertEqual((r["answer"], r["thinking"], r["complete"], r["transport_complete"]), ("Hello", "", True, True))
+        self.assertTrue(http.url.endswith("/v1/chat/completions"))
+        self.assertEqual(http.body["max_completion_tokens"], 4000)
+        self.assertNotIn("max_tokens", http.body)
+        self.assertNotIn("reasoning_effort", http.body)  # the provider's default applies
+        self.assertEqual(http.body["messages"], [{"role": "user", "content": "round one text\n"}])
+        count_body = [b for b in http.bodies if b and "input" in b][0]
+        self.assertEqual(count_body, {"model": "m-1", "input": [{"role": "user", "content": "round one text\n"}]})
+        self.assertEqual(self.load("preflight.json")["stages"]["input_count"]["input_tokens"], 100)
+        self.assertEqual(r["usage"]["completion_tokens_details"]["reasoning_tokens"], 5)
+        self.assertIn("no reasoning text", r["thinking_note"])
+        self.assertTrue(all(h.get("Authorization") == "Bearer " + KEY for h in http.seen_headers))
+
+    def test_malformed_input_counts_block_before_generation(self):
+        for i, resp in enumerate(({}, {"input_tokens": 0}, {"input_tokens": True}, {"input_tokens": "100"}, [])):
+            prefix = Path(self.tmp.name) / f"o{i}"
+            http = FakeHttp(self.STREAM, count_response=resp)
+            with self.assertRaises(ra.PreflightError, msg=resp):
+                ra.run(args(prefix, "openai", max_input_tokens=10), http, PROMPT, [], key=KEY)
+            self.assertFalse(http.streamed, resp)
+            self.assertFalse(Path(f"{prefix}.attempt.json").exists(), resp)
 
 
 if __name__ == "__main__":
