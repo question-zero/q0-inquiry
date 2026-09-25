@@ -14,3 +14,6 @@
 
 # Python bytecode written when the checker's tests run
 __pycache__/
+
+# Private evidence must live outside the repository; this only guards against a mistaken path (GPT-6 R3P1)
+.private/

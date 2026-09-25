@@ -781,5 +781,16 @@ class Panel(Base):  # Round 3: the manifest names the panel (launch package, "Th
         self.assertIsNone(a)
 
 
+class PanelMalformed(Base):  # GPT-6 R3P3
+    def test_a_null_panel_or_an_unnamed_entry_is_refused(self):
+        for panel in ("null", [{"route": "ollama", "requested_model": "fake:1b"}],
+                      [{"participant": " ", "route": "ollama", "requested_model": "fake:1b"}]):
+            with self.subTest(panel=panel), PanelRepo(panel=[] if panel == "null" else panel) as repo:
+                if panel == "null":
+                    repo.blobs[MANIFEST3] = repo.blobs[MANIFEST3].replace("panel: []", "panel: null")
+                with self.assertRaisesRegex(ValueError, "nonempty list of named entries"):
+                    rl.participant_input(args(self.prefix, tag=TAG3), "ollama")
+
+
 if __name__ == "__main__":
     unittest.main()

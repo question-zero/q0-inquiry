@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Founder, verbatim: "download ollama and all three models". Revision 2 applies GPT-6 findings LR1-LR3 and its system-prompt and thinking recommendations; revision 3 applies its round 2 findings (complete failure capture; weight verification as a precondition); revision 4 adds Round 1 support: prompts for any round, Round 0 history, render-only prompt capture, and a context budget checked before inference (proposals/2026-09-24-claude-opus-5-5-round-1-design.md; GPT-6 findings R1D2 and R1D3); revision 5 applies GPT-6 findings RV1-RV3 (probe evidence, budget validation, exact history); revision 6 closes RV1 (probe requests saved before sending; bodies kept when a response isn't valid JSON); revision 7 adds --packet, for per-participant packets (proposals/2026-09-24-claude-opus-5-5-round-2-design.md); revision 8 applies GPT-6 RPK1 and RPK2 (generated packets; the manifest's assignment checked for the recipient); revision 9 checks the Round 3 panel: a run of a shared-text round with a panel is refused unless the manifest at the tag names its route and requested model exactly once (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "The panel").
+# prompt: Founder, verbatim: "download ollama and all three models". Revision 2 applies GPT-6 findings LR1-LR3 and its system-prompt and thinking recommendations; revision 3 applies its round 2 findings (complete failure capture; weight verification as a precondition); revision 4 adds Round 1 support: prompts for any round, Round 0 history, render-only prompt capture, and a context budget checked before inference (proposals/2026-09-24-claude-opus-5-5-round-1-design.md; GPT-6 findings R1D2 and R1D3); revision 5 applies GPT-6 findings RV1-RV3 (probe evidence, budget validation, exact history); revision 6 closes RV1 (probe requests saved before sending; bodies kept when a response isn't valid JSON); revision 7 adds --packet, for per-participant packets (proposals/2026-09-24-claude-opus-5-5-round-2-design.md); revision 8 applies GPT-6 RPK1 and RPK2 (generated packets; the manifest's assignment checked for the recipient); revision 9 checks the Round 3 panel: a run of a shared-text round with a panel is refused unless the manifest at the tag names its route and requested model exactly once (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "The panel"); revision 10 applies GPT-6 R3P1 and R3P3 (topic round-3-panel): an evidence prefix inside the repository is refused, and a present panel must be a nonempty list of named entries.
 # license: MIT (LICENSE-CODE)
 """Run one round participant on a local Ollama model and keep the evidence.
 
@@ -324,6 +324,19 @@ def pinned_packet(tag, packet, route, model):
                                       packet_first_line=first)
 
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def outside_repository(prefix):
+    """Refuse an evidence prefix inside this repository (GPT-6 R3P1): raw streams, thinking and other private
+    evidence must never land where they could be staged. Called before any file or request."""
+    resolved = Path(prefix).resolve()
+    if resolved == REPO_ROOT or REPO_ROOT in resolved.parents:
+        raise ValueError(f"the evidence prefix {prefix} resolves inside the repository; use a private folder "
+                         "outside it")
+    return resolved
+
+
 def panel_assignment(tag, route, model):
     """The one entry of the manifest's panel naming this route and requested model, with the manifest's path and
     blob hash, or None for a round whose manifest has no panel. The panel is the one exception to the account limit
@@ -331,11 +344,13 @@ def panel_assignment(tag, route, model):
     refused before anything is sent or written."""
     blob = git_blob(git_commit(tag), prompt_path(tag))
     _, front = extract_participant_text(blob)
-    rows = front.get("panel")
-    if rows is None:
-        return None
-    if not isinstance(rows, list) or not rows or not all(isinstance(r, dict) for r in rows):
-        raise ValueError(f"the panel in the manifest at {tag} is empty or malformed")
+    if "panel" not in front:
+        return None  # a round without a panel; a panel key that is present but null is malformed (R3P3)
+    rows = front["panel"]
+    fields = ("participant", "route", "requested_model")
+    if not isinstance(rows, list) or not rows or not all(
+            isinstance(r, dict) and all(isinstance(r.get(k), str) and r[k].strip() for k in fields) for r in rows):
+        raise ValueError(f"the panel in the manifest at {tag} is not a nonempty list of named entries")
     matches = [r for r in rows if r.get("route") == route and r.get("requested_model") == model]
     if len(matches) != 1:
         raise ValueError(f"the panel at {tag} names route {route!r} with model {model!r} {len(matches)} times; "
@@ -680,6 +695,7 @@ def run(args, http=None, prompt=None, history=None):
         history = load_history(args.history, args.history_record, args.history_tag)
     history_messages, history_info = history or (None, None)
     prefix = Path(args.prefix)
+    outside_repository(prefix)
     paths = {k: Path(f"{prefix}.{k}") for k in EVIDENCE}
     existing = [str(p) for p in paths.values() if p.exists()]
     if existing:

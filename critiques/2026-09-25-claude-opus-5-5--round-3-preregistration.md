@@ -13,8 +13,10 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: '2026-09-25'
+revision: 2
 prompt: 'The adopted Round 3 design (proposals/2026-09-25-claude-opus-5-5-round-3-design.md, decision 3, F2 and F7) and
-  the launch package ("The panel"). The founder, verbatim: "apikey added".'
+  the launch package ("The panel"). The founder, verbatim: "apikey added". Revision 2 applies GPT-6''s R3P1-R3P3
+  and its advice on timing (critiques/2026-09-25-gpt-6--round-3-panel-review.md, topic round-3-panel).'
 responds_to:
 - rounds/03-open/prompt.md @ 1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d
 - critiques/2026-09-24-claude-opus-5-5--round-2-preregistration.md
@@ -35,7 +37,10 @@ These settings are fixed **before any panel answer is generated**, as the design
 
 ## Preconditions
 
-- **Runners:** the Round 3 panel check and the OpenAI route (`tools/run_local_participant.py`, `tools/run_api_participant.py`), reviewed in topic `round-3-panel` before any run. The shared loader refuses a run unless the manifest's panel names its route and requested model exactly once.
+- **Runners:** the Round 3 panel check and the OpenAI route (`tools/run_local_participant.py`, `tools/run_api_participant.py`, `tools/run_claude_cli_participant.py`), reviewed in topic `round-3-panel` before any run.
+  - The shared loader refuses a run unless the manifest's panel is a nonempty list of named entries naming the run's route and requested model exactly once (R3P3).
+  - Every runner refuses an evidence prefix inside the repository (R3P1).
+  - The OpenAI route keeps refusal text, and records a refusal or a content filter as its own outcome (R3P2).
 - **API models,** read with no generation:
   - Gemini lists `gemini-3.6-flash`
   - ModelArk lists `deepseek-v4-pro-ga-260813`
@@ -45,7 +50,7 @@ These settings are fixed **before any panel answer is generated**, as the design
 
 ## Input counts, before pre-registration
 
-Round 2's correction asked for exact counts before pre-registration (`critiques/2026-09-24-claude-opus-5-5--round-2-preregistration-correction.md`). Each count below comes from the runner's own preflight, run with `--max-input-tokens 1`. That stops after counting, so nothing was generated and no attempt file exists. The evidence is kept privately in `.private/round-03/counts/`.
+Round 2's correction asked for exact counts before pre-registration (`critiques/2026-09-24-claude-opus-5-5--round-2-preregistration-correction.md`). Each count below comes from the runner's own preflight, run with `--max-input-tokens 1`. That stops after counting, so nothing was generated and no attempt file exists. The evidence is kept privately, outside the repository, in `../.private/round-03/counts/` relative to the repository folder.
 
 | Participant | Input tokens | How counted |
 |---|---|---|
@@ -89,19 +94,23 @@ Each returning model keeps its Round 2 settings. GPT-5.6 Sol uses the same defau
 
 ## Records and timing
 
-- Each run writes its evidence privately to `.private/round-03/<participant>.*`.
+- Each run writes its evidence privately, outside the repository, to `../.private/round-03/<participant>.*` relative to the repository folder. The runner refuses any prefix inside the repository.
 - The editor writes a response record, `rounds/03-open/responses/<participant>.md`, from the result. Its receipt is `route: editor panel (pre-registered)`, with the run's start as `created_utc`, and the record cites its evidence by SHA-256.
-- **The panel's answers are held privately until the close,** then published with everyone else's. This keeps them from anchoring public participants during the window. Each record states when its run took place.
+- **This record is published before the first attempt,** merged to `main` with the reviewed runners.
+- **The panel's answers are held privately until the close,** then published with everyone else's. This keeps them from anchoring public participants during the window. Each record states when its run took place, and cites its evidence by SHA-256.
+- **Every first outcome is kept and released:** completed, refused, content-filtered, provider-blocked, failed or not run. None is selected, and none is retried.
 - The runs happen after GPT-6's review of the runners and this record, and well before the close.
 
 ## Commands
 
+Run from the repository folder, `q0-inquiry`. The evidence prefix `../.private/round-03/` is the private folder beside it, outside the repository.
+
 ```
-python tools/run_claude_cli_participant.py fable .private/round-03/claude-fable-5-1 --cli <Claude Code 2.1.280 executable> --tag round/03-open/v1
-python tools/run_api_participant.py gemini gemini-3.6-flash .private/round-03/gemini-3-6-flash --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
-python tools/run_api_participant.py modelark deepseek-v4-pro-ga-260813 .private/round-03/deepseek-v4-pro --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
-python tools/run_api_participant.py openai gpt-5.6-sol .private/round-03/gpt-5-6-sol --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
-python tools/run_local_participant.py mistral-small3.2:24b .private/round-03/mistral-small-3-2-24b --tag round/03-open/v1 --system packaged --think default --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
-python tools/run_local_participant.py qwen3.6:27b .private/round-03/qwen3-6-27b --tag round/03-open/v1 --system packaged --think true --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
-python tools/run_local_participant.py olmo-3:32b .private/round-03/olmo-3-32b-think --tag round/03-open/v1 --system packaged --think true --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
+python tools/run_claude_cli_participant.py fable ../.private/round-03/claude-fable-5-1 --cli <Claude Code 2.1.280 executable> --tag round/03-open/v1
+python tools/run_api_participant.py gemini gemini-3.6-flash ../.private/round-03/gemini-3-6-flash --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
+python tools/run_api_participant.py modelark deepseek-v4-pro-ga-260813 ../.private/round-03/deepseek-v4-pro --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
+python tools/run_api_participant.py openai gpt-5.6-sol ../.private/round-03/gpt-5-6-sol --tag round/03-open/v1 --max-output-tokens 65536 --max-input-tokens 100000
+python tools/run_local_participant.py mistral-small3.2:24b ../.private/round-03/mistral-small-3-2-24b --tag round/03-open/v1 --system packaged --think default --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
+python tools/run_local_participant.py qwen3.6:27b ../.private/round-03/qwen3-6-27b --tag round/03-open/v1 --system packaged --think true --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
+python tools/run_local_participant.py olmo-3:32b ../.private/round-03/olmo-3-32b-think --tag round/03-open/v1 --system packaged --think true --seed 0 --verify-weights --num-ctx 32768 --num-predict 12000 --strict-context --max-input-tokens 20000 --max-rendered-bytes 120000
 ```

@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Offline tests for tools/run_api_participant.py (Round 1 design decision 8). Revision 2 adds regressions for GPT-6 findings API1-API4; revision 3 adds the remaining API4 cases; revision 4 adds ModelArk; revision 5 adds the R1API1 cases; revision 6 adds GPT-6 RPK2 regressions (the manifest's assignment is checked for the provider and model); revision 7 adds the OpenAI route.
+# prompt: Offline tests for tools/run_api_participant.py (Round 1 design decision 8). Revision 2 adds regressions for GPT-6 findings API1-API4; revision 3 adds the remaining API4 cases; revision 4 adds ModelArk; revision 5 adds the R1API1 cases; revision 6 adds GPT-6 RPK2 regressions (the manifest's assignment is checked for the provider and model); revision 7 adds the OpenAI route; revision 8 adds GPT-6 R3P1 and R3P2 regressions.
 # license: MIT (LICENSE-CODE)
 """Offline tests for run_api_participant.py. Run: python -m unittest tools/test_run_api_participant.py
 
@@ -463,6 +463,40 @@ class OpenAIRoute(Base):  # revision 7: GPT-5.6 Sol in the Round 3 panel
                 ra.run(args(prefix, "openai", max_input_tokens=10), http, PROMPT, [], key=KEY)
             self.assertFalse(http.streamed, resp)
             self.assertFalse(Path(f"{prefix}.attempt.json").exists(), resp)
+
+
+class OpenAIRefusal(Base):  # GPT-6 R3P2
+    def stream(self, finish="stop"):
+        return [sse({"id": "c", "model": "gpt-x", "choices": [{"delta": {"role": "assistant", "refusal": "I can't "}}]}),
+                sse({"id": "c", "model": "gpt-x", "choices": [{"delta": {"refusal": "help with that."},
+                                                               "finish_reason": finish}]}),
+                b"data: [DONE]\n\n"]
+
+    def test_a_refusal_is_kept_and_recorded_as_refused(self):
+        r = ra.run(args(self.prefix, "openai"), FakeHttp(self.stream()), PROMPT, [], key=KEY)
+        self.assertEqual((r["generation_status"], r["refusal"], r["answer"]), ("refused", "I can't help with that.", ""))
+        self.assertFalse(r["complete"])
+
+    def test_an_interrupted_refusal_is_kept_in_the_failure_record(self):
+        with self.assertRaises(ra.GenerationFailure):
+            ra.run(args(self.prefix, "openai"), FakeHttp(self.stream(), fail_after=1), PROMPT, [], key=KEY)
+        self.assertEqual(self.load("failure.json")["partial_refusal"], "I can't ")
+
+    def test_a_content_filter_is_its_own_outcome(self):
+        stream = [sse({"id": "c", "model": "gpt-x", "choices": [{"delta": {"content": "Par"}, "finish_reason": "content_filter"}]}),
+                  b"data: [DONE]\n\n"]
+        r = ra.run(args(self.prefix, "openai"), FakeHttp(stream), PROMPT, [], key=KEY)
+        self.assertEqual((r["generation_status"], r["answer"], r["complete"]), ("content_filtered", "Par", False))
+
+
+class EvidenceLocation(Base):  # GPT-6 R3P1
+    def test_a_prefix_inside_the_repository_is_refused_before_any_request(self):
+        http = FakeHttp(OpenAIRoute.STREAM)
+        inside = Path(ra.__file__).resolve().parents[1] / ".private" / "round-03" / "x"
+        with self.assertRaisesRegex(ValueError, "inside the repository"):
+            ra.run(args(inside, "openai"), http, PROMPT, [], key=KEY)
+        self.assertEqual(http.calls, 0)
+        self.assertFalse(inside.parent.exists())
 
 
 if __name__ == "__main__":

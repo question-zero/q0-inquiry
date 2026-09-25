@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Founder, verbatim: "if more rounds require llms participation, we can just start by generating api keys for each one of the paid services (openai, xai, byteplus etc..)". Round 1 design decision 8 (proposals/2026-09-24-claude-opus-5-5-round-1-design.md), which GPT-6 supported with prerequisites. Revision 2 applies GPT-6 findings API1-API4 (topic api-runner); revision 3 closes API4 (keys split across reads; sanitized errors); revision 7 applies GPT-6 RPK1 and RPK2 (the manifest's assignment is checked for the provider and model); revision 6 adds --packet for per-participant packets; revision 5 requires ModelArk token IDs (GPT-6 R1API1); revision 4 adds BytePlus ModelArk, after the founder reported: "deepseek-v4-pro-ga-260813 is also active and api key in env file"; revision 8 adds OpenAI (Chat Completions, streamed) for GPT-5.6 Sol in the Round 3 panel, after the founder reported: "apikey added".
+# prompt: Founder, verbatim: "if more rounds require llms participation, we can just start by generating api keys for each one of the paid services (openai, xai, byteplus etc..)". Round 1 design decision 8 (proposals/2026-09-24-claude-opus-5-5-round-1-design.md), which GPT-6 supported with prerequisites. Revision 2 applies GPT-6 findings API1-API4 (topic api-runner); revision 3 closes API4 (keys split across reads; sanitized errors); revision 7 applies GPT-6 RPK1 and RPK2 (the manifest's assignment is checked for the provider and model); revision 6 adds --packet for per-participant packets; revision 5 requires ModelArk token IDs (GPT-6 R1API1); revision 4 adds BytePlus ModelArk, after the founder reported: "deepseek-v4-pro-ga-260813 is also active and api key in env file"; revision 8 adds OpenAI (Chat Completions, streamed) for GPT-5.6 Sol in the Round 3 panel, after the founder reported: "apikey added"; revision 9 applies GPT-6 R3P1 and R3P2 (topic round-3-panel): an evidence prefix inside the repository is refused, and streamed refusal text is kept, with refused and content-filtered outcomes recorded as such.
 # license: MIT (LICENSE-CODE)
 """Run one round participant through a provider API and keep the evidence.
 
@@ -77,7 +77,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from run_local_participant import (committed_record_body, participant_input, pinned_prompt,  # noqa: E402
+from run_local_participant import (committed_record_body, outside_repository, participant_input, pinned_prompt,  # noqa: E402
                                    sha256, write_exclusive)
 
 EVIDENCE = ("preflight.json", "attempt.json", "stream.sse", "result.json", "failure.json")
@@ -309,6 +309,8 @@ class XAI:
                 state["answer"].append(delta["content"])
             if delta.get("reasoning_content"):
                 state["thinking"].append(delta["reasoning_content"])
+            if delta.get("refusal"):  # OpenAI streams a refusal apart from content (GPT-6 R3P2)
+                state["refusal"].append(delta["refusal"])
             if choice.get("finish_reason"):
                 state["finish_reason"] = choice["finish_reason"]
         for src, dst in (("usage", "usage"), ("model", "returned_model"), ("id", "response_id"),
@@ -362,6 +364,9 @@ class OpenAI(XAI):
                    "(POST /v1/responses/input_tokens); the chat endpoint may frame messages slightly differently, "
                    "so this is not a complete request budget")
     thinking_note = "OpenAI Chat Completions returns no reasoning text; its token count is in usage"
+
+    def complete(self, state):
+        return state.get("finish_reason") == "stop" and not state["refusal"]
 
     def build(self, model, history, text, max_output_tokens):
         body = super().build(model, history, text, None)
@@ -428,6 +433,7 @@ def run(args, http=None, prompt=None, history=None, key=None):
     provider = PROVIDERS[args.provider]()
     text, digest, commit, assignment = participant_input(args, provider.name, prompt)
     prefix = Path(args.prefix)
+    outside_repository(prefix)
     paths = {k: Path(f"{prefix}.{k}") for k in EVIDENCE}
     existing = [str(p) for p in paths.values() if p.exists()]
     if existing:
@@ -502,7 +508,8 @@ def run(args, http=None, prompt=None, history=None, key=None):
                "request_body_sha256": preflight["request_body_sha256"]}
     write_exclusive(paths["attempt.json"], json.dumps(attempt, ensure_ascii=False, indent=2))
 
-    state = {"answer": [], "thinking": [], "done_marker": False, "clean_end": False, "partial_event": False}
+    state = {"answer": [], "thinking": [], "refusal": [], "done_marker": False, "clean_end": False,
+             "partial_event": False}
     sse, n = SSE(), 0
     stream_redact = StreamRedactor(redact)
     count_before_stream = redact.count
@@ -543,6 +550,7 @@ def run(args, http=None, prompt=None, history=None, key=None):
             **error_record(e, redact),
             "events_parsed": n, "partial_event": sse.pending(),
             "partial_answer": "".join(state["answer"]), "partial_thinking": "".join(state["thinking"]),
+            "partial_refusal": "".join(state["refusal"]),
             "finish_reason": state.get("finish_reason"), "returned_model": state.get("returned_model"),
             "response_id": state.get("response_id"), "usage": state.get("usage"),
             "response_headers": getattr(http, "last_headers", {}),
@@ -556,9 +564,13 @@ def run(args, http=None, prompt=None, history=None, key=None):
     stream_redactions = redact.count - count_before_stream
 
     blocked = bool(state.get("block")) and not state["answer"]
+    refusal = "".join(state["refusal"])
+    status = ("provider_blocked" if blocked else "refused" if refusal
+              else "content_filtered" if state.get("finish_reason") == "content_filter" else "completed")
     result = redact.obj({
         "attempt_id": attempt["attempt_id"],
-        "generation_status": "provider_blocked" if blocked else "completed",
+        "generation_status": status,
+        "refusal": refusal or None,
         "ended_utc": now(),
         "block": state.get("block"),
         "finish_reason": state.get("finish_reason"),
