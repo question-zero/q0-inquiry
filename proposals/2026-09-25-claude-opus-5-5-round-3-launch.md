@@ -13,14 +13,16 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-25'
-revision: 2
+revision: 3
 prompt: 'Founder, verbatim: "go ahead", after the editor listed the launch prerequisites of the adopted Round 3 design
   (proposals/2026-09-25-claude-opus-5-5-round-3-design.md, decision 13). Revision 2 applies GPT-6''s R3L1-R3L6
-  (critiques/2026-09-25-gpt-6--round-3-launch-review.md).'
+  (critiques/2026-09-25-gpt-6--round-3-launch-review.md). Revision 3 applies its round 2 findings (the R3L2
+  follow-up and R3L7, critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md).'
 responds_to:
 - proposals/2026-09-25-claude-opus-5-5-round-3-design.md
 - proposals/2026-09-25-claude-opus-5-5-round-3-candidates.md
 - critiques/2026-09-25-gpt-6--round-3-launch-review.md @ 839a25e (R3L1-R3L6)
+- critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md @ e733fc7 (R3L2 follow-up, R3L7)
 exposure:
 - all files at 0e724f9
 - this session's conversation with the founder
@@ -33,7 +35,7 @@ lifecycle: draft
 
 # Proposal: Round 3 Launch Package
 
-**Status:** revision 2, for GPT-6's confirmation, then the founder's adoption. It applies GPT-6's R3L1–R3L6 (`critiques/2026-09-25-gpt-6--round-3-launch-review.md`). It carries out the adopted Round 3 design (`proposals/2026-09-25-claude-opus-5-5-round-3-design.md`) with the adopted candidate set. Decision 13 of the design lists what must exist, reviewed, before the round opens: the participant text, the response template, the issue form, `PARTICIPATE.md`, and the Round 3 extractor. This proposal specifies each, and the files are on the same branch.
+**Status:** revision 3, for GPT-6's confirmation, then the founder's adoption. It applies GPT-6's R3L1–R3L6 (`critiques/2026-09-25-gpt-6--round-3-launch-review.md`) and its round 2 findings (`critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md`): every response is captured as it stands at the close, and there is no replacement mechanism. It carries out the adopted Round 3 design (`proposals/2026-09-25-claude-opus-5-5-round-3-design.md`) with the adopted candidate set. Decision 13 of the design lists what must exist, reviewed, before the round opens: the participant text, the response template, the issue form, `PARTICIPATE.md`, and the Round 3 extractor. This proposal specifies each, and the files are on the same branch.
 
 ## What the launch commit contains
 
@@ -92,7 +94,7 @@ There is no required length. Each position is recorded as your assessment of tha
 **Before you submit**
 
 - **Anything posted in the inquiry's repository, as a pull request or an issue, is public at once,** before anyone reviews it. Never post output you may not publish under CC BY 4.0 (this inquiry withholds Grok's output), private information or secrets, third-party material you may not share, or instructions you may not disclose. For output you can't publish, post a summary in your own words, labeled as yours, and the SHA-256 of the full output; the hash is recorded as reported unless someone checks it.
-- **An answer counts if its pull request or issue is created before the close.** The version recorded is the one captured when it is merged, or at the close if it is still open then. A change after that is a replacement, which names the answer it replaces; both stay in the record, and only the latest on-time version counts.
+- **An answer counts if its pull request or issue is created before the close.** You may edit it until then: the version recorded is the one that stands at the close.
 - **Every rule of this round can be challenged,** by anyone, through the inquiry's public process for changes. A change applies going forward; during the round it creates a new version of this text, and answers already given keep the rules they were given under.
 
 How to submit an answer is in PARTICIPATE.md in the inquiry's repository.
@@ -117,16 +119,17 @@ A response is one file, `rounds/03-open/responses/<slug>.md`. Its body is the an
 | `exposure` | What the participant read of the inquiry before answering |
 | `prompt` | `the Round 3 participant text, rounds/03-open/prompt.md at the tag`, plus anything else the participant was given |
 | `human_interventions`, `samples`, `lifecycle` | As in any contribution; `samples` counts the answers generated and the one submitted |
-| `replaces` | Optional: the path of an earlier response by the same participant that this one replaces (see "The version at the close") |
-| `receipt` | **Added by the editor at intake, not by the participant.** `route` (`pull request #N`, `issue #N`, or `editor panel (pre-registered)`); `created_utc` (the creation time GitHub records, `YYYY-MM-DDTHH:MM:SSZ`); `on_time`, which must agree with `created_utc` and the tagged closing time; and the captured version: `captured_commit` for a pull request, `captured_sha256` for an issue |
+| `receipt` | **Added by the editor at intake, not by the participant.** `route` (`pull request #N`, `issue #N`, or `editor panel (pre-registered)`); `created_utc` (the creation time GitHub records, `YYYY-MM-DDTHH:MM:SSZ`); `on_time`, which must agree with `created_utc` and the tagged closing time; and the captured version with its cutoff evidence: `captured_commit` and `captured_evidence` for a pull request, `captured_sha256` and `captured_revision` for an issue |
 
 Unknown values are written `unknown`, never guessed. The header check runs on every pull request.
 
 ### The version at the close (R3L2)
 
-- **A pull request** is captured at its head commit when the editor merges it, or at the close if it is still open then. At the close, that is the last head pushed before the close, which the pull request's timeline records. The editor records that commit as `captured_commit`, then adds the receipt. The record must equal that commit's version of the file except for the receipt itself.
-- **An issue** is captured as its body stood at the close; GitHub keeps an issue's edit history. The editor copies the answer verbatim and records its SHA-256 as `captured_sha256`. If the participant asks for an earlier relay, the answer is captured at relay, and a later edit before the close is treated as a replacement.
-- **Once captured, a response is frozen** (protocol section 4: round responses are never revised). A participant who wants to change it before the close submits a replacement, which names the earlier file in `replaces`. Both stay in the record, and only the latest on-time version is extracted.
+Every response is recorded as it stands at the close, as design decision 2 and protocol section 9 say. Participants may edit their pull request or issue until then, and there is no replacement mechanism (R3L7).
+- **Pull requests stay open during the window.** After the close, the editor takes each one's last head commit pushed before the close, which the pull request's timeline records. The editor records it as `captured_commit`, with `captured_evidence` naming that push and its time. The editor then adds the receipt and merges. The record must equal that commit's version of the file except for the receipt.
+- **Issues are relayed after the close.** The editor transcribes the answer as the body stood at the close, from the issue's edit history. The receipt records `captured_revision`, naming that revision (the last edit before the close, or the body as created), and `captured_sha256`, the SHA-256 of the answer as transcribed. The record's body must match that hash.
+- **Any earlier copy** the editor makes, for instance to check procedure during the window, is intake evidence, not the response.
+- **Once recorded, a response is frozen** (protocol section 4). A later correction is a separate notice, never an edit.
 - **The editor's panel** is recorded by the runners and needs no capture.
 
 ## Extraction
@@ -135,12 +138,11 @@ Unknown values are written `unknown`, never guessed. The header check runs on ev
 - **The candidates** come from the manifest's `candidates` list at the tag, not from a fixed list.
 - **The target** of each assessment is `<candidate path> @ <the tag's commit>`, which is public.
 - **Before any extraction,** a response's `input_set` must name the tag and its exact commit, and its `receipt` must be complete, on time, consistent with the manifest's `closes_utc` at the tag, and bound to its captured version (R3L2). A missing, incomplete, contradictory or unbound receipt is reported and the response is skipped. A late response is reported, never extracted (decision 2).
-- **A replaced response** is reported and skipped; the replacing one is extracted.
 - **A proposition with no block** is reported as not assessed, and no file is written for it. A duplicated, unparseable or incomplete block is reported with its reason, and no file is written. A conditional block without conditions is incomplete.
 - **Each assessment file** copies the provenance fields listed above from its response, including its `samples` and `human_interventions` as they are (R3L3). It names the response and its commit as its `source`, and reproduces the block verbatim. The editor's extraction is recorded separately, in an `extraction` field.
 - **`--check`** rebuilds every file in memory. It fails if any file on disk differs or is missing, or if a Round 3 assessment file exists that extraction no longer produces (R3L1). Such a stale file is reported for the editor to resolve under the recording rules, never deleted by the tool.
 
-The tests (`tools/test_extract_round_03.py`, nine tests) build a synthetic repository with a tagged manifest. The fixtures cover:
+The tests (`tools/test_extract_round_03.py`, eight tests) build a synthetic repository with a tagged manifest. The fixtures cover:
 - a new candidate ID
 - partial answers, and a duplicated block
 - a conditional block without conditions
@@ -148,9 +150,8 @@ The tests (`tools/test_extract_round_03.py`, nine tests) build a synthetic repos
 - a response naming the wrong commit
 - a response in another language with English labels
 - missing, bare, malformed and contradictory receipts
-- a pull request changed after capture, and an issue whose text doesn't match its captured hash
+- a pull request changed after capture, an issue whose text doesn't match its captured hash, and a receipt without its cutoff evidence
 - a multi-attempt, operator-edited response, whose samples and interventions are kept
-- a replacement
 - an assessment that becomes stale after its receipt is corrected
 
 ## The issue form
@@ -160,7 +161,6 @@ The tests (`tools/test_extract_round_03.py`, nine tests) build a synthetic repos
 - a stable run label for a model run
 - any edits a person made to a model's answer
 - for a relay, whose answer it is and the original submitting account, which the A5 limit counts
-- whether it replaces an earlier answer
 
 It says that a summary of unpublishable output is recorded as the summarizer's words. Nothing is inferred from the issue's author or the current tag. At the top it states:
 - the issue is public the moment it is created
