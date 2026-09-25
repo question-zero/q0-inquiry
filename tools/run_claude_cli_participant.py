@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: GPT-6 RPK2, verbatim: "The Fable wrapper needs the same validation, ideally through the shared loader." Replaces the editor's uncommitted Round 2 wrapper with a reviewed tool that uses the Rounds 0 and 1 isolation flags. Revision 2 applies GPT-6 RPK3 (evidence kept on failure; an explicit outcome; the JSON result's shape checked).
+# prompt: GPT-6 RPK2, verbatim: "The Fable wrapper needs the same validation, ideally through the shared loader." Replaces the editor's uncommitted Round 2 wrapper with a reviewed tool that uses the Rounds 0 and 1 isolation flags. Revision 2 applies GPT-6 RPK3 (evidence kept on failure; an explicit outcome; the JSON result's shape checked). A later revision refuses an evidence prefix inside the repository (GPT-6 R3P1, topic round-3-panel).
 # license: MIT (LICENSE-CODE)
 """Run one round participant in a fresh headless Claude Code CLI session and keep the evidence.
 
@@ -50,7 +50,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from run_local_participant import participant_input, sha256, write_exclusive  # noqa: E402
+from run_local_participant import outside_repository, participant_input, sha256, write_exclusive  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[1]
 ROUTE = "claude-code-cli"  # this runner's route in a packet-mode manifest
@@ -68,6 +68,7 @@ def dump(obj):
 def run(args, launch=subprocess.run, projects=None, empty_root=None):
     text, digest, commit, assignment = participant_input(args, ROUTE)  # before any file or process
     prefix = Path(args.prefix)
+    outside_repository(prefix)
     paths = {k: Path(f"{prefix}.{k}") for k in EVIDENCE}
     existing = [str(p) for p in paths.values() if p.exists()]
     if existing:

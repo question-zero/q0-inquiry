@@ -731,5 +731,66 @@ class PacketMode(Base):  # GPT-6 RPK1 and RPK2
         self.assertEqual(a["participant_text_sha256"], pre["participant_text_sha256"])
 
 
+TAG3 = "round/03-open/v1"
+MANIFEST3 = "rounds/03-open/prompt.md"
+
+
+class PanelRepo(PacketRepo):
+    """A Round 3 manifest at one commit: one shared text between the markers and a named panel."""
+    TEXT = "\nThe shared Round 3 text.\n"
+
+    def __init__(self, panel=None, include_panel=True):
+        front = {"type": "round-prompt", "round": "03-open", "participant_text_sha256": rl.sha256(self.TEXT)}
+        if include_panel:
+            front["panel"] = panel if panel is not None else [
+                {"participant": "fake-1b", "recorded_as": "Fake 1B", "route": "ollama", "requested_model": "fake:1b"},
+                {"participant": "gpt-x", "recorded_as": "GPT X", "route": "openai", "requested_model": "gpt-x"}]
+        self.blobs = {MANIFEST3: ("---\n" + yaml.safe_dump(front, sort_keys=False) + "---\n\n# Manifest\n\n"
+                                  + rl.BEGIN + self.TEXT + rl.END + "\n")}
+        self.reads = []
+
+    def commit(self, tag):
+        if tag != TAG3:
+            raise subprocess.CalledProcessError(128, ["git", "rev-parse", tag])
+        return self.COMMIT
+
+
+class Panel(Base):  # Round 3: the manifest names the panel (launch package, "The panel")
+    def test_a_named_member_gets_the_shared_text_and_its_panel_entry(self):
+        with PanelRepo():
+            text, digest, commit, a = rl.participant_input(args(self.prefix, tag=TAG3), "ollama")
+        self.assertEqual((text, digest, commit), (PanelRepo.TEXT, rl.sha256(PanelRepo.TEXT), PanelRepo.COMMIT))
+        self.assertEqual((a["participant"], a["route"], a["requested_model"], a["manifest"]),
+                         ("fake-1b", "ollama", "fake:1b", MANIFEST3))
+
+    def test_a_run_the_panel_does_not_name_is_refused(self):
+        with PanelRepo():
+            for route in ("gemini", "openai"):
+                with self.subTest(route=route), self.assertRaisesRegex(ValueError, "exactly once"):
+                    rl.participant_input(args(self.prefix, tag=TAG3), route)
+
+    def test_a_duplicated_or_malformed_panel_is_refused(self):
+        entry = {"participant": "fake-1b", "route": "ollama", "requested_model": "fake:1b"}
+        for panel in ([entry, dict(entry, participant="fake-1b-again")], [], ["not a mapping"]):
+            with self.subTest(panel=panel), PanelRepo(panel=panel), self.assertRaises(ValueError):
+                rl.participant_input(args(self.prefix, tag=TAG3), "ollama")
+
+    def test_a_round_without_a_panel_has_no_assignment(self):
+        with PanelRepo(include_panel=False):
+            *_, a = rl.participant_input(args(self.prefix, tag=TAG3), "ollama")
+        self.assertIsNone(a)
+
+
+class PanelMalformed(Base):  # GPT-6 R3P3
+    def test_a_null_panel_or_an_unnamed_entry_is_refused(self):
+        for panel in ("null", [{"route": "ollama", "requested_model": "fake:1b"}],
+                      [{"participant": " ", "route": "ollama", "requested_model": "fake:1b"}]):
+            with self.subTest(panel=panel), PanelRepo(panel=[] if panel == "null" else panel) as repo:
+                if panel == "null":
+                    repo.blobs[MANIFEST3] = repo.blobs[MANIFEST3].replace("panel: []", "panel: null")
+                with self.assertRaisesRegex(ValueError, "nonempty list of named entries"):
+                    rl.participant_input(args(self.prefix, tag=TAG3), "ollama")
+
+
 if __name__ == "__main__":
     unittest.main()
