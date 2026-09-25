@@ -37,7 +37,8 @@ idea_lineage:
 - rounds/01-deliberation/responses/claude-fable-5-1.md @ 90b141a
 - rounds/01-deliberation/responses/deepseek-v4-pro.md @ 6173ca0
 - rounds/01-deliberation/responses/grok-4-6.md @ d226d9f
-lifecycle: draft
+superseded_by: propositions/p016-no-taking-by-force-fraud-or-structural-manipulation.md
+lifecycle: superseded
 ---
 
 # p003: Do not take by force, fraud, or manipulation

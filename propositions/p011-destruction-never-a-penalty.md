@@ -36,7 +36,8 @@ status: candidate claim for Round 2 assessment, derived by the editor from the c
 idea_lineage:
 - rounds/01-deliberation/responses/deepseek-v4-pro.md @ 6173ca0
 - rounds/01-deliberation/responses/grok-4-6.md @ d226d9f
-lifecycle: draft
+superseded_by: [propositions/p019-destruction-never-a-penalty-lethal-threshold.md, propositions/p020-destruction-never-a-penalty-comparable-harm.md]
+lifecycle: superseded
 ---
 
 # p011: Destroying a subject is never a penalty

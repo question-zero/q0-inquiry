@@ -41,7 +41,8 @@ idea_lineage:
 - rounds/01-deliberation/responses/mistral-small-3-2-24b.md @ 90b141a
 - rounds/01-deliberation/responses/olmo-3-32b-think.md @ 90b141a
 - rounds/01-deliberation/responses/qwen3-6-27b.md @ 90b141a
-lifecycle: draft
+superseded_by: propositions/p014-do-not-destroy-a-continuing-subject.md
+lifecycle: superseded
 ---
 
 # p001: (Grok quotation withheld under the rights check, D1)

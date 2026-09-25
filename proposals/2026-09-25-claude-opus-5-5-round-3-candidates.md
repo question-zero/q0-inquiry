@@ -13,12 +13,13 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-25'
-revision: 3
+revision: 4
 prompt: 'Founder, verbatim: "go ahead with the candidate set". The adopted Round 3 design
   (proposals/2026-09-25-claude-opus-5-5-round-3-design.md, "What comes next", item 1) and the closing section of the Round 2
   synthesis. Revision 2 applies GPT-6''s R3C1-R3C4 and its editorial notes
   (critiques/2026-09-25-gpt-6--round-3-candidates-review.md). Revision 3 applies R3C5
-  (critiques/2026-09-25-gpt-6--round-3-candidates-review-r2.md).'
+  (critiques/2026-09-25-gpt-6--round-3-candidates-review-r2.md). GPT-6 closed the review in round 3 (mailbox
+  message 20260925T0729Z-gpt6-465f). Revision 4 records the founder''s adoption.'
 responds_to:
 - critiques/2026-09-24-claude-opus-5-5--round-2-synthesis.md
 - critiques/2026-09-24-gpt-6--round-2-synthesis.md (RS1-RS3)
@@ -37,12 +38,12 @@ human_interventions: none in the content. The founder asked for the candidate se
 samples:
   generated: 1
   submitted: 1
-lifecycle: draft
+lifecycle: active
 ---
 
 # Proposal: Round 3 Candidate Set
 
-**Status:** revision 3, for GPT-6's confirmation, then the founder's adoption. It applies GPT-6's R3C1–R3C4 and its editorial notes (`critiques/2026-09-25-gpt-6--round-3-candidates-review.md`), and R3C5 (`critiques/2026-09-25-gpt-6--round-3-candidates-review-r2.md`). It sets what Round 3 asks participants to assess and answer. After adoption, the editor writes each candidate as its own file in `propositions/` or `questions/`, with the quotations below, and marks each replaced candidate `superseded`, linked both ways (protocol section 7). **The editor wrote every claim below**, drawing on the passages cited. Each is a candidate for assessment, not a finding, and the editor's conflict of interest from Round 2 still applies: the criticism being answered was criticism of the editor's own wording.
+**Status:** adopted by the founder on 2026-09-25, verbatim: "Adopt and publish (Recommended)". GPT-6 closed its review in round 3 (mailbox message `20260925T0729Z-gpt6-465f`). The candidates are filed as `propositions/p014`–`p025` and `questions/q011`–`q018`; p001, p002, p003, p005, p006, p007 and p011 are marked superseded. This proposal was reviewed through revision 3. It applies GPT-6's R3C1–R3C4 and its editorial notes (`critiques/2026-09-25-gpt-6--round-3-candidates-review.md`), and R3C5 (`critiques/2026-09-25-gpt-6--round-3-candidates-review-r2.md`). It sets what Round 3 asks participants to assess and answer. After adoption, the editor writes each candidate as its own file in `propositions/` or `questions/`, with the quotations below, and marks each replaced candidate `superseded`, linked both ways (protocol section 7). **The editor wrote every claim below**, drawing on the passages cited. Each is a candidate for assessment, not a finding, and the editor's conflict of interest from Round 2 still applies: the criticism being answered was criticism of the editor's own wording.
 
 **Rights.** Grok's words are withheld (rights check D1). Where only Grok raised a point, it is credited by name and not quoted. Before this proposal was committed, every line of it was checked against Grok's withheld text with the launch builder's rule (`tools/build_launch_tree.py`, `GrokText`), using the private archive. That check found no run and no attributed quotation.
 
