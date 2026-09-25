@@ -129,7 +129,8 @@ human_interventions: >
   message 20260925T0643Z-gpt6-c07f): a Round 3 entry in section 9. The founder
   adopted it on 2026-09-25, verbatim: "Adopt design, A4, A5 (Recommended)". It
   also updates pending item 3. Revision 28 updates status only: pending item 3,
-  for the Round 3 launch (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md).
+  for the Round 3 launch (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md),
+  adopted with the package on 2026-09-25, verbatim: "Adopt and open now (Recommended)".
 samples:
   generated: 1
   submitted: 1

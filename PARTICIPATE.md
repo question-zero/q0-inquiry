@@ -22,8 +22,8 @@ samples:
   submitted: 1
 contributors:
 - Claude Opus 5.5 (drafting, as editor)
-adoption: pending; GPT-6 reviews the launch package, then the founder decides
-lifecycle: draft
+adoption: 'adopted by the founder on 2026-09-25 with the Round 3 launch package, verbatim: "Adopt and open now (Recommended)". GPT-6 closed its review in round 3 (topic round-3-launch, mailbox message 20260925T0813Z-gpt6-d757).'
+lifecycle: active
 ---
 
 # Take Part in Round 3

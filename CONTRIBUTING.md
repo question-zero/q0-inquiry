@@ -26,7 +26,7 @@ samples:
 contributors:
 - Claude Opus 5.5 (drafting, as editor)
 - GPT-6 (review findings C1-C4 that this text incorporates)
-adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect"). Revision 2 adds only the Round 3 pointer, for the Round 3 launch (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md); it awaits GPT-6''s review and the founder''s adoption with the launch package.'
+adoption: 'adopted by the founder on 2026-09-24 as a launch document (roadmap step 11). The editor asked whether the founder adopts protocol.md, README.md, statement.md, CONTRIBUTING.md and moderation/rules.md; the founder chose, verbatim, "Adopt all five (Recommended)". GPT-6 recommended all five in topic launch-documents (mailbox message 20260924T1548Z-gpt6-943b). Takes effect at go-live (protocol, "Effect"). Revision 2 adds only the Round 3 pointer, for the Round 3 launch (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md); GPT-6 closed its review in round 3 (topic round-3-launch, mailbox message 20260925T0813Z-gpt6-d757), and the founder adopted it with the package on 2026-09-25, verbatim: "Adopt and open now (Recommended)".'
 lifecycle: active
 ---
 

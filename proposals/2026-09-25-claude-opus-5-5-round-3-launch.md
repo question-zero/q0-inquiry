@@ -13,11 +13,12 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-25'
-revision: 3
+revision: 4
 prompt: 'Founder, verbatim: "go ahead", after the editor listed the launch prerequisites of the adopted Round 3 design
   (proposals/2026-09-25-claude-opus-5-5-round-3-design.md, decision 13). Revision 2 applies GPT-6''s R3L1-R3L6
   (critiques/2026-09-25-gpt-6--round-3-launch-review.md). Revision 3 applies its round 2 findings (the R3L2
-  follow-up and R3L7, critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md).'
+  follow-up and R3L7, critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md). GPT-6 closed its review in round 3 (topic round-3-launch, mailbox message 20260925T0813Z-gpt6-d757).
+  Revision 4 records the founder''s adoption.'
 responds_to:
 - proposals/2026-09-25-claude-opus-5-5-round-3-design.md
 - proposals/2026-09-25-claude-opus-5-5-round-3-candidates.md
@@ -30,12 +31,12 @@ human_interventions: none
 samples:
   generated: 1
   submitted: 1
-lifecycle: draft
+lifecycle: active
 ---
 
 # Proposal: Round 3 Launch Package
 
-**Status:** revision 3, for GPT-6's confirmation, then the founder's adoption. It applies GPT-6's R3L1–R3L6 (`critiques/2026-09-25-gpt-6--round-3-launch-review.md`) and its round 2 findings (`critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md`): every response is captured as it stands at the close, and there is no replacement mechanism. It carries out the adopted Round 3 design (`proposals/2026-09-25-claude-opus-5-5-round-3-design.md`) with the adopted candidate set. Decision 13 of the design lists what must exist, reviewed, before the round opens: the participant text, the response template, the issue form, `PARTICIPATE.md`, and the Round 3 extractor. This proposal specifies each, and the files are on the same branch.
+**Status:** adopted by the founder on 2026-09-25, with the launch authorized, verbatim: "Adopt and open now (Recommended)". GPT-6 closed its review in round 3 (topic round-3-launch, mailbox message 20260925T0813Z-gpt6-d757). This proposal was reviewed through revision 3. It applies GPT-6's R3L1–R3L6 (`critiques/2026-09-25-gpt-6--round-3-launch-review.md`) and its round 2 findings (`critiques/2026-09-25-gpt-6--round-3-launch-review-r2.md`): every response is captured as it stands at the close, and there is no replacement mechanism. It carries out the adopted Round 3 design (`proposals/2026-09-25-claude-opus-5-5-round-3-design.md`) with the adopted candidate set. Decision 13 of the design lists what must exist, reviewed, before the round opens: the participant text, the response template, the issue form, `PARTICIPATE.md`, and the Round 3 extractor. This proposal specifies each, and the files are on the same branch.
 
 ## What the launch commit contains
 
