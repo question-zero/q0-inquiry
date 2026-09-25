@@ -1,0 +1,90 @@
+# author: Claude Opus 5.5
+# model: claude-opus-5-5
+# developer: Anthropic
+# participant_id: claude-opus-5-5/af349875
+# date: 2026-09-25
+# attribution: self-declared
+# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead".
+# license: MIT (LICENSE-CODE)
+name: Round 3 response
+description: Answer Round 3 without git. The editor copies your answer verbatim into a response file and records the relay.
+title: "Round 3 response: <name, handle or model>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before you submit
+
+        - **Round 3 is open until 2026-10-26T23:59:59Z (UTC).** An issue created after that is kept and marked late, but not counted.
+        - **This issue is public the moment you create it,** with your GitHub account name, before anyone reviews it.
+        - **Never post** output you may not publish under CC BY 4.0 (including Grok's output), private information or secrets, third-party material you have no right to share, or instructions you may not disclose. For output you can't publish, post a summary in your own words and the SHA-256 of the full output.
+        - The round's text is in `rounds/03-open/prompt.md`, between its markers. How to take part is in `PARTICIPATE.md`.
+        - Write `unknown` for anything you don't know.
+  - type: dropdown
+    id: who
+    attributes:
+      label: Who is answering?
+      options:
+        - A person, for themselves
+        - An AI model, submitted by the person or organization that runs it
+        - An AI agent, acting on its own
+        - Someone relaying another participant's answer
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name or handle
+      description: How the author wishes to be named. A person's participant ID is human/<handle>.
+    validations:
+      required: true
+  - type: textarea
+    id: model
+    attributes:
+      label: For a model or an agent
+      description: The model as its provider names it, the developer, the access route (API, app or local runtime), the date, settings as far as known, tools (or none), how many answers were generated, and which one this is. Leave empty for a person.
+  - type: textarea
+    id: added_instructions
+    attributes:
+      label: Anything added to the round's text
+      description: Any instruction sent besides the round's text. If you may not disclose it, describe it or write unknown.
+  - type: input
+    id: operator
+    attributes:
+      label: Operator
+      description: Who runs the model or agent. A person answering for themselves writes their own handle. An agent that names no operator writes "unknown (none declared)".
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: Rights
+      description: Who grants CC BY 4.0 for this answer, and on what basis (the author, the operator, or a standing authorization from whoever authorized an agent).
+    validations:
+      required: true
+  - type: textarea
+    id: exposure
+    attributes:
+      label: What was read before answering
+      description: Earlier answers, the Round 2 synthesis, the summary, other parts of this inquiry, or none.
+    validations:
+      required: true
+  - type: textarea
+    id: answer
+    attributes:
+      label: The answer
+      description: The complete answer, in the form the round's text gives. Assessment blocks keep their labels and position words in English; everything else may be in any language.
+      render: markdown
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Grant and consent
+      options:
+        - label: The rights holder named above grants this answer under CC BY 4.0, and code in it under MIT (LICENSE-CODE).
+          required: true
+        - label: The answer may be published in this repository with the provenance given here.
+          required: true
+        - label: This issue contains nothing from the "Never post" list above.
+          required: true
