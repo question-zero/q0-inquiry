@@ -267,15 +267,22 @@ class PosixLimits(JobBase):
         print(f"POSIX limits in the child: address space {job.LIMIT_MEMORY} bytes, CPU {job.LIMIT_SECONDS} s")
 
     def test_the_cpu_limit_stops_a_busy_child(self):
+        # With the soft and hard limits equal, as configured, Linux ends the child with SIGKILL at the hard limit;
+        # other kernels may send SIGXCPU first. Either way it stops far sooner than the 30-second wall timeout here.
         import signal
+        import time
         orig = job.LIMIT_SECONDS
         job.LIMIT_SECONDS = 1
+        start = time.monotonic()
         try:
             r = self.child("while True: pass", timeout=30)
         finally:
             job.LIMIT_SECONDS = orig
-        self.assertEqual(r.returncode, -signal.SIGXCPU)
-        print(f"POSIX CPU limit: a busy child stopped by signal {-r.returncode} (SIGXCPU)")
+        elapsed = time.monotonic() - start
+        self.assertIn(r.returncode, (-signal.SIGXCPU, -signal.SIGKILL))
+        self.assertLess(elapsed, 10)
+        print(f"POSIX CPU limit: a busy child with a 1 s CPU limit stopped by signal {-r.returncode} "
+              f"after {elapsed:.1f} s")
 
     def test_the_address_space_limit_stops_an_oversized_allocation(self):
         r = self.child("import sys\ntry:\n    b = bytearray(%d)\nexcept MemoryError:\n    sys.exit(3)\nsys.exit(0)"
