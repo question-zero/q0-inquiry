@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/verify_sandbox_derivation.py (GPT-6's round-2 and round-3 AC9 findings on the sandbox plan): the R, T, D chain, the tag's target, the manifest's candidates and hash, the form's exact default, and the refusal of every other change, including the negative fixtures GPT-6 named (activation only, an arbitrary default, an extra comment in the form). Synthetic repositories only.
+# prompt: Offline tests for tools/verify_sandbox_derivation.py (GPT-6's round-2 and round-3 AC9 findings on the sandbox plan): the R, T, D chain, the tag's target, the manifest's candidates and hash, the form's exact default, and the refusal of every other change, including the negative fixtures GPT-6 named (activation only, an arbitrary default, an extra comment in the form). Revision 2 adds missing candidate paths, non-string IDs, an invalid closing time and a symlinked workflow (topic automation-code-ac1). Synthetic repositories only.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the sandbox derivation check. Run: python -m unittest tools/test_verify_sandbox_derivation.py"""
 import hashlib
@@ -25,9 +25,9 @@ FORM_SRC = HERE.parent / vd.FORM
 TEXT = "\nSandbox round text.\n"
 
 
-def manifest(n=3, text=TEXT, good_hash=True):
-    front = {"closes_utc": "2026-12-01T00:00:00Z",
-             "candidates": [{"id": f"p{900 + i}", "path": f"x{i}"} for i in range(n)],
+def manifest(n=3, text=TEXT, good_hash=True, closes="2026-12-01T00:00:00Z", cands=None):
+    front = {"closes_utc": closes,
+             "candidates": cands if cands is not None else [{"id": f"p{900 + i}", "path": f"x{i}"} for i in range(n)],
              "participant_text_sha256": hashlib.sha256(text.encode()).hexdigest() if good_hash else "0" * 64,
              "participant_text_bytes": len(text.encode())}
     return ("---\n" + yaml.safe_dump(front) + "---\n\n<!-- BEGIN PARTICIPANT TEXT -->" + text
@@ -64,10 +64,10 @@ class Derivation(unittest.TestCase):
         self.git("commit", "-q", "--allow-empty", "-m", msg)
         return self.git("rev-parse", "HEAD").strip()
 
-    def chain(self, t_change=None, d_change=None, form_default=None, tag_at=None, n=3, good_hash=True):
+    def chain(self, t_change=None, d_change=None, form_default=None, tag_at=None, n=3, good_hash=True, **mkw):
         self.git("reset", "-q", "--hard", self.r)
         self.git("tag", "-d", vd.TAG) if vd.TAG in self.git("tag") else None
-        self.put(vd.MANIFEST, manifest(n=n, good_hash=good_hash))
+        self.put(vd.MANIFEST, manifest(n=n, good_hash=good_hash, **mkw))
         if t_change:
             t_change()
         t = self.commit("T")
@@ -96,11 +96,24 @@ class Derivation(unittest.TestCase):
             "the tag elsewhere": dict(tag_at=self.r),
             "two candidates": dict(n=2),
             "a wrong text hash": dict(good_hash=False),
+            "a missing candidate path": dict(cands=[{"id": "p901"}, {"id": "p902", "path": "b"},
+                                                    {"id": "p903", "path": "c"}]),
+            "a non-string ID": dict(cands=[{"id": 901, "path": "a"}, {"id": "p902", "path": "b"},
+                                           {"id": "p903", "path": "c"}]),
+            "an invalid closing time": dict(closes="soon"),
         }
         for name, kw in cases.items():
             with self.subTest(name=name):
                 t, d = self.chain(**kw)
                 self.assertTrue(vd.problems(self.repo, self.r, t, d))
+
+    def test_a_symlinked_workflow_is_refused(self):
+        t, d = self.chain()
+        blob = self.git("rev-parse", f"{d}:{vd.WORKFLOW_DST}").strip()
+        self.git("update-index", "--cacheinfo", f"120000,{blob},{vd.WORKFLOW_DST}")
+        self.git("commit", "-q", "-m", "symlink mode")
+        d2 = self.git("rev-parse", "HEAD").strip()
+        self.assertTrue(any("regular file" in p for p in vd.problems(self.repo, self.r, t, d2)))
 
     def test_activation_only_is_refused(self):
         self.git("reset", "-q", "--hard", self.r)

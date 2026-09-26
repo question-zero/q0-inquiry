@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): repository-local credential and header settings, including URL-specific ones, are refused before minting; approval discovers a private repository through a temporary metadata-read token that is revoked at once; permission levels are an explicit enumeration; the final exit status is settled after cleanup, whatever the command did. Revision 4 applies GPT-6's round-3 AC1 and AC3 findings (critiques/2026-09-26-gpt-6--automation-code-review-r3.md): repository and worktree configuration are both inspected, an inspection error refuses, refusals name fixed categories only, and the approval lookup token must come back with exactly metadata read.
+# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): repository-local credential and header settings, including URL-specific ones, are refused before minting; approval discovers a private repository through a temporary metadata-read token that is revoked at once; permission levels are an explicit enumeration; the final exit status is settled after cleanup, whatever the command did. Revision 4 applies GPT-6's round-3 AC1 and AC3 findings (critiques/2026-09-26-gpt-6--automation-code-review-r3.md): repository and worktree configuration are both inspected, an inspection error refuses, refusals name fixed categories only, and the approval lookup token must come back with exactly metadata read. Revision 5 (topic automation-code-ac1): repository IDs must be positive integers wherever they are checked or saved.
 # license: MIT (LICENSE-CODE)
 """Run one command with a short-lived editor-App token in its environment only, then revoke the token.
 
@@ -115,6 +115,10 @@ def call(method, path, auth, data=None):
         return json.loads(body) if body else None
 
 
+def positive_id(value):
+    return isinstance(value, int) and not isinstance(value, bool) and value > 0
+
+
 def covers(have, want):
     """True if level `have` includes level `want`; both must be one of the enumerated levels."""
     return isinstance(have, str) and isinstance(want, str) and have in LEVELS and want in LEVELS and \
@@ -171,6 +175,8 @@ def mint(creds, approved, repo, perms, caller=call, slug=SLUG, now=None):
     if repo not in approved.get("repositories", {}):
         raise Refused("refused: this repository is not in the approved mapping")
     want = approved["repositories"][repo]
+    if not positive_id(want.get("id")) or not positive_id(approved.get("installation_id")):
+        raise Refused("refused: the approved mapping does not hold positive numeric IDs")
     jwt = "Bearer " + app_jwt(creds["id"], creds["pem"])
     app = caller("GET", "/app", jwt)
     if app.get("id") != creds["id"] or app.get("slug") != slug:
@@ -277,8 +283,8 @@ def approve(creds, slug, repo, confirm, secrets, caller=call):
     try:
         repos = got.get("repositories")
         ok = isinstance(repos, list) and len(repos) == 1 and isinstance(repos[0], dict) and \
-            repos[0].get("full_name") == f"{ORG}/{repo}" and isinstance(repos[0].get("id"), int) and \
-            not isinstance(repos[0].get("id"), bool) and got.get("permissions") == {"metadata": "read"}
+            repos[0].get("full_name") == f"{ORG}/{repo}" and positive_id(repos[0].get("id")) and \
+            got.get("permissions") == {"metadata": "read"}
     except Exception:  # noqa: BLE001 - any surprise in the response is a failed check
         ok = False
     finally:

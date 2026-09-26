@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Revision 4 adds its round-3 AC1 cases (worktree configuration, inspection failure, fixed categories with no setting names in any message) and the approval lookup's exact scope. Synthetic keys and a fake API; no network.
+# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Revision 4 adds its round-3 AC1 cases (worktree configuration, inspection failure, fixed categories with no setting names in any message) and the approval lookup's exact scope. Revision 5 adds zero and negative repository IDs (topic automation-code-ac1). Synthetic keys and a fake API; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the GitHub App helpers. Run: python -m unittest tools/test_github_apps.py
 
@@ -276,6 +276,20 @@ class Scope(unittest.TestCase):  # GPT-6 AC3
         with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()), self.assertRaises(SystemExit):
             app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=extra)
         self.assertIn(("DELETE", "/installation/token", None), extra.calls)   # GPT-6 round 3: revoked, then refused
+        for bad_id in (0, -5):
+            class BadId(AuthFake):
+                def __call__(self, method, path, auth, data=None, _id=bad_id):
+                    got = super().__call__(method, path, auth, data)
+                    if method == "POST":
+                        got["repositories"] = [{"id": _id, "full_name": "question-zero/q0-sandbox"}]
+                    return got
+            fake_bad = BadId(slug="question-zero-editor-sandbox")
+            with self.subTest(bad_id=bad_id), tempfile.TemporaryDirectory() as td, \
+                    redirect_stdout(io.StringIO()), self.assertRaises(SystemExit):
+                app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", 7, td, caller=fake_bad)
+            self.assertIn(("DELETE", "/installation/token", None), fake_bad.calls)
+        with self.assertRaises(SystemExit):
+            mint(Fake(), approved=dict(APPROVED, repositories={"q0-inquiry": {"owner": "question-zero", "id": 0}}))
         bad = AuthFake(slug="question-zero-editor-sandbox", revoke_fails=True)
         with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()), self.assertRaises(SystemExit) as cm:
             app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=bad)
