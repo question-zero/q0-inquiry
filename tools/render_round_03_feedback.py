@@ -37,7 +37,7 @@ SENTENCES = {
     "pr_file_not_regular_or_too_large": "The response file is not a regular file at this commit, or is larger than this tool checks, so **it was not checked**; this is not a rejection.",
     "incomplete_retrieval": "This tool could not retrieve everything it needed from GitHub, so **it was not checked**; this is not a rejection.",
     "no_current_response": "This tool no longer finds a Round 3 response here, so any earlier feedback no longer applies.",
-    "not_checked_resources": "Checking stopped at this tool's time or memory limit, so **it was not checked**; this is not a rejection.",
+    "not_checked_resources": "Checking did not complete within this tool's limits (time, memory, or a failure of the checker itself), so **it was not checked**; this is not a rejection.",
     "header_missing": "No front-matter header was found, so the assessments were not checked. A response file starts with `---`, the header, and `---` (see the template in PARTICIPATE.md).",
     "header_unparseable": "The header could not be read as YAML, so the assessments were not checked.",
     "header_not_a_mapping": "The header is not a set of `field: value` lines, so the assessments were not checked.",

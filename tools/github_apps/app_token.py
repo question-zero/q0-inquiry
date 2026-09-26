@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): repository-local credential and header settings, including URL-specific ones, are refused before minting; approval discovers a private repository through a temporary metadata-read token that is revoked at once; permission levels are an explicit enumeration; the final exit status is settled after cleanup, whatever the command did.
+# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): repository-local credential and header settings, including URL-specific ones, are refused before minting; approval discovers a private repository through a temporary metadata-read token that is revoked at once; permission levels are an explicit enumeration; the final exit status is settled after cleanup, whatever the command did. Revision 4 applies GPT-6's round-3 AC1 and AC3 findings (critiques/2026-09-26-gpt-6--automation-code-review-r3.md): repository and worktree configuration are both inspected, an inspection error refuses, refusals name fixed categories only, and the approval lookup token must come back with exactly metadata read.
 # license: MIT (LICENSE-CODE)
 """Run one command with a short-lived editor-App token in its environment only, then revoke the token.
 
@@ -22,9 +22,11 @@ The token is minted for exactly the approved repository ID and the listed permis
 installation's grant. It reaches the command only through its environment: GH_TOKEN for the gh CLI, and a git
 credential helper (git_credential_helper.py) that answers only for the approved https://github.com/<owner>/<repo>
 path. Global and system git configuration, other credential helpers, extra HTTP headers, git tracing and askpass
-programs are switched off for the command. Repository-local settings that could add other credentials or
-headers (including URL-specific http.<url>.extraHeader and credential.<url>.* entries, include directives, askpass
-and URL rewrites) make the tool refuse before any token is minted; only their names are reported. Configuration the
+programs are switched off for the command. Repository and worktree settings, in the checkout the command runs
+in, that could add other credentials or headers (including URL-specific http.<url>.extraHeader and credential.<url>.*
+entries, include directives, askpass and URL rewrites) make the tool refuse before any token is minted. The refusal
+names fixed categories only, never a setting's name or value, since URL subsections can hold sensitive text. If the
+configuration can't be inspected, the tool refuses. Configuration the
 caller passes explicitly on the command line (git -c ...) is the caller's own choice and outside this guarantee.
 The token is never printed, never written to a file, and never placed in a
 command argument, a remote URL or persistent git configuration. It is revoked as soon as the command ends or any check
@@ -34,6 +36,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -55,8 +58,14 @@ ALLOWED_REPOS = {"question-zero-editor": {"q0-inquiry", ".github"}, "question-ze
 ALLOWED_PERMS = {"contents": {"read", "write"}, "pull_requests": {"read", "write"}, "issues": {"read", "write"}}
 IMPLICIT = {"metadata": "read"}   # GitHub always includes metadata read in an installation token
 LEVELS = {"read": 1, "write": 2}
-# Repository-local git settings that could add credentials or headers, or change where a push goes.
-RISKY_CONFIG = r"^(http\..*extraheader|credential\..*|core\.askpass|http\..*cookiefile|url\..*insteadof|include\..*|includeif\..*)$"
+# Repository and worktree git settings that could add credentials or headers, or change where a push goes, each
+# with the fixed category reported instead of the setting's own name.
+RISKY = (("extra HTTP headers", re.compile(r"^http\..*extraheader$")),
+         ("credential settings", re.compile(r"^credential\.")),
+         ("an askpass program", re.compile(r"^core\.askpass$")),
+         ("HTTP cookie files", re.compile(r"^http\..*cookiefile$")),
+         ("URL rewrites", re.compile(r"^url\..*insteadof$")),
+         ("configuration includes", re.compile(r"^include(if)?\.")))
 REVOKE_UNCONFIRMED = 3
 SCRUB = ("GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN", "GH_HOST", "GIT_ASKPASS", "SSH_ASKPASS",
          "GIT_TRACE", "GIT_TRACE_CURL", "GIT_TRACE_PACKET", "GIT_TRACE_PERFORMANCE", "GIT_TRACE_SETUP",
@@ -190,13 +199,27 @@ def mint(creds, approved, repo, perms, caller=call, slug=SLUG, now=None):
 
 
 def config_problems(cwd=None):
-    """Names of repository-local git settings that could add credentials or headers. Values are never read out."""
-    r = subprocess.run(["git", "config", "--local", "--name-only", "--get-regexp", RISKY_CONFIG], cwd=cwd,
-                       capture_output=True, text=True, env=dict(os.environ, GIT_CONFIG_NOSYSTEM="1",
-                                                                GIT_CONFIG_GLOBAL=os.devnull))
-    if r.returncode not in (0, 1):   # 1: nothing matched; other codes, such as "not in a repository", mean none
-        return []
-    return sorted(set(line.strip() for line in r.stdout.splitlines() if line.strip()))
+    """Fixed categories of risky settings in the repository and worktree configuration of the checkout at `cwd`
+    (the checkout the command runs in). Names and values are never reported. Raises Refused if the configuration
+    can't be inspected."""
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_CONFIG")}
+    env.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull)
+    try:
+        r = subprocess.run(["git", "config", "--list", "--show-scope", "--name-only"], cwd=cwd, capture_output=True,
+                           text=True, env=env, timeout=30)
+    except (OSError, subprocess.TimeoutExpired):
+        raise Refused("refused: could not inspect the checkout's git configuration") from None
+    if r.returncode != 0:
+        raise Refused("refused: could not inspect the checkout's git configuration")
+    found = set()
+    for line in r.stdout.splitlines():
+        scope, _, name = line.partition("\t")
+        if scope not in ("local", "worktree"):
+            continue
+        for category, pattern in RISKY:
+            if pattern.search(name.strip().lower()):
+                found.add(category)
+    return sorted(found)
 
 
 def bot_identity(slug, caller=call):
@@ -249,15 +272,22 @@ def approve(creds, slug, repo, confirm, secrets, caller=call):
     got = caller("POST", f"/app/installations/{inst['id']}/access_tokens", jwt,
                  {"repositories": [repo], "permissions": {"metadata": "read"}})
     token = got.get("token") if isinstance(got, dict) else None
-    if not token:
+    if not isinstance(token, str) or not token:
         raise Refused("refused: GitHub returned no token for the lookup")
-    repos = got.get("repositories")
-    ok = isinstance(repos, list) and len(repos) == 1 and isinstance(repos[0], dict) and \
-        repos[0].get("full_name") == f"{ORG}/{repo}" and isinstance(repos[0].get("id"), int)
-    if not revoke(token, caller):
+    try:
+        repos = got.get("repositories")
+        ok = isinstance(repos, list) and len(repos) == 1 and isinstance(repos[0], dict) and \
+            repos[0].get("full_name") == f"{ORG}/{repo}" and isinstance(repos[0].get("id"), int) and \
+            not isinstance(repos[0].get("id"), bool) and got.get("permissions") == {"metadata": "read"}
+    except Exception:  # noqa: BLE001 - any surprise in the response is a failed check
+        ok = False
+    finally:
+        revoked = revoke(token, caller)
+    if not revoked:
         raise Refused(REVOKE_UNCONFIRMED)
     if not ok:
-        raise Refused("refused: the lookup did not return exactly the expected repository")
+        raise Refused("refused: the lookup token did not come back for exactly the expected repository with "
+                      "metadata read only")
     info = {"owner": ORG, "id": repos[0]["id"]}
     mapping = {"slug": slug, "app_id": creds["id"], "installation_id": inst["id"],
                "repositories": {repo: info}}
@@ -301,8 +331,8 @@ def main(argv=None):
     perms = parse_perms(a.perm)
     risky = config_problems()
     if risky:
-        raise Refused("refused: this repository's local git configuration has settings that could add other "
-                      f"credentials or headers ({', '.join(risky)}); remove them first")
+        raise Refused("refused: this checkout's repository or worktree git configuration has settings that could add "
+                      f"other credentials or headers ({'; '.join(risky)}); remove them first")
     approved = load(Path(a.secrets) / f"{slug}.approved.json")
     token, expires = mint(creds, approved, a.repo, perms, slug=slug)
     sys.exit(finish(token, expires, perms, command, approved["repositories"][a.repo]["owner"], a.repo))

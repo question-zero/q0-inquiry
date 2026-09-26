@@ -13,13 +13,14 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-26'
-revision: 3
+revision: 4
 prompt: 'Step 2 of the reviewed order in proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3): "GPT-6
   reviews the code and the controlled-test plan before that plan is run." The founder chose, verbatim: "All three below
   (Recommended)", which included building the D1 and D2 code for GPT-6''s code review. This plan runs nothing by itself.
   Revision 2 applies GPT-6''s AC9 and the plan items of AC1-AC8 (critiques/2026-09-26-gpt-6--automation-code-review.md, topic automation-code).
   Revision 3 applies its round-2 plan findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): the derived sandbox commit, the install-before-approve order,
-  and the residual cases.'
+  and the residual cases. Revision 4 applies its round-3 findings (critiques/2026-09-26-gpt-6--automation-code-review-r3.md): the whole R, T, D chain
+  is verified, and approval records the lookup token''s effective scope.'
 responds_to:
 - proposals/2026-09-26-claude-opus-5-5-github-automation.md
 - critiques/2026-09-26-gpt-6--github-automation-review-r3.md
@@ -54,7 +55,7 @@ The sandbox can't run R unchanged: R deliberately keeps the workflow inactive, a
 1. **T** is R with the synthetic three-candidate manifest in place of `rounds/03-open/prompt.md`. The sandbox's tag `round/03-open/v1` points to T.
 2. **D** is T plus two changes: the workflow copied, byte for byte, from `tools/workflows/round-3-feedback.yml` to `.github/workflows/`, and the form's `input_set` default changed to the sandbox's own `round/03-open/v1 @ T`. D is the sandbox's default branch.
 
-`tools/verify_sandbox_derivation.py R D` must pass before any live step. It allows exactly those three changes and requires every other path, including all of `tools/` and the required CI workflow, to be byte-identical to R. The test record names R, T and D, and the workflow's `trusted_sha` output in every run must be D.
+`tools/verify_sandbox_derivation.py R T D` must pass before any live step. It checks the whole chain: T changes only the manifest, which names exactly three candidates, gives a closing time, and carries a hash and size matching its own text; the sandbox tag points to T; D adds only the byte-identical workflow and changes only the form's `input_set` default line, to exactly `round/03-open/v1 @ T`. Every other path, including all of `tools/` and the required CI workflow, must be byte-identical to R. The test record names R, T and D, and the workflow's `trusted_sha` output in every run must be D.
 
 ## What the founder authorizes
 
@@ -75,7 +76,7 @@ In order:
 |---|---|---|
 | A1 | Register the sandbox editor App from the manifest | Before any secret is written, the folder's and file's access lists show the founder's account only (the `icacls` output is recorded); nothing secret appears in the terminal or the browser page; a destination inside a repository is refused |
 | A2 | The founder installs it on `q0-sandbox` only | The installation lists that one repository |
-| A3 | Run `app_token.py approve` (after A2), and have the founder confirm the App, installation and repository IDs | The temporary lookup token is metadata-read only for `q0-sandbox`, and revoked; the approved mapping names `question-zero/q0-sandbox` by owner and numeric ID, and the installation by ID |
+| A3 | Run `app_token.py approve` (after A2), and have the founder confirm the App, installation and repository IDs | The temporary lookup token's effective scope is recorded, and must be exactly metadata read for `q0-sandbox`, or approval fails; the token is revoked either way; the approved mapping names `question-zero/q0-sandbox` by owner and numeric ID, and the installation by ID |
 | A4 | Mint a token for `q0-sandbox` with `contents=write` | The effective returned scope is inspected: exactly the approved repository ID, the requested permissions plus metadata read, and an expiry within the hour |
 | A5 | Ask for `q0-inquiry`, or for `workflows=write`; add a URL-specific `http.<url>.extraHeader` to the local checkout | Refused before any token is minted |
 | A6 | Push a commit and open a pull request through `app_token.py` | GitHub shows the bot as the pusher and PR author; the token is absent from the process arguments, remote URL and git configuration; `git credential fill` for any other host or repository path returns nothing |

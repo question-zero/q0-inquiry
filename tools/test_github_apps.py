@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Synthetic keys and a fake API; no network.
+# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Revision 4 adds its round-3 AC1 cases (worktree configuration, inspection failure, fixed categories with no setting names in any message) and the approval lookup's exact scope. Synthetic keys and a fake API; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the GitHub App helpers. Run: python -m unittest tools/test_github_apps.py
 
@@ -115,18 +115,53 @@ class Helper(unittest.TestCase):  # GPT-6 AC1
                                  env=env).stdout
             self.assertEqual("password=tok" in out, expect, target)
 
-    def test_repository_local_credential_settings_are_refused(self):  # GPT-6 round 2, AC1
+    def test_repository_and_worktree_settings_are_refused_by_category(self):  # GPT-6 rounds 2 and 3, AC1
+        marker = "SECRETMARKER"
         with tempfile.TemporaryDirectory() as td:
             subprocess.run(["git", "init", "-q", td], check=True)
             self.assertEqual(app_token.config_problems(td), [])
-            for key, value in (("http.https://github.com/.extraheader", "AUTHORIZATION: basic fake"),
-                               ("credential.https://github.com.helper", "store"),
-                               ("url.https://evil.invalid/.insteadof", "https://github.com/"),
-                               ("include.path", "other.cfg")):
-                with self.subTest(key=key):
-                    subprocess.run(["git", "-C", td, "config", "--local", key, value], check=True)
-                    self.assertIn(key.lower() if not key.startswith("http.") else key, app_token.config_problems(td))
-                    subprocess.run(["git", "-C", td, "config", "--local", "--unset", key], check=True)
+            cases = [("--local", f"http.https://{marker}@github.com/.extraheader", "AUTHORIZATION: basic fake",
+                      "extra HTTP headers"),
+                     ("--local", f"credential.https://{marker}.github.com.helper", "store", "credential settings"),
+                     ("--local", f"url.https://{marker}.invalid/.insteadof", "https://github.com/", "URL rewrites"),
+                     ("--local", "include.path", "other.cfg", "configuration includes"),
+                     ("--worktree", f"http.https://{marker}@github.com/.extraheader", "AUTHORIZATION: basic fake",
+                      "extra HTTP headers")]
+            subprocess.run(["git", "-C", td, "config", "--local", "extensions.worktreeConfig", "true"], check=True)
+            for scope, key, value, category in cases:
+                with self.subTest(scope=scope, key=key):
+                    subprocess.run(["git", "-C", td, "config", scope, key, value], check=True)
+                    found = app_token.config_problems(td)
+                    self.assertIn(category, found)
+                    self.assertNotIn(marker, " ".join(found))
+                    subprocess.run(["git", "-C", td, "config", scope, "--unset", key], check=True)
+
+    def test_refusal_happens_before_minting_and_names_no_setting(self):  # GPT-6 round 3, AC1
+        marker = "SECRETMARKER"
+        with tempfile.TemporaryDirectory() as td:
+            subprocess.run(["git", "init", "-q", td], check=True)
+            subprocess.run(["git", "-C", td, "config", "--local", f"http.https://{marker}@github.com/.extraheader",
+                            "AUTHORIZATION: basic fake"], check=True)
+            (Path(td) / "question-zero-editor.json").write_text(json.dumps(CREDS), encoding="utf-8")
+            cwd = os.getcwd()
+            os.chdir(td)
+            try:
+                with patch.object(app_token, "mint", side_effect=AssertionError("reached minting")), \
+                        redirect_stdout(io.StringIO()) as out, self.assertRaises(SystemExit) as cm:
+                    app_token.main(["run", "--secrets", td, "--repo", "q0-inquiry", "--perm", "contents=read",
+                                    "--", "git", "status"])
+            finally:
+                os.chdir(cwd)
+            self.assertIn("extra HTTP headers", str(cm.exception.code))
+            self.assertNotIn(marker, str(cm.exception.code) + out.getvalue())
+
+    def test_an_inspection_failure_refuses(self):  # GPT-6 round 3, AC1: fail closed
+        failed = subprocess.CompletedProcess([], 128, stdout="", stderr="fatal: something")
+        with patch.object(app_token.subprocess, "run", return_value=failed), self.assertRaises(SystemExit) as cm:
+            app_token.config_problems()
+        self.assertIn("could not inspect", str(cm.exception.code))
+        with patch.object(app_token.subprocess, "run", side_effect=OSError("no git")), self.assertRaises(SystemExit):
+            app_token.config_problems()
 
     def test_command_env_scrubs_inherited_credentials_and_tracing(self):
         env = app_token.command_env("tok", "question-zero", "q0-inquiry",
@@ -231,6 +266,16 @@ class Scope(unittest.TestCase):  # GPT-6 AC3
             self.assertIn(("DELETE", "/installation/token", None), fake.calls)
             mapping = app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", 7, td, caller=fake)
             self.assertEqual(mapping["repositories"]["q0-sandbox"], {"owner": "question-zero", "id": 2002})
+        class ExtraScope(AuthFake):
+            def __call__(self, method, path, auth, data=None):
+                got = super().__call__(method, path, auth, data)
+                if method == "POST":
+                    got["permissions"] = {"metadata": "read", "contents": "write"}
+                return got
+        extra = ExtraScope(slug="question-zero-editor-sandbox")
+        with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()), self.assertRaises(SystemExit):
+            app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=extra)
+        self.assertIn(("DELETE", "/installation/token", None), extra.calls)   # GPT-6 round 3: revoked, then refused
         bad = AuthFake(slug="question-zero-editor-sandbox", revoke_fails=True)
         with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()), self.assertRaises(SystemExit) as cm:
             app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=bad)
