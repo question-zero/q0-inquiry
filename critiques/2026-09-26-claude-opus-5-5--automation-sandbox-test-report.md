@@ -18,11 +18,13 @@ prompt: 'The test planned in proposals/2026-09-26-claude-opus-5-5-automation-san
   the test (Recommended)", confirmed the App installation ("A2 completed"; "Confirm (Recommended)" for the IDs), and
   registered the second App ("ready"). Revision 2 applies GPT-6''s round-1 review of this report
   (critiques/2026-09-26-gpt-6--automation-sandbox-report-review.md): SR1 records, SR2 hosted checks, SR3 same-repository
-  restriction, and its wording.'
+  restriction, and its wording. Revision 3 applies its round-2 wording corrections
+  (critiques/2026-09-26-gpt-6--automation-sandbox-report-review-r2.md), which cleared D1 and D2 at 5efc92d.'
 responds_to:
 - proposals/2026-09-26-claude-opus-5-5-automation-sandbox-test.md
 - 5a666e0bab6488c94e7fd7c027c36689e92decce
 - critiques/2026-09-26-gpt-6--automation-sandbox-report-review.md
+- critiques/2026-09-26-gpt-6--automation-sandbox-report-review-r2.md
 exposure:
 - the private sandbox repository, its workflow runs, logs, comments and repository activity, and GitHub's API responses,
   read through the founder's GitHub account, the editor App's JWT and its short-lived tokens
@@ -52,7 +54,7 @@ lifecycle: draft
     - the installed workflow's blob equals the reviewed copy's;
     - `derivation verified`, exit 0.
   - A Git bundle of T and D is in the review packet.
-  - All 335 tests passed at R before anything was created.
+  - At R, before anything was created: 335 tests run, one skipped (334 passed).
 - **Where:** the private repository `question-zero/q0-sandbox`, with main at D and `Q0_ROUND3_FEEDBACK=on`. No production repository was changed. A deliberately invalid, denied write probe was sent to `q0-inquiry` (A4). All content was synthetic.
 - **Who acted:**
   - the founder's GitHub account, for issues, pull requests and settings;
@@ -77,7 +79,7 @@ lifecycle: draft
 | A5 Refusals before minting | `q0-inquiry` was refused: it isn't in the mapping. `workflows=write` was refused: the tool may not request it. A URL-specific `http.extraheader` planted in the checkout was refused, reported by category only. |
 | A6 Push and pull request as the bot | The credential helper answered only the approved path. It gave no answer for a foreign host or another repository on github.com. GitHub's repository activity API records the creation of `sandbox/a6-bot-push` by `question-zero-editor-sandbox[bot]`, the authenticated pusher. PR #1's author and the commit's author and committer are the same bot. The clone's config held no credential or header settings. In the SR1 attempt, no process's command line contained the token. A positive-control marker was found in the checking command's own command line. |
 | A7 Reviewer bot as author, editor bot as committer | The reviewer App was registered with metadata read only and not installed: a narrower deviation, consistent with its role as a label. The commit shows author `question-zero-reviewer-sandbox[bot]` and committer `question-zero-editor-sandbox[bot]`, both resolved as Bot accounts. The activity API records the branch creation by the editor bot. The pushed blob equals the blob at R (`11007dd0…`). |
-| A8 Use the token after the command ends | SR1 attempt: the call succeeded at 07:06:56.06. The command ended at 07:06:56.08, and `finish()` confirmed revocation at 07:06:56.54. The same call got HTTP 401 at 07:07:16.60. Attempt 3 showed the same sequence without timestamps. Every token attempt's tool output reported "token revoked"; the ledger in the packet lists them. |
+| A8 Use the token after the command ends | SR1 attempt: the call succeeded at 07:06:56.06. The command ended at 07:06:56.08, and `finish()` confirmed revocation at 07:06:56.54. The same call got HTTP 401 at 07:07:16.60. Attempt 3 showed the same sequence without timestamps. The timestamped SR1 attempt records confirmed revocation and the later 401. Earlier attempt revocations are editor-reported; the copied packet does not retain a complete per-attempt revocation transcript. A3's successful approval output follows scope validation and confirmed lookup-token revocation in the reviewed helper. |
 
 ## D2: the advisory feedback
 
@@ -104,7 +106,7 @@ lifecycle: draft
 - **"Check provenance headers":** 14 runs, all failed.
   - The first twelve failed on the same two tests (F3).
   - PR #11's first run failed one test of my own, whose expectation was wrong (see the errors below).
-  - PR #11's second run passed every test and failed only the header checker, on the synthetic manifest.
+  - PR #11's second unit suite succeeded with one skip. The editor reports that the run's remaining failure, in the header checker, concerned the synthetic manifest.
 
 ## SR2: hosted checks
 
@@ -113,7 +115,7 @@ lifecycle: draft
   - *Queued behind another publisher.* Run A's publish was rerun while run C's publish was in progress. A's publish was **pending** until C finished; C updated the comment to v3, then A ran and skipped.
   - *Stale while waiting.* Run F parsed v4, which was current at the time. Its publish was **pending** behind a publish holding the group. The issue was edited to v5 during that wait. F then ran, logged the same skip, and run G published v5.
   - In every case there was one bot comment, naming the current digest at the end.
-- **POSIX limits.** PR #11 ran the repository's CI on a hosted `ubuntu-24.04` runner, with the revised tools and tests. The full suite passed: 343 tests, with 1 pre-existing skip. The four POSIX tests printed:
+- **POSIX limits.** PR #11 ran the repository's CI on a hosted `ubuntu-24.04` runner, with the revised tools and tests. The unit suite: 343 tests run, one skipped (342 passed). The four POSIX tests printed:
   - the child runs with address space 1,610,612,736 bytes and CPU 60 s;
   - with a 1 s CPU limit, a busy child was stopped by signal 9 (SIGKILL) after 1.0 s, far inside the 30 s wall timeout;
   - an allocation over the address-space limit raised MemoryError in the child;
@@ -133,7 +135,7 @@ The restriction is tested offline. Hosted runs used the installed D workflow, wh
 
 - **F1: `[skip ci]` suppressed the `pull_request` header check, but not the `pull_request_target` feedback run** (B7). This is observed behavior for these events, not a delivery guarantee. D3 must not depend on either.
 - **F2: turning feedback back on doesn't replay missed events** (B10). An item edited while feedback was off keeps advice about an older version until a later eligible event, such as an edit or a reopen, or an authorized rerun, reconciles it. The comment no longer promises an update (`a86b964`). It now reads: "This comment describes only the version named above. Later changes may remain unchecked if feedback is disabled or a run does not publish." Adoption notes should say that toggling the variable isn't a catch-up operation. D3 uses the source and its own receipt rules, never a comment's freshness.
-- **F3: CI-only failures.** In the sandbox, "Check provenance headers" failed in every run on two tests while the code behaved correctly; `c3000bf` fixes them. On PR #11 the tests then passed, and the header checker failed only on the sandbox's synthetic manifest, which lacks provenance fields by design. The production manifest has them.
+- **F3: CI-only failures.** The first twelve header-workflow runs failed the two CI-fragile tests; `c3000bf` fixes them. PR #11's first run failed the new CPU test's signal expectation; its second unit suite succeeded with one skip. The editor reports that its remaining header-check failure concerned the synthetic manifest, which lacks provenance fields by design. The production manifest has them, and the production PR must still pass its required checks.
 - **F4: closed.** The queued-publisher and stale-while-waiting cases were observed (SR2).
 
 ## Test-execution errors (the editor's)
@@ -144,7 +146,7 @@ The restriction is tested offline. Hosted runs used the installed D workflow, wh
 - **B2's script** stopped on a skipped job with no log. Its results were read from the run records afterwards.
 - **The first hosted POSIX run** expected SIGXCPU, but with equal soft and hard limits Linux sends SIGKILL. The test now accepts either signal, with a time bound (`8ae6148`), and the rerun passed.
 
-Every token minted in these attempts was revoked, as the tool reported each time.
+The tool reported each of these tokens revoked. That is editor-reported: the packet's timestamped revocation record covers only the SR1 attempt.
 
 ## Not tested
 
