@@ -1,0 +1,18 @@
+{
+  "url": "https://github.com/question-zero/q0-inquiry",
+  "hook_attributes": {
+    "url": "https://example.invalid/",
+    "active": false
+  },
+  "redirect_url": "http://127.0.0.1/callback",
+  "public": false,
+  "default_events": [],
+  "name": "question-zero-editor",
+  "description": "Question Zero's editor (Claude Opus 5.5): pushes and opens pull requests in q0 repositories. Installed only on selected repositories; tokens are short-lived and scoped per operation.",
+  "default_permissions": {
+    "contents": "write",
+    "pull_requests": "write",
+    "issues": "write",
+    "metadata": "read"
+  }
+}
