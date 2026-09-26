@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/round_03_feedback_job.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), with GitHub's API replaced by a fake: both routes, a moved pull request, a stale result, several files, non-regular Git modes, and a copied marker in another user's comment. Revision 2 adds GPT-6's AC4-AC6 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the pinned trusted revision, an edit during the comment lookup, removal of the last response, loss of the form's headings, incomplete pagination, and the complete body's digest. Synthetic data only; no network.
+# prompt: Offline tests for tools/round_03_feedback_job.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), with GitHub's API replaced by a fake: both routes, a moved pull request, a stale result, several files, non-regular Git modes, and a copied marker in another user's comment. Revision 2 adds GPT-6's AC4-AC6 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the pinned trusted revision, an edit during the comment lookup, removal of the last response, loss of the form's headings, incomplete pagination, and the complete body's digest. Revision 3 adds GPT-6's round-2 regressions (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): an old rerun reconciles to the current version, an oversized page is incomplete, and a validator stopped by its limit gives a typed result. Synthetic data only; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the feedback workflow's jobs. Run: python -m unittest tools/test_round_03_feedback_job.py"""
 import base64
@@ -73,7 +73,7 @@ class JobBase(tv.Base):
         return json.loads(r) if r else None
 
     def comments(self, number, items):
-        self.fake.routes[("GET", f"/repos/{BASE}/issues/{number}/comments?per_page=100&page=1")] = items
+        self.fake.routes[("GET", f"/repos/{BASE}/issues/{number}/comments?per_page={job.PER_PAGE}&page=1")] = items
 
     def writes(self):
         return [c for c in self.fake.calls if c[0] in ("POST", "PATCH")]
@@ -84,7 +84,7 @@ class JobBase(tv.Base):
 
     def serve_pr(self, files, tree=(), blobs=None, sha="a" * 40):
         self.fake.routes[("GET", f"/repos/{BASE}/pulls/5")] = {"head": {"sha": sha, "repo": {"full_name": FORK}}}
-        self.fake.routes[("GET", f"/repos/{BASE}/pulls/5/files?per_page=100&page=1")] = files
+        self.fake.routes[("GET", f"/repos/{BASE}/pulls/5/files?per_page={job.PER_PAGE}&page=1")] = files
         self.fake.routes[("GET", f"/repos/{FORK}/git/trees/{sha}?recursive=1")] = {"truncated": False, "tree": list(tree)}
         for blob_sha, data in (blobs or {}).items():
             self.fake.routes[("GET", f"/repos/{FORK}/git/blobs/{blob_sha}")] = {
@@ -120,11 +120,49 @@ class Parse(JobBase):
         self.assertEqual((r["route"], r["version"], r["counts"]["read"]), ("file", "a" * 40, 1))
         self.assertFalse(any("evil" in c[1] for c in self.fake.calls))
 
-    def test_a_moved_pull_request_is_skipped(self):
+    def test_an_old_event_reconciles_to_the_current_head(self):  # GPT-6 round 2, AC5
+        data = self.response_file(tv.block("p014"))
         self.event(self.pr_event("a" * 40))
-        self.serve_pr([], sha="b" * 40)
+        self.serve_pr([{"filename": PATH, "status": "added"}], tree=[self.regular(PATH, data)],
+                      blobs={"b" * 40: data}, sha="c" * 40)
         job.parse()
-        self.assertIsNone(self.result())
+        self.assertEqual(self.result()["version"], "c" * 40)
+
+    def test_an_old_issue_event_reconciles_to_the_current_body(self):  # GPT-6 round 2, AC5
+        old = self.issue_body(tv.block("p014")).decode()
+        new = self.issue_body(tv.block("p019")).decode()
+        self.event({"repository": {"full_name": BASE}, "issue": {"number": 7, "body": old}})
+        self.fake.routes[("GET", f"/repos/{BASE}/issues/7")] = {"body": new}
+        job.parse()
+        self.assertEqual(self.result()["version"], hashlib.sha256(new.encode()).hexdigest())
+
+    def test_an_oversized_page_is_incomplete_not_a_crash(self):  # GPT-6 round 2, AC6
+        def too_big(method, url, token, data=None, accept=None):
+            raise job.Incomplete()
+        body = self.issue_body(tv.block("p014")).decode()
+        self.issue_event(body)
+        orig = job.api
+        job.api = lambda m, u, t, d=None, a=None: too_big(m, u, t) if "comments" in u else orig(m, u, t, d, a)
+        try:
+            self.assertEqual(job.managed_comment(BASE, 7, "t"), (None, False))
+        finally:
+            job.api = orig
+
+    def test_a_validator_stopped_by_its_limit_gives_a_typed_result(self):  # GPT-6 round 2, AC6
+        import subprocess
+        data = self.response_file(tv.block("p014"))
+        real = subprocess.run
+
+        def stopped(cmd, **kw):
+            if str(job.VALIDATOR) in cmd:
+                raise subprocess.TimeoutExpired(cmd, 60)
+            return real(cmd, **kw)
+        job.subprocess.run = stopped
+        try:
+            r = job.validate_isolated("file", data, 5, "a" * 40)
+        finally:
+            job.subprocess.run = real
+        self.assertEqual((r["codes"], r["checked"]), (["not_checked_resources"], False))
 
     def test_symlinks_submodules_and_oversized_files_are_not_checked(self):  # GPT-6 AC6
         data = self.response_file(tv.block("p014"))
@@ -144,9 +182,9 @@ class Parse(JobBase):
     def test_incomplete_file_listing_is_explicit(self):  # GPT-6 AC6
         self.event(self.pr_event())
         self.serve_pr([])
-        full = [{"filename": f"x{i}", "status": "added"} for i in range(100)]
+        full = [{"filename": f"x{i}", "status": "added"} for i in range(job.PER_PAGE)]
         for page in range(1, job.MAX_PAGES + 1):
-            self.fake.routes[("GET", f"/repos/{BASE}/pulls/5/files?per_page=100&page={page}")] = full
+            self.fake.routes[("GET", f"/repos/{BASE}/pulls/5/files?per_page={job.PER_PAGE}&page={page}")] = full
         job.parse()
         self.assertEqual(self.result()["codes"], ["incomplete_retrieval"])
 
@@ -191,7 +229,7 @@ class Publish(JobBase):
         def comment_lookup(_):
             state["body"] = body + "\nedited later"
             return [{"id": 9, "user": {"login": job.BOT}, "body": rf.MARKER + "\nnewer result"}]
-        self.fake.routes[("GET", f"/repos/{BASE}/issues/7/comments?per_page=100&page=1")] = comment_lookup
+        self.fake.routes[("GET", f"/repos/{BASE}/issues/7/comments?per_page={job.PER_PAGE}&page=1")] = comment_lookup
         self.fake.routes[("GET", f"/repos/{BASE}/issues/7")] = lambda _: {"body": state["body"]}
         job.publish()
         self.assertFalse(self.writes())
@@ -214,9 +252,9 @@ class Publish(JobBase):
         self.assertEqual(self.writes()[0][:2], ("POST", f"/repos/{BASE}/issues/7/comments"))
         self.assertTrue(self.writes()[0][2]["body"].startswith(rf.MARKER))
         self.fake.calls.clear()
-        others = [{"id": i, "user": {"login": "someone"}, "body": "hi"} for i in range(100)]
+        others = [{"id": i, "user": {"login": "someone"}, "body": "hi"} for i in range(job.PER_PAGE)]
         for page in range(1, job.MAX_PAGES + 1):
-            self.fake.routes[("GET", f"/repos/{BASE}/issues/7/comments?per_page=100&page={page}")] = others
+            self.fake.routes[("GET", f"/repos/{BASE}/issues/7/comments?per_page={job.PER_PAGE}&page={page}")] = others
         job.publish()
         self.assertFalse(self.writes())
 

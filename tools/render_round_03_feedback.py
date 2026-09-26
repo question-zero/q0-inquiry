@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). The publisher's half: it accepts only a result that passes the validator's strict schema, bound to the expected item, version and route, and writes the comment from fixed templates only. Revision 2 applies GPT-6's AC4 and AC8 (critiques/2026-09-26-gpt-6--automation-code-review.md): the version is bound for both routes and the result must come from the pinned trusted revision; the rights sentences are GPT-6's; the launch commit, candidate count and closing time come from the trusted checkout, never from constants or submissions.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). The publisher's half: it accepts only a result that passes the validator's strict schema, bound to the expected item, version and route, and writes the comment from fixed templates only. Revision 2 applies GPT-6's AC4 and AC8 (critiques/2026-09-26-gpt-6--automation-code-review.md): the version is bound for both routes and the result must come from the pinned trusted revision; the rights sentences are GPT-6's; the launch commit, candidate count and closing time come from the trusted checkout, never from constants or submissions. Revision 3 adds the resource-limit sentence and says plainly when a header failure stopped the assessment check (GPT-6 round 2).
 # license: MIT (LICENSE-CODE)
 """Render one advisory feedback comment from a validator result. Fixed templates only.
 
@@ -37,12 +37,13 @@ SENTENCES = {
     "pr_file_not_regular_or_too_large": "The response file is not a regular file at this commit, or is larger than this tool checks, so **it was not checked**; this is not a rejection.",
     "incomplete_retrieval": "This tool could not retrieve everything it needed from GitHub, so **it was not checked**; this is not a rejection.",
     "no_current_response": "This tool no longer finds a Round 3 response here, so any earlier feedback no longer applies.",
-    "header_missing": "No front-matter header was found. A response file starts with `---`, the header, and `---` (see the template in PARTICIPATE.md).",
-    "header_unparseable": "The header could not be read as YAML.",
-    "header_not_a_mapping": "The header is not a set of `field: value` lines.",
+    "not_checked_resources": "Checking stopped at this tool's time or memory limit, so **it was not checked**; this is not a rejection.",
+    "header_missing": "No front-matter header was found, so the assessments were not checked. A response file starts with `---`, the header, and `---` (see the template in PARTICIPATE.md).",
+    "header_unparseable": "The header could not be read as YAML, so the assessments were not checked.",
+    "header_not_a_mapping": "The header is not a set of `field: value` lines, so the assessments were not checked.",
     "type_not_round_response": "The header's `type` is not `round-response`.",
     "round_not_03_open": "The header's `round` is not `03-open`.",
-    "samples_malformed": "The header's `samples` should give `generated` and `submitted` as numbers, as in the template.",
+    "samples_malformed": "The header's `samples` should give `generated` and `submitted` as numbers, or `unknown`, as in the template.",
     "receipt_present": "The header has a `receipt` field. The editor adds that at intake; leave it out.",
     "input_set_ok": "`input_set` names the tag and its commit.",
     "input_set_missing": "`input_set` is empty.",

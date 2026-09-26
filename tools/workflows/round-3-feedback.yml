@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one trusted commit for both jobs; runs for every pull request and issue event so removals are seen; publication serialized per item without cancelling a write in progress; parser memory and time bounds.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one trusted commit for both jobs; runs for every pull request and issue event so removals are seen; publication serialized per item without cancelling a write in progress; parser memory and time bounds. Revision 3 (GPT-6 round 2): the time and memory limits move into the job script, which runs the validator as a supervised child process and reports a typed not-checked result when a limit stops it; every run checks the item's current version.
 # license: MIT (LICENSE-CODE)
 #
 # Security boundary (proposal, D2, GPT-6 GA3 and AC4):
@@ -53,12 +53,9 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml==6.0.3
       - id: validate
-        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          ulimit -v 2097152
-          timeout 120 python tools/round_03_feedback_job.py parse
+        run: python tools/round_03_feedback_job.py parse
 
   publish:
     needs: parse

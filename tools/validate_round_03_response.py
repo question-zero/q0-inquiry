@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6 in topic github-automation, round 3). The founder chose, verbatim: "All three below (Recommended)", which included building the D1 and D2 code for GPT-6's code review. Advisory feedback only: procedure, never positions or quoted text, never a gate. Revision 2 applies GPT-6's AC4, AC6 and AC7 (critiques/2026-09-26-gpt-6--automation-code-review.md): relational schema checks, YAML limits enforced on the event stream before construction, fence-aware form sections with no guessing, conditional provenance fields, field shapes, and the full-body digest as an issue's identity.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6 in topic github-automation, round 3). The founder chose, verbatim: "All three below (Recommended)", which included building the D1 and D2 code for GPT-6's code review. Advisory feedback only: procedure, never positions or quoted text, never a gate. Revision 2 applies GPT-6's AC4, AC6 and AC7 (critiques/2026-09-26-gpt-6--automation-code-review.md): relational schema checks, YAML limits enforced on the event stream before construction, fence-aware form sections with no guessing, conditional provenance fields, field shapes, and the full-body digest as an issue's identity. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): header failures are reported as not checked; the schema checks types before anything else; `unknown` sample counts are allowed; ordinary headings inside an unfenced answer are content; the CLI's issue digest covers the whole file; a supervisor can report a resource-limit outcome.
 # license: MIT (LICENSE-CODE)
 """Advisory feedback for one Round 3 response: can the editor read it? Procedure only.
 
@@ -45,11 +45,12 @@ NO_RESPONSE = "_No response_"   # what GitHub renders for an empty optional form
 ROUTING_HEADINGS = ("### Which text was answered?", "### The answer")
 
 # Codes that mean this tool did not (or could not) check the response. With any of them, checked is false.
-NOT_CHECKED = {"not_checked_too_large", "not_checked_not_utf8", "not_checked_yaml_limits", "form_heading_duplicated",
-               "pr_file_not_regular_or_too_large", "incomplete_retrieval", "no_current_response"}
+NOT_CHECKED = {"not_checked_too_large", "not_checked_not_utf8", "not_checked_yaml_limits", "not_checked_resources",
+               "form_heading_duplicated", "pr_file_not_regular_or_too_large", "incomplete_retrieval",
+               "no_current_response", "header_missing", "header_unparseable", "header_not_a_mapping"}
 # Every code the validator may emit. The renderer refuses anything else.
 CODES = NOT_CHECKED | {
-    "header_missing", "header_unparseable", "header_not_a_mapping", "type_not_round_response",
+    "type_not_round_response",
     "round_not_03_open", "samples_malformed", "receipt_present",
     "input_set_ok", "input_set_mismatch", "input_set_missing",
     "rights_declared", "rights_unresolved",
@@ -99,6 +100,16 @@ def safe_yaml(text):
         return yaml.safe_load(text)
     except (RecursionError, MemoryError):
         raise ValueError("limits") from None
+
+
+def samples_ok(s):
+    """The template's shape, with `unknown` permitted wherever a count isn't known (PARTICIPATE.md)."""
+    def count(x):
+        return (isinstance(x, int) and not isinstance(x, bool) and x >= 0) or \
+            (isinstance(x, str) and x.strip().lower() == "unknown")
+    if isinstance(s, str) and s.strip().lower() == "unknown":
+        return True
+    return isinstance(s, dict) and all(count(s.get(k)) for k in ("generated", "submitted"))
 
 
 def blank(value):
@@ -160,9 +171,7 @@ def check_file(text, cand_ids, launch, codes):
         codes.add("type_not_round_response")
     if "round" in fm and str(fm["round"]).strip() != ex.ROUND:
         codes.add("round_not_03_open")
-    s = fm.get("samples")
-    if "samples" in fm and not (isinstance(s, dict) and all(isinstance(s.get(k), int) and not isinstance(s.get(k), bool)
-                                                            for k in ("generated", "submitted"))):
+    if "samples" in fm and not samples_ok(fm["samples"]):
         codes.add("samples_malformed")
     if "receipt" in fm:
         codes.add("receipt_present")
@@ -183,6 +192,9 @@ def form_fields(repo):
         out[attrs["label"]] = (item.get("id"), item["type"], bool(item.get("validations", {}).get("required")),
                                attrs.get("options", []))
     return out
+
+
+ANSWER_LABEL = "The answer"
 
 
 def split_issue(body, labels):
@@ -213,7 +225,10 @@ def split_issue(body, labels):
                 current = label
                 sections[label] = []
                 continue
-            flags.add("form_heading_unexpected" if current is not None else "form_prefix_text")
+            if current is None:
+                flags.add("form_prefix_text")
+            elif current != ANSWER_LABEL:          # inside the answer, an ordinary heading is content
+                flags.add("form_heading_unexpected")
         elif current is None and stripped:
             flags.add("form_prefix_text")
             continue
@@ -304,12 +319,17 @@ def incomplete(route, number, version, repo=ex.REPO, extra=()):
     return build(route, number, version, repo, {"incomplete_retrieval", *extra}, {}, False)
 
 
+def resources(route, number, version, repo=ex.REPO, extra=()):
+    """The result when the isolated parser was stopped by its time or memory limit."""
+    return build(route, number, version, repo, {"not_checked_resources", *extra}, {}, False)
+
+
 def validate(route, data, number, version, repo=ex.REPO):
     """The typed result for one response. `data` is the complete source bytes; nothing from it is copied into the
     result. For an issue, the version is the SHA-256 of the complete body, whatever limits apply to parsing."""
     codes, assessments = set(), {}
-    if route == "issue":
-        version = hashlib.sha256(data).hexdigest()
+    if route == "issue" and not (isinstance(version, str) and re.fullmatch(r"[0-9a-f]{64}", version)):
+        version = hashlib.sha256(data).hexdigest()   # the caller passes the complete body's digest when it has it
     cand_ids, launch, _ = trusted_inputs(repo)
     if len(data) > MAX_BYTES:
         codes.add("not_checked_too_large")
@@ -332,38 +352,45 @@ def validate(route, data, number, version, repo=ex.REPO):
 
 
 def schema_problems(result, cand_ids):
-    """Strict schema check, shared by the validator and the renderer, including the relations between fields.
-    Returns a list of problems (empty if valid)."""
+    """Strict schema check, shared by the validator and the renderer: types first, then values, then the relations
+    between fields. Returns a list of problems (empty if valid); never raises on a malformed result."""
     if not isinstance(result, dict) or set(result) != RESULT_KEYS:
         return ["keys"]
     p = []
+    route, number, version = result["route"], result["number"], result["version"]
+    revision_, checked, codes, a, c = (result["validator_revision"], result["checked"], result["codes"],
+                                       result["assessments"], result["counts"])
     if result["schema"] != SCHEMA:
         p.append("schema")
-    route = result["route"]
-    if route not in ("file", "issue"):
+    if not isinstance(route, str) or route not in ("file", "issue"):
         p.append("route")
-    if not isinstance(result["number"], int) or isinstance(result["number"], bool) or not 0 < result["number"] < 10**7:
+        route = None
+    if not isinstance(number, int) or isinstance(number, bool) or not 0 < number < 10**7:
         p.append("number")
-    want = {"file": r"[0-9a-f]{40}", "issue": r"[0-9a-f]{64}"}.get(route, r"$^")
-    if not isinstance(result["version"], str) or not re.fullmatch(want, result["version"]):
+    want = {"file": r"[0-9a-f]{40}", "issue": r"[0-9a-f]{64}"}.get(route)
+    if not isinstance(version, str) or want is None or not re.fullmatch(want, version):
         p.append("version")
-    if not isinstance(result["validator_revision"], str) or not re.fullmatch(r"[0-9a-f]{40}",
-                                                                             result["validator_revision"]):
+    if not isinstance(revision_, str) or not re.fullmatch(r"[0-9a-f]{40}", revision_):
         p.append("validator_revision")
-    checked, codes, a, c = result["checked"], result["codes"], result["assessments"], result["counts"]
     if not isinstance(checked, bool):
         p.append("checked")
-    ok_codes = isinstance(codes, list) and len(codes) <= 80 and codes == sorted(set(codes)) and all(
-        isinstance(x, str) and (x in CODES or (FIELD_CODE.match(x) and x.split(":")[1] in
-                                               set(TEMPLATE_FIELDS) | FORM_IDS)) for x in codes)
+    ok_codes = isinstance(codes, list) and len(codes) <= 80 and all(isinstance(x, str) for x in codes)
+    if ok_codes:
+        ok_codes = codes == sorted(set(codes)) and all(
+            x in CODES or (FIELD_CODE.match(x) and x.split(":")[1] in set(TEMPLATE_FIELDS) | FORM_IDS) for x in codes)
     if not ok_codes:
         p.append("codes")
-    if not isinstance(a, dict) or not all(k in cand_ids and v in STATUSES for k, v in a.items()):
+    ok_a = isinstance(a, dict) and all(isinstance(k, str) and isinstance(val, str) for k, val in a.items()) and \
+        all(k in cand_ids and val in STATUSES for k, val in a.items())
+    if not ok_a:
         p.append("assessments")
-    elif not isinstance(c, dict) or set(c) != STATUSES or c != {
-            s: sum(1 for v in a.values() if v == s) for s in sorted(STATUSES)}:
+    ok_c = isinstance(c, dict) and all(isinstance(k, str) for k in c) and set(c) == STATUSES and all(
+        isinstance(val, int) and not isinstance(val, bool) and 0 <= val <= len(cand_ids) for val in c.values())
+    if not ok_c:
         p.append("counts")
-    if ok_codes and isinstance(a, dict) and isinstance(checked, bool):
+    elif ok_a and c != {s: sum(1 for val in a.values() if val == s) for s in sorted(STATUSES)}:
+        p.append("counts")
+    if ok_codes and ok_a and isinstance(checked, bool):
         stopped = bool(set(codes) & NOT_CHECKED)
         if checked and (stopped or set(a) != set(cand_ids)):
             p.append("state")
@@ -380,9 +407,17 @@ def main(argv=None):
     ap.add_argument("--version", default="0" * 40, help="the pull request's head SHA (file route)")
     ap.add_argument("--repo", default=str(ex.REPO))
     a = ap.parse_args(argv)
+    digest, data = hashlib.sha256(), b""
     with open(a.path, "rb") as f:
-        data = f.read(MAX_BYTES + 1)
-    print(json.dumps(validate(a.route, data, a.number, a.version, Path(a.repo)), sort_keys=True))
+        while True:
+            chunk = f.read(1 << 16)
+            if not chunk:
+                break
+            digest.update(chunk)
+            if len(data) <= MAX_BYTES:
+                data += chunk[:MAX_BYTES + 1 - len(data)]
+    version = digest.hexdigest() if a.route == "issue" else a.version
+    print(json.dumps(validate(a.route, data, a.number, version, Path(a.repo)), sort_keys=True))
 
 
 if __name__ == "__main__":

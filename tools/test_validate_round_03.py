@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/validate_round_03_response.py and tools/render_round_03_feedback.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), covering the fixtures GPT-6 listed for D1 and D2 that apply to code without GitHub: parity with extraction, optional fields and unknowns, partial assessments, unresolved declarations, processing limits, ambiguous form headings, injected markup, Unicode and newlines, and the renderer's schema and source binding. Revision 2 adds GPT-6's AC4, AC6, AC7 and AC8 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md). Synthetic data only.
+# prompt: Offline tests for tools/validate_round_03_response.py and tools/render_round_03_feedback.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), covering the fixtures GPT-6 listed for D1 and D2 that apply to code without GitHub: parity with extraction, optional fields and unknowns, partial assessments, unresolved declarations, processing limits, ambiguous form headings, injected markup, Unicode and newlines, and the renderer's schema and source binding. Revision 2 adds GPT-6's AC4, AC6, AC7 and AC8 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md); revision 3 adds its round-2 cases (header failures, schema types, unknown sample counts, unfenced answer headings, the CLI digest). Synthetic data only.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the Round 3 advisory feedback. Run: python -m unittest tools/test_validate_round_03.py
 
@@ -185,6 +185,21 @@ class Limits(Base):
                 self.assertEqual(r["codes"], ["not_checked_yaml_limits"])
                 self.assertFalse(r["checked"])
 
+    def test_header_failures_are_typed_not_checked_results(self):  # GPT-6 round 2, AC4
+        for data in (b"no header at all\n", b"---\n: : :\n  - [\n---\n\n", b"---\n- a\n- b\n---\n\n"):
+            with self.subTest(data=data[:12]):
+                r = self.run_file(data)
+                self.assertFalse(r["checked"])
+                self.assertEqual(len(r["codes"]), 1)
+                self.assertTrue(r["codes"][0].startswith("header_"))
+                self.assertTrue(rf.render(r, "file", 5, SHA, self.git("rev-parse", "HEAD").strip(), self.repo))
+
+    def test_unknown_sample_counts_are_allowed(self):  # GPT-6 round 2, AC7
+        for samples in ({"generated": "unknown", "submitted": 1}, "unknown", {"generated": 2, "submitted": 1}):
+            with self.subTest(samples=samples):
+                r = self.run_file(self.response_file(block("p014"), samples=samples))
+                self.assertNotIn("samples_malformed", r["codes"])
+
     def test_field_shapes(self):  # GPT-6 AC7
         r = self.run_file(self.response_file(block("p014"), operator="", round="02-deliberation", samples="many"))
         self.assertTrue({"field_blank:operator", "round_not_03_open", "samples_malformed"} <= set(r["codes"]))
@@ -233,6 +248,21 @@ class Forms(Base):
         self.assertEqual(r["assessments"]["p014"], "read")
         self.assertFalse({"form_heading_unexpected", "form_prefix_text"} & set(r["codes"]))
 
+    def test_ordinary_headings_in_an_unfenced_answer_are_content(self):  # GPT-6 round 2, AC7
+        answer = "### p014\nPosition: support\nConditions: none\nBasis: x\n\n### My notes\ntext"
+        r = self.run_issue(self.issue_body(answer, fence=False))
+        self.assertEqual(r["assessments"]["p014"], "read")
+        self.assertNotIn("form_heading_unexpected", r["codes"])
+
+    def test_the_cli_digest_covers_the_whole_file(self):  # GPT-6 round 2, AC6
+        import subprocess
+        big = self.issue_body(block("p014")) + b"x" * (v.MAX_BYTES + 10)
+        f = self.repo / "issue.txt"
+        f.write_bytes(big)
+        out = subprocess.run([sys.executable, str(Path(v.__file__)), "issue", str(f), "--number", "7",
+                              "--repo", str(self.repo)], capture_output=True, text=True, check=True).stdout
+        self.assertEqual(json.loads(out)["version"], hashlib.sha256(big).hexdigest())
+
     def test_unfenced_answer_and_crlf_and_unicode(self):
         answer = "p014\r\nPosition: support\r\nConditions: none\r\nBasis: é 漢字 — ok\r\n"
         r = self.run_issue(self.issue_body(answer, fence=False).replace(b"\n", b"\r\n"))
@@ -277,7 +307,9 @@ class Renderer(Base):
         for over in ({"codes": ["<img src=x>"]}, {"assessments": {"p999": "read"}}, {"extra": 1},
                      {"version": "not-hex"}, {"counts": {"read": 1}}, {"number": True},
                      {"counts": {"read": 3, "not_assessed": 0, "unparseable": 0, "incomplete": 0, "conflicting": 0}},
-                     {"checked": False}, {"codes": ["not_checked_too_large"]}, {"version": "a" * 64}):
+                     {"checked": False}, {"codes": ["not_checked_too_large"]}, {"version": "a" * 64},
+                     {"route": []}, {"codes": [{}]}, {"assessments": {1: "read"}},
+                     {"counts": {"read": True, "not_assessed": 0, "unparseable": 0, "incomplete": 0, "conflicting": 1}}):
             r = self.result()
             r.update(over)
             with self.subTest(over=over), self.assertRaises(ValueError):

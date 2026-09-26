@@ -59,10 +59,10 @@ def build_repo(root):
     git("config", "user.email", "t@example.invalid")
     git("config", "user.name", "t")
     (root / "rounds/03-open/responses").mkdir(parents=True)
-    (root / "rounds/03-open/prompt.md").write_text(
-        "---\n" + yaml.safe_dump({"closes_utc": "2026-10-26T23:59:59Z", "candidates": CANDS}) + "---\n\nx\n",
-        encoding="utf-8")
-    (root / "rounds/03-open/responses/.keep").write_text("")
+    (root / "rounds/03-open/prompt.md").write_bytes(   # explicit LF bytes: no dependence on git's newline settings
+        ("---\n" + yaml.safe_dump({"closes_utc": "2026-10-26T23:59:59Z", "candidates": CANDS}) + "---\n\nx\n")
+        .encode("utf-8"))
+    (root / "rounds/03-open/responses/.keep").write_bytes(b"")
     git("add", "-A")
     git("commit", "-qm", "launch")
     git("tag", "round/03-open/v1")

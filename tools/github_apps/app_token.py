@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure.
+# prompt: D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): short-lived, narrowly scoped installation tokens for the editor App, used locally by the editor. Revision 2 applies GPT-6's AC1 and AC3 (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper answers only the approved destination; the App, installation and repository identities are checked against a founder-approved mapping; the returned scope and expiry are validated; a token is revoked as soon as anything fails; an unconfirmed revocation is a distinct failure. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): repository-local credential and header settings, including URL-specific ones, are refused before minting; approval discovers a private repository through a temporary metadata-read token that is revoked at once; permission levels are an explicit enumeration; the final exit status is settled after cleanup, whatever the command did.
 # license: MIT (LICENSE-CODE)
 """Run one command with a short-lived editor-App token in its environment only, then revoke the token.
 
@@ -12,8 +12,9 @@ Usage:
   python tools/github_apps/app_token.py approve --secrets DIR [--sandbox] --repo NAME [--confirm INSTALLATION_ID]
   python tools/github_apps/app_token.py run --secrets DIR [--sandbox] --repo NAME --perm contents=write ... -- CMD...
 
-`approve` looks up the App, the installation on the repository, and the repository's owner and numeric ID, and
-prints them. Nothing is written until the founder has confirmed them and the command is repeated with --confirm and
+`approve` looks up the App and its installation on the repository, then mints a temporary token limited to that
+one repository and metadata read, only to read the repository's owner and numeric ID, and revokes it at once. It
+prints what it found. Nothing is written until the founder has confirmed them and the command is repeated with --confirm and
 the installation ID; the mapping is then saved as DIR/<slug>.approved.json. `run` refuses unless every identity
 matches that mapping.
 
@@ -21,7 +22,11 @@ The token is minted for exactly the approved repository ID and the listed permis
 installation's grant. It reaches the command only through its environment: GH_TOKEN for the gh CLI, and a git
 credential helper (git_credential_helper.py) that answers only for the approved https://github.com/<owner>/<repo>
 path. Global and system git configuration, other credential helpers, extra HTTP headers, git tracing and askpass
-programs are switched off for the command. The token is never printed, never written to a file, and never placed in a
+programs are switched off for the command. Repository-local settings that could add other credentials or
+headers (including URL-specific http.<url>.extraHeader and credential.<url>.* entries, include directives, askpass
+and URL rewrites) make the tool refuse before any token is minted; only their names are reported. Configuration the
+caller passes explicitly on the command line (git -c ...) is the caller's own choice and outside this guarantee.
+The token is never printed, never written to a file, and never placed in a
 command argument, a remote URL or persistent git configuration. It is revoked as soon as the command ends or any check
 fails; if revocation can't be confirmed, the exit status is 3 whatever the command's own status was.
 """
@@ -49,6 +54,9 @@ HERE = Path(__file__).resolve().parent
 ALLOWED_REPOS = {"question-zero-editor": {"q0-inquiry", ".github"}, "question-zero-editor-sandbox": {"q0-sandbox"}}
 ALLOWED_PERMS = {"contents": {"read", "write"}, "pull_requests": {"read", "write"}, "issues": {"read", "write"}}
 IMPLICIT = {"metadata": "read"}   # GitHub always includes metadata read in an installation token
+LEVELS = {"read": 1, "write": 2}
+# Repository-local git settings that could add credentials or headers, or change where a push goes.
+RISKY_CONFIG = r"^(http\..*extraheader|credential\..*|core\.askpass|http\..*cookiefile|url\..*insteadof|include\..*|includeif\..*)$"
 REVOKE_UNCONFIRMED = 3
 SCRUB = ("GITHUB_TOKEN", "GH_ENTERPRISE_TOKEN", "GITHUB_ENTERPRISE_TOKEN", "GH_HOST", "GIT_ASKPASS", "SSH_ASKPASS",
          "GIT_TRACE", "GIT_TRACE_CURL", "GIT_TRACE_PACKET", "GIT_TRACE_PERFORMANCE", "GIT_TRACE_SETUP",
@@ -98,8 +106,10 @@ def call(method, path, auth, data=None):
         return json.loads(body) if body else None
 
 
-def covers(granted, level):
-    return granted == "write" or granted == level
+def covers(have, want):
+    """True if level `have` includes level `want`; both must be one of the enumerated levels."""
+    return isinstance(have, str) and isinstance(want, str) and have in LEVELS and want in LEVELS and \
+        LEVELS[have] >= LEVELS[want]
 
 
 def check_returned(got, approved, repo, perms, now):
@@ -115,9 +125,12 @@ def check_returned(got, approved, repo, perms, now):
         problems.append("permissions")
     else:
         for name, level in returned.items():
+            if not isinstance(name, str) or not isinstance(level, str) or level not in LEVELS:
+                problems.append("permissions")
+                break
             if IMPLICIT.get(name) == level:
                 continue
-            if name not in perms or not covers(perms[name], level):
+            if name not in perms or not covers(perms[name], level):   # the request must include what came back
                 problems.append("permissions")
                 break
         if any(name not in returned for name in perms):
@@ -176,6 +189,16 @@ def mint(creds, approved, repo, perms, caller=call, slug=SLUG, now=None):
     return token, got["expires_at"]
 
 
+def config_problems(cwd=None):
+    """Names of repository-local git settings that could add credentials or headers. Values are never read out."""
+    r = subprocess.run(["git", "config", "--local", "--name-only", "--get-regexp", RISKY_CONFIG], cwd=cwd,
+                       capture_output=True, text=True, env=dict(os.environ, GIT_CONFIG_NOSYSTEM="1",
+                                                                GIT_CONFIG_GLOBAL=os.devnull))
+    if r.returncode not in (0, 1):   # 1: nothing matched; other codes, such as "not in a repository", mean none
+        return []
+    return sorted(set(line.strip() for line in r.stdout.splitlines() if line.strip()))
+
+
 def bot_identity(slug, caller=call):
     """(name, email) for commits authored by an App's bot account."""
     user = caller("GET", f"/users/{slug}%5Bbot%5D", "")
@@ -219,15 +242,31 @@ def approve(creds, slug, repo, confirm, secrets, caller=call):
     if app.get("id") != creds["id"] or app.get("slug") != slug:
         raise Refused("refused: the key does not belong to the expected App")
     inst = caller("GET", f"/repos/{ORG}/{repo}/installation", jwt)
-    info = caller("GET", f"/repos/{ORG}/{repo}", "")
+    if inst.get("app_id") != creds["id"]:
+        raise Refused("refused: the installation is not this App's")
+    # A private repository's metadata needs authorization: a temporary token for this one repository and metadata
+    # read only, revoked as soon as the IDs are read.
+    got = caller("POST", f"/app/installations/{inst['id']}/access_tokens", jwt,
+                 {"repositories": [repo], "permissions": {"metadata": "read"}})
+    token = got.get("token") if isinstance(got, dict) else None
+    if not token:
+        raise Refused("refused: GitHub returned no token for the lookup")
+    repos = got.get("repositories")
+    ok = isinstance(repos, list) and len(repos) == 1 and isinstance(repos[0], dict) and \
+        repos[0].get("full_name") == f"{ORG}/{repo}" and isinstance(repos[0].get("id"), int)
+    if not revoke(token, caller):
+        raise Refused(REVOKE_UNCONFIRMED)
+    if not ok:
+        raise Refused("refused: the lookup did not return exactly the expected repository")
+    info = {"owner": ORG, "id": repos[0]["id"]}
     mapping = {"slug": slug, "app_id": creds["id"], "installation_id": inst["id"],
-               "repositories": {repo: {"owner": info["owner"]["login"], "id": info["id"]}}}
+               "repositories": {repo: info}}
     print(f"App {slug} (ID {creds['id']}); installation {inst['id']}; repository "
-          f"{info['owner']['login']}/{repo} (ID {info['id']}); granted {json.dumps(inst.get('permissions', {}))}")
+          f"{ORG}/{repo} (ID {info['id']}); granted {json.dumps(inst.get('permissions', {}))}")
     if confirm is None:
         print("Nothing saved. After the founder confirms these IDs, repeat with --confirm INSTALLATION_ID.")
         return None
-    if confirm != inst["id"] or info["owner"]["login"] != ORG:
+    if confirm != inst["id"]:
         raise Refused("refused: the confirmation does not match what GitHub reports")
     path = Path(secrets) / f"{slug}.approved.json"
     old = load(path) if path.exists() else None
@@ -260,18 +299,33 @@ def main(argv=None):
     if not command:
         raise Refused("refused: give the command to run after --")
     perms = parse_perms(a.perm)
+    risky = config_problems()
+    if risky:
+        raise Refused("refused: this repository's local git configuration has settings that could add other "
+                      f"credentials or headers ({', '.join(risky)}); remove them first")
     approved = load(Path(a.secrets) / f"{slug}.approved.json")
     token, expires = mint(creds, approved, a.repo, perms, slug=slug)
-    code, revoked = 1, False
+    sys.exit(finish(token, expires, perms, command, approved["repositories"][a.repo]["owner"], a.repo))
+
+
+def finish(token, expires, perms, command, owner, repo, runner=None, revoker=None):
+    """Run the command, always revoke, and settle the exit status last: an unconfirmed revocation wins."""
+    runner, revoker = runner or run, revoker or revoke
+    code = 1
     try:
         left = (datetime.strptime(expires, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
                 - datetime.now(timezone.utc)).total_seconds() - 60
-        print(f"token for {a.repo} ({', '.join(f'{k}={v}' for k, v in sorted(perms.items()))}), expires {expires}")
-        code = run(command, token, approved["repositories"][a.repo]["owner"], a.repo, int(left))
-    finally:
-        revoked = revoke(token)
-        print("token revoked" if revoked else "could not confirm that the token was revoked; it expires within the hour")
-    sys.exit(code if revoked else REVOKE_UNCONFIRMED)
+        print(f"token for {repo} ({', '.join(f'{k}={v}' for k, v in sorted(perms.items()))}), expires {expires}")
+        code = runner(command, token, owner, repo, int(left))
+    except KeyboardInterrupt:
+        print("interrupted")
+        code = 130
+    except Exception:  # noqa: BLE001 - a launch failure; never echo it (it could include the environment)
+        print("the command could not be run")
+        code = 125
+    revoked = revoker(token)
+    print("token revoked" if revoked else "could not confirm that the token was revoked; it expires within the hour")
+    return code if revoked else REVOKE_UNCONFIRMED
 
 
 if __name__ == "__main__":

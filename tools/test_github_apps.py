@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Synthetic keys and a fake API; no network.
+# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Synthetic keys and a fake API; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the GitHub App helpers. Run: python -m unittest tools/test_github_apps.py
 
@@ -115,6 +115,19 @@ class Helper(unittest.TestCase):  # GPT-6 AC1
                                  env=env).stdout
             self.assertEqual("password=tok" in out, expect, target)
 
+    def test_repository_local_credential_settings_are_refused(self):  # GPT-6 round 2, AC1
+        with tempfile.TemporaryDirectory() as td:
+            subprocess.run(["git", "init", "-q", td], check=True)
+            self.assertEqual(app_token.config_problems(td), [])
+            for key, value in (("http.https://github.com/.extraheader", "AUTHORIZATION: basic fake"),
+                               ("credential.https://github.com.helper", "store"),
+                               ("url.https://evil.invalid/.insteadof", "https://github.com/"),
+                               ("include.path", "other.cfg")):
+                with self.subTest(key=key):
+                    subprocess.run(["git", "-C", td, "config", "--local", key, value], check=True)
+                    self.assertIn(key.lower() if not key.startswith("http.") else key, app_token.config_problems(td))
+                    subprocess.run(["git", "-C", td, "config", "--local", "--unset", key], check=True)
+
     def test_command_env_scrubs_inherited_credentials_and_tracing(self):
         env = app_token.command_env("tok", "question-zero", "q0-inquiry",
                                     base={"GITHUB_TOKEN": "x", "GIT_TRACE": "1", "GIT_ASKPASS": "a", "GH_HOST": "h"})
@@ -168,6 +181,60 @@ class Scope(unittest.TestCase):  # GPT-6 AC3
                     mint(fake, perms=perms)
                 self.assertNotEqual(cm.exception.code, app_token.REVOKE_UNCONFIRMED)
                 self.assertIn(("DELETE", "/installation/token", None), fake.calls)
+
+    def test_levels_are_an_explicit_enumeration(self):  # GPT-6 round 2, AC3
+        for bad in ("admin", None, 3, "WRITE", ["write"]):
+            with self.subTest(bad=bad):
+                fake = Fake(returned_perms={"contents": bad, "metadata": "read"})
+                with self.assertRaises(SystemExit):
+                    mint(fake)
+                self.assertIn(("DELETE", "/installation/token", None), fake.calls)
+        self.assertFalse(app_token.covers("write", "admin"))
+        self.assertFalse(app_token.covers(None, "read"))
+        self.assertTrue(app_token.covers("write", "read"))
+
+    def test_finish_settles_the_status_after_cleanup(self):  # GPT-6 round 2, AC3
+        exp = (datetime.now(timezone.utc) + timedelta(minutes=50)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        def boom(*a):
+            raise OSError("synthetic launch failure with GH_TOKEN=ghs_secret")
+
+        def interrupt(*a):
+            raise KeyboardInterrupt()
+        cases = [(boom, False, app_token.REVOKE_UNCONFIRMED), (boom, True, 125), (interrupt, True, 130),
+                 (lambda *a: 124, True, 124), (lambda *a: 0, False, app_token.REVOKE_UNCONFIRMED)]
+        for runner, revoked, expected in cases:
+            calls = []
+            with self.subTest(expected=expected), redirect_stdout(io.StringIO()) as out:
+                code = app_token.finish("ghs_secret", exp, {"contents": "read"}, ["x"], "question-zero", "q0-inquiry",
+                                        runner=runner, revoker=lambda t: calls.append(t) or revoked)
+                self.assertEqual(code, expected)
+                self.assertEqual(calls, ["ghs_secret"])
+                self.assertNotIn("ghs_secret", out.getvalue())
+
+    def test_approve_reads_a_private_repository_through_a_revoked_temporary_token(self):  # GPT-6 round 2, AC3
+        class AuthFake(Fake):
+            def __call__(self, method, path, auth, data=None):
+                if not auth:
+                    raise PermissionError("authentication required")
+                if method == "POST":
+                    self.calls.append((method, path, data))
+                    return {"token": "ghs_lookup", "repositories": [{"id": 2002, "full_name": "question-zero/q0-sandbox"}],
+                            "permissions": {"metadata": "read"}}
+                return super().__call__(method, path, auth, data)
+        creds = dict(CREDS, slug="question-zero-editor-sandbox")
+        fake = AuthFake(slug="question-zero-editor-sandbox")
+        with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()):
+            self.assertIsNone(app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=fake))
+            posts = [c for c in fake.calls if c[0] == "POST"]
+            self.assertEqual(posts[0][2], {"repositories": ["q0-sandbox"], "permissions": {"metadata": "read"}})
+            self.assertIn(("DELETE", "/installation/token", None), fake.calls)
+            mapping = app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", 7, td, caller=fake)
+            self.assertEqual(mapping["repositories"]["q0-sandbox"], {"owner": "question-zero", "id": 2002})
+        bad = AuthFake(slug="question-zero-editor-sandbox", revoke_fails=True)
+        with tempfile.TemporaryDirectory() as td, redirect_stdout(io.StringIO()), self.assertRaises(SystemExit) as cm:
+            app_token.approve(creds, "question-zero-editor-sandbox", "q0-sandbox", None, td, caller=bad)
+        self.assertEqual(cm.exception.code, app_token.REVOKE_UNCONFIRMED)
 
     def test_an_unconfirmed_revocation_is_a_distinct_failure(self):
         with self.assertRaises(SystemExit) as cm:
