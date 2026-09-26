@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-24
 # attribution: self-declared
-# prompt: Founder, verbatim: "go ahead with the header checker". Revision 2 applies GPT-6 findings HC1-HC5. Revision 3 runs every offline test and the index check, as step 17 of the launch does (proposals/2026-09-25-claude-opus-5-5-github-settings.md).
+# prompt: Founder, verbatim: "go ahead with the header checker". Revision 2 applies GPT-6 findings HC1-HC5. Revision 3 runs every offline test and the index check, as step 17 of the launch does (proposals/2026-09-25-claude-opus-5-5-github-settings.md). Revision 4 installs a pinned cryptography, so the GitHub App helper tests run in this required check and fail if it is missing (GPT-6 AC9, critiques/2026-09-26-gpt-6--automation-code-review.md); this change goes through the founder's account, the owner route for workflow files.
 # license: MIT (LICENSE-CODE)
 #
 # Runs tools/check_headers.py and its tests on every pull request and on pushes
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml==6.0.3
+      - run: pip install pyyaml==6.0.3 cryptography==49.0.0
       - run: git config --global user.email "ci@example.invalid" && git config --global user.name "ci"
       - run: python -m unittest discover -s tools -p "test_*.py"
       - run: python tools/check_headers.py

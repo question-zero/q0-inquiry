@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/validate_round_03_response.py and tools/render_round_03_feedback.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), covering the fixtures GPT-6 listed for D1 and D2 that apply to code without GitHub: parity with extraction, optional fields and unknowns, partial assessments, unresolved declarations, processing limits, ambiguous form headings, injected markup, Unicode and newlines, and the renderer's schema and source binding. Synthetic data only.
+# prompt: Offline tests for tools/validate_round_03_response.py and tools/render_round_03_feedback.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), covering the fixtures GPT-6 listed for D1 and D2 that apply to code without GitHub: parity with extraction, optional fields and unknowns, partial assessments, unresolved declarations, processing limits, ambiguous form headings, injected markup, Unicode and newlines, and the renderer's schema and source binding. Revision 2 adds GPT-6's AC4, AC6, AC7 and AC8 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md). Synthetic data only.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the Round 3 advisory feedback. Run: python -m unittest tools/test_validate_round_03.py
 
@@ -177,34 +177,73 @@ class Limits(Base):
         r = self.run_file(("---\n" + deep + "---\n\n").encode())
         self.assertIn("not_checked_yaml_limits", r["codes"])
 
+    def test_limits_apply_before_construction(self):  # GPT-6 AC6: 600 nested sequences raised RecursionError
+        for header in ("x: " + "[" * 600 + "0" + "]" * 600 + "\n", "x: " + "{a: " * 600 + "0" + "}" * 600 + "\n",
+                       "\n".join(f"k{i}: {i}" for i in range(3000)) + "\n"):
+            with self.subTest(size=len(header)):
+                r = self.run_file(("---\n" + header + "---\n\n").encode())
+                self.assertEqual(r["codes"], ["not_checked_yaml_limits"])
+                self.assertFalse(r["checked"])
+
+    def test_field_shapes(self):  # GPT-6 AC7
+        r = self.run_file(self.response_file(block("p014"), operator="", round="02-deliberation", samples="many"))
+        self.assertTrue({"field_blank:operator", "round_not_03_open", "samples_malformed"} <= set(r["codes"]))
+
     def test_not_utf8_is_not_checked(self):
         r = self.run_file(b"---\ntype: x\n---\n\n\xff\xfe")
         self.assertEqual(r["codes"], ["not_checked_not_utf8"])
 
 
 class Forms(Base):
-    def test_duplicated_heading_is_flagged_not_guessed(self):
-        body = self.issue_body(block("p014")) + b"\n### Rights\n\nsomething else\n"
-        self.assertIn("form_heading_duplicated", self.run_issue(body)["codes"])
+    def test_duplicated_heading_is_flagged_not_guessed(self):  # GPT-6 AC7
+        for extra in (b"\n### Rights\n\nsomething else\n", b"\n### The answer\n\n" + block("p019").encode()):
+            with self.subTest(extra=extra[:20]):
+                r = self.run_issue(self.issue_body(block("p014")) + extra)
+                self.assertIn("form_heading_duplicated", r["codes"])
+                self.assertFalse(r["checked"])
+                self.assertEqual(r["assessments"], {})
 
-    def test_text_before_the_first_heading_is_flagged(self):
-        body = b"hello\n### Something\n\n" + self.issue_body(block("p014"))
-        self.assertIn("form_heading_unknown", self.run_issue(body)["codes"])
+    def test_text_before_the_first_heading_is_flagged(self):  # GPT-6 AC7
+        for prefix in (b"hello\n", b"hello\n### Something\n\n"):
+            with self.subTest(prefix=prefix):
+                self.assertIn("form_prefix_text", self.run_issue(prefix + self.issue_body(block("p014")))["codes"])
+
+    def test_a_reserved_heading_inside_the_fenced_answer_stays_in_the_answer(self):  # GPT-6 AC7
+        answer = block("p014") + "\n### Rights\nHeading inside answer\n" + block("p019")
+        r = self.run_issue(self.issue_body(answer))
+        self.assertNotIn("form_heading_duplicated", r["codes"])
+        self.assertEqual((r["assessments"]["p014"], r["assessments"]["p019"]), ("read", "read"))
+        for fence in ("````", "~~~"):
+            with self.subTest(fence=fence):
+                body = self.issue_body(fence + "markdown\n" + answer + "\n" + fence, fence=False)
+                r = self.run_issue(body)
+                self.assertNotIn("form_heading_duplicated", r["codes"])
+
+    def test_conditional_sections_are_required_when_they_apply(self):  # GPT-6 AC7
+        body = self.issue_body(block("p014"))
+        model = body.replace(b"A person, for themselves", b"An AI model, submitted by the person or organization that runs it")
+        self.assertIn("form_field_missing:model", self.run_issue(model)["codes"])
+        relay = body.replace(b"A person, for themselves", b"Someone relaying another participant's answer")
+        self.assertIn("form_field_missing:relay", self.run_issue(relay)["codes"])
+        self.assertFalse([c for c in self.run_issue(body)["codes"] if c.startswith("form_field_missing")])
 
     def test_headings_inside_the_answer_stay_in_the_answer(self):
         answer = "## My answer\n\n### p014\nPosition: support\nConditions: none\nBasis: x\n\n### q001\ntext"
         r = self.run_issue(self.issue_body(answer))
         self.assertEqual(r["assessments"]["p014"], "read")
-        self.assertNotIn("form_heading_unknown", r["codes"])
+        self.assertFalse({"form_heading_unexpected", "form_prefix_text"} & set(r["codes"]))
 
     def test_unfenced_answer_and_crlf_and_unicode(self):
         answer = "p014\r\nPosition: support\r\nConditions: none\r\nBasis: é 漢字 — ok\r\n"
         r = self.run_issue(self.issue_body(answer, fence=False).replace(b"\n", b"\r\n"))
         self.assertEqual(r["assessments"]["p014"], "read")
 
-    def test_issue_version_is_the_body_digest(self):
+    def test_issue_version_is_the_complete_body_digest(self):  # GPT-6 AC6
         body = self.issue_body(block("p014"))
         self.assertEqual(self.run_issue(body)["version"], hashlib.sha256(body).hexdigest())
+        big = body + b"x" * v.MAX_BYTES
+        r = self.run_issue(big)
+        self.assertEqual((r["version"], r["checked"]), (hashlib.sha256(big).hexdigest(), False))
 
 
 class Renderer(Base):
@@ -213,31 +252,55 @@ class Renderer(Base):
         r.update(over)
         return r
 
+    def rev(self):
+        return self.git("rev-parse", "HEAD").strip()
+
     def test_renders_fixed_text_only(self):
         answer = "p014\nPosition: support\nConditions: none\nBasis: @someone <script>x</script> [link](http://e)\n"
         r = self.run_file(self.response_file(answer, author="@everyone <b>"))
-        text = rf.render(r, "file", 5, SHA, self.repo)
+        text = rf.render(r, "file", 5, SHA, self.rev(), self.repo)
         for bad in ("@someone", "<script>", "http://e", "@everyone", "<b>"):
             self.assertNotIn(bad, text)
         self.assertTrue(text.startswith(rf.MARKER))
 
-    def test_refuses_a_result_for_another_item_or_version(self):
+    def test_refuses_a_result_for_another_item_version_or_revision(self):  # GPT-6 AC4
         r = self.result()
-        for args in (("issue", 5, SHA), ("file", 6, SHA), ("file", 5, "b" * 40)):
+        for args in (("issue", 5, SHA, self.rev()), ("file", 6, SHA, self.rev()), ("file", 5, "b" * 40, self.rev()),
+                     ("file", 5, SHA, "c" * 40)):
             with self.subTest(args=args), self.assertRaises(ValueError):
                 rf.render(r, *args, repo=self.repo)
+        issue = self.run_issue(self.issue_body(block("p014")))
+        with self.assertRaises(ValueError):
+            rf.render(issue, "issue", 7, "f" * 64, self.rev(), self.repo)
 
-    def test_refuses_a_result_that_fails_the_schema(self):
+    def test_refuses_a_result_that_fails_the_schema(self):  # GPT-6 AC4: relations as well as types
         for over in ({"codes": ["<img src=x>"]}, {"assessments": {"p999": "read"}}, {"extra": 1},
-                     {"version": "not-hex"}, {"counts": {"read": 1}}, {"number": True}):
+                     {"version": "not-hex"}, {"counts": {"read": 1}}, {"number": True},
+                     {"counts": {"read": 3, "not_assessed": 0, "unparseable": 0, "incomplete": 0, "conflicting": 0}},
+                     {"checked": False}, {"codes": ["not_checked_too_large"]}, {"version": "a" * 64}):
             r = self.result()
             r.update(over)
             with self.subTest(over=over), self.assertRaises(ValueError):
-                rf.render(r, "file", 5, SHA, self.repo)
+                rf.render(r, "file", 5, r["version"], self.rev(), self.repo)
 
     def test_problem_blocks_are_listed_by_id_only(self):
-        text = rf.render(self.result(), "file", 5, SHA, self.repo)
+        text = rf.render(self.result(), "file", 5, SHA, self.rev(), self.repo)
         self.assertIn("`p014`: more than one block", text)
+
+    def test_rights_and_trusted_values(self):  # GPT-6 AC8
+        r = self.run_file(self.response_file(block("p001"), rights="unknown",
+                                             input_set="round/03-open/v1 @ " + "b" * 40))
+        text = rf.render(r, "file", 5, SHA, self.rev(), self.repo)
+        self.assertIn("does not authorize posting output you cannot publish under CC BY 4.0", text)
+        self.assertIn(self.launch, text)
+        self.assertNotIn("1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d", text)
+        self.assertIn("one of this round's 3 candidates", text)
+        self.assertIn("2026-10-26T23:59:59Z", text)
+        declared = rf.render(self.run_file(self.response_file(block("p014"))), "file", 5, SHA, self.rev(), self.repo)
+        self.assertIn("cannot determine whether the declaration or publication rights are complete or valid", declared)
+
+    def test_every_code_has_a_sentence(self):
+        self.assertEqual(set(rf.SENTENCES) | set(rf.TRUSTED_SENTENCES), v.CODES)
 
 
 if __name__ == "__main__":

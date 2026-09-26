@@ -4,16 +4,17 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one trusted commit for both jobs; runs for every pull request and issue event so removals are seen; publication serialized per item without cancelling a write in progress; parser memory and time bounds.
 # license: MIT (LICENSE-CODE)
 #
-# Security boundary (proposal, D2, GPT-6 GA3):
-# - Runs only trusted code from the default branch. It never checks out, installs, imports or runs anything from a
-#   pull request; response files are fetched through the API as data by tools/round_03_feedback_job.py.
-# - pull_request_target and issues give this workflow the base repository's context. That is why no step reads
-#   event fields through ${{ }} in a shell; the job script reads the event payload file as JSON.
+# Security boundary (proposal, D2, GPT-6 GA3 and AC4):
+# - Runs only trusted code: the parse job checks out the default branch once, records that commit, and the publish job
+#   checks out exactly that commit and verifies it. Nothing from a pull request is checked out, installed, imported
+#   or run; response files are fetched through the API as data by tools/round_03_feedback_job.py.
+# - pull_request_target and issues give this workflow the base repository's context. No step reads event fields
+#   through ${{ }} in a shell; the job script reads the event payload file as JSON.
 # - The parse job has read-only permissions and no write token. The publish job receives only the typed result,
-#   holds only comment permissions, re-reads the item, and renders from fixed templates.
+#   holds only comment permissions, re-reads the item immediately before writing, and renders from fixed templates.
 # - No secrets and no App key are used. Actions are pinned to commit SHAs.
 # - The job names differ from the required `check`; this workflow never sets a required status and never blocks.
 name: Round 3 advisory feedback
@@ -23,31 +24,24 @@ on:
     types: [opened, edited, reopened]
   pull_request_target:
     types: [opened, synchronize, reopened, edited]
-    paths:
-      - "rounds/03-open/responses/**"
 
 permissions: {}
 
-concurrency:
-  group: round-3-feedback-${{ github.event.pull_request.number || github.event.issue.number }}
-  cancel-in-progress: true
-
 jobs:
   parse:
-    # Issues from the Round 3 form carry these headings; the check is a routing hint, not proof of origin.
-    if: >-
-      vars.Q0_ROUND3_FEEDBACK == 'on' &&
-      (github.event_name == 'pull_request_target' ||
-       (contains(github.event.issue.body, '### Which text was answered?') &&
-        contains(github.event.issue.body, '### The answer')))
+    if: vars.Q0_ROUND3_FEEDBACK == 'on'
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    concurrency:
+      group: round-3-feedback-parse-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: true
     permissions:
       contents: read
       pull-requests: read
       issues: read
     outputs:
       result: ${{ steps.validate.outputs.result }}
+      trusted_sha: ${{ steps.validate.outputs.trusted_sha }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
@@ -59,15 +53,21 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml==6.0.3
       - id: validate
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python tools/round_03_feedback_job.py parse
+        run: |
+          ulimit -v 2097152
+          timeout 120 python tools/round_03_feedback_job.py parse
 
   publish:
     needs: parse
     if: vars.Q0_ROUND3_FEEDBACK == 'on' && needs.parse.outputs.result != ''
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    concurrency:
+      group: round-3-feedback-publish-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: false
     permissions:
       contents: read
       issues: write
@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ needs.parse.outputs.trusted_sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
@@ -85,4 +85,5 @@ jobs:
       - env:
           GH_TOKEN: ${{ github.token }}
           RESULT: ${{ needs.parse.outputs.result }}
+          TRUSTED_SHA: ${{ needs.parse.outputs.trusted_sha }}
         run: python tools/round_03_feedback_job.py publish

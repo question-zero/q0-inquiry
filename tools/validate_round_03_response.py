@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6 in topic github-automation, round 3). The founder chose, verbatim: "All three below (Recommended)", which included building the D1 and D2 code for GPT-6's code review. Advisory feedback only: procedure, never positions or quoted text, never a gate.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6 in topic github-automation, round 3). The founder chose, verbatim: "All three below (Recommended)", which included building the D1 and D2 code for GPT-6's code review. Advisory feedback only: procedure, never positions or quoted text, never a gate. Revision 2 applies GPT-6's AC4, AC6 and AC7 (critiques/2026-09-26-gpt-6--automation-code-review.md): relational schema checks, YAML limits enforced on the event stream before construction, fence-aware form sections with no guessing, conditional provenance fields, field shapes, and the full-body digest as an issue's identity.
 # license: MIT (LICENSE-CODE)
 """Advisory feedback for one Round 3 response: can the editor read it? Procedure only.
 
@@ -19,8 +19,9 @@ statuses, counts and identifiers. No text from the input is ever copied into it,
 reach a public comment. The same classification as extraction is used: tools/extract_round_03_assessments.classify.
 
 The result is advice. It is not intake, not a receipt, and not a decision about eligibility. A limit that stops a check
-is reported as `not_checked`, never as a rejection. Partial assessment is valid; an undeclared grant is an unresolved
-intake requirement, not a format error; a filled field or a ticked box verifies nothing.
+is reported as not checked, never as a rejection. Partial assessment is valid; an undeclared grant is an unresolved
+intake requirement, not a format error; a filled field or a ticked box verifies nothing. An ambiguous form layout is
+reported, never resolved by guessing which section is meant.
 """
 import argparse
 import hashlib
@@ -35,26 +36,29 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import extract_round_03_assessments as ex  # noqa: E402
 
-SCHEMA = "q0-round3-feedback/1"
+SCHEMA = "q0-round3-feedback/2"
 MAX_BYTES = 512 * 1024          # a response is typically under 40 KB
 MAX_YAML_NODES = 2000
 MAX_YAML_DEPTH = 20
 FORM = ".github/ISSUE_TEMPLATE/round-3-response.yml"
 NO_RESPONSE = "_No response_"   # what GitHub renders for an empty optional form field
+ROUTING_HEADINGS = ("### Which text was answered?", "### The answer")
 
+# Codes that mean this tool did not (or could not) check the response. With any of them, checked is false.
+NOT_CHECKED = {"not_checked_too_large", "not_checked_not_utf8", "not_checked_yaml_limits", "form_heading_duplicated",
+               "pr_file_not_regular_or_too_large", "incomplete_retrieval", "no_current_response"}
 # Every code the validator may emit. The renderer refuses anything else.
-CODES = {
-    "not_checked_too_large", "not_checked_not_utf8", "not_checked_yaml_limits",
+CODES = NOT_CHECKED | {
     "header_missing", "header_unparseable", "header_not_a_mapping", "type_not_round_response",
-    "receipt_present",
+    "round_not_03_open", "samples_malformed", "receipt_present",
     "input_set_ok", "input_set_mismatch", "input_set_missing",
     "rights_declared", "rights_unresolved",
     "grant_box_unticked", "consent_box_unticked", "never_post_box_unticked",
-    "form_heading_duplicated", "form_heading_unknown", "answer_empty",
+    "form_prefix_text", "form_heading_unexpected", "answer_empty",
     "no_assessment_found", "assessment_ids_not_candidates",
-    "pr_several_response_files", "pr_file_not_regular_or_too_large",
+    "pr_several_response_files",
 }
-FIELD_CODE = re.compile(r"^(field_missing|form_field_missing):[a-z_]+$")
+FIELD_CODE = re.compile(r"^(field_missing|field_blank|form_field_missing):[a-z_]+$")
 STATUSES = {"read", "not_assessed", "unparseable", "incomplete", "conflicting"}
 RESULT_KEYS = {"schema", "route", "number", "version", "validator_revision", "checked", "codes", "assessments",
                "counts"}
@@ -63,6 +67,11 @@ RESULT_KEYS = {"schema", "route", "number", "version", "validator_revision", "ch
 TEMPLATE_FIELDS = ("type", "title", "author", "model", "developer", "participant_id", "run", "setup", "operator",
                    "submitting_account", "rights", "attribution", "date", "prompt", "round", "input_set",
                    "exposure", "human_interventions", "samples", "lifecycle")
+FORM_IDS = {"who", "name", "input_set", "model", "added_instructions", "interventions", "relay", "operator",
+            "rights", "exposure", "answer", "consent"}
+# The form's conditional requirements (PARTICIPATE.md and the form's own descriptions).
+NEEDS_MODEL = {"An AI model, submitted by the person or organization that runs it", "An AI agent, acting on its own"}
+NEEDS_RELAY = {"Someone relaying another participant's answer"}
 
 
 def status_of(result_status):
@@ -72,24 +81,24 @@ def status_of(result_status):
 
 
 def safe_yaml(text):
-    """Parse YAML front matter with limits: no anchors or aliases, a bounded node count and depth."""
-    for token in yaml.scan(text, Loader=yaml.SafeLoader):
-        if isinstance(token, (yaml.AnchorToken, yaml.AliasToken, yaml.TagToken)):
-            raise ValueError("limits")
-    root = yaml.compose(text, Loader=yaml.SafeLoader)
-    count = 0
-    stack = [(root, 1)] if root is not None else []
-    while stack:
-        node, depth = stack.pop()
-        count += 1
-        if count > MAX_YAML_NODES or depth > MAX_YAML_DEPTH:
-            raise ValueError("limits")
-        if isinstance(node, yaml.MappingNode):
-            for k, v in node.value:
-                stack += [(k, depth + 1), (v, depth + 1)]
-        elif isinstance(node, yaml.SequenceNode):
-            stack += [(v, depth + 1) for v in node.value]
-    return yaml.safe_load(text)
+    """Parse YAML with limits enforced on the event stream, before any node tree is built: no anchors, aliases or
+    explicit tags, bounded node count and depth. Raises ValueError("limits") when a limit is hit."""
+    depth = nodes = 0
+    try:
+        for ev in yaml.parse(text, Loader=yaml.SafeLoader):
+            if isinstance(ev, yaml.AliasEvent) or getattr(ev, "anchor", None) or getattr(ev, "tag", None):
+                raise ValueError("limits")
+            if isinstance(ev, (yaml.ScalarEvent, yaml.SequenceStartEvent, yaml.MappingStartEvent)):
+                nodes += 1
+            if isinstance(ev, (yaml.SequenceStartEvent, yaml.MappingStartEvent)):
+                depth += 1
+            elif isinstance(ev, (yaml.SequenceEndEvent, yaml.MappingEndEvent)):
+                depth -= 1
+            if nodes > MAX_YAML_NODES or depth > MAX_YAML_DEPTH:
+                raise ValueError("limits")
+        return yaml.safe_load(text)
+    except (RecursionError, MemoryError):
+        raise ValueError("limits") from None
 
 
 def blank(value):
@@ -97,6 +106,7 @@ def blank(value):
 
 
 def unresolved_rights(value):
+    """A conservative advisory hint only; its absence is never clearance."""
     if blank(value):
         return True
     s = str(value).strip().lower()
@@ -144,8 +154,16 @@ def check_file(text, cand_ids, launch, codes):
     for field in TEMPLATE_FIELDS:
         if field not in fm:
             codes.add(f"field_missing:{field}")
-    if fm.get("type") != "round-response":
+        elif blank(fm[field]):
+            codes.add(f"field_blank:{field}")
+    if "type" in fm and fm["type"] != "round-response":
         codes.add("type_not_round_response")
+    if "round" in fm and str(fm["round"]).strip() != ex.ROUND:
+        codes.add("round_not_03_open")
+    s = fm.get("samples")
+    if "samples" in fm and not (isinstance(s, dict) and all(isinstance(s.get(k), int) and not isinstance(s.get(k), bool)
+                                                            for k in ("generated", "submitted"))):
+        codes.add("samples_malformed")
     if "receipt" in fm:
         codes.add("receipt_present")
     check_input_set(fm.get("input_set"), launch, codes)
@@ -155,7 +173,7 @@ def check_file(text, cand_ids, launch, codes):
 
 
 def form_fields(repo):
-    """{label: (id, type, required)} from the trusted form definition in this checkout."""
+    """{label: (id, type, required, options)} from the trusted form definition in this checkout."""
     form = yaml.safe_load((repo / FORM).read_text(encoding="utf-8"))
     out = {}
     for item in form["body"]:
@@ -168,39 +186,62 @@ def form_fields(repo):
 
 
 def split_issue(body, labels):
-    """{label: value} for '### Label' sections; duplicated or unknown headings are reported, never guessed."""
-    sections, current, dup, unknown = {}, None, False, False
+    """({label: value}, flags) for the form's '### Label' sections.
+
+    Headings inside a fenced block are content, so a heading inside the answer never splits it. A recognized heading
+    that appears twice is reported, and neither copy is used. Non-blank text before the first heading, and unknown
+    '### ' headings between sections, are reported."""
+    sections, flags, current, fence = {}, set(), None, None
     for line in body.split(ex.NL):
+        stripped = line.strip()
+        if fence:
+            if re.fullmatch(re.escape(fence[0]) + "{" + str(len(fence)) + r",}\s*", stripped):
+                fence = None
+            if current is not None:
+                sections[current].append(line)
+            continue
+        opening = re.match(r"(`{3,}|~{3,})", stripped)
+        if opening and current is not None:
+            fence = opening.group(1)
+            sections[current].append(line)
+            continue
         if line.startswith("### "):
             label = line[4:].strip()
             if label in labels:
                 if label in sections:
-                    dup = True
+                    flags.add("form_heading_duplicated")
                 current = label
                 sections[label] = []
                 continue
-            if current is None:
-                unknown = True
+            flags.add("form_heading_unexpected" if current is not None else "form_prefix_text")
+        elif current is None and stripped:
+            flags.add("form_prefix_text")
+            continue
         if current is not None:
             sections[current].append(line)
-    return {k: ex.NL.join(v).strip() for k, v in sections.items()}, dup, unknown
+    return {k: ex.NL.join(v).strip() for k, v in sections.items()}, flags
 
 
 def unfence(value):
     """GitHub renders a `render: markdown` textarea inside a markdown code fence; remove that one wrapper."""
     lines = value.split(ex.NL)
-    if len(lines) >= 2 and re.fullmatch(r"```\s*markdown\s*", lines[0]) and lines[-1].strip() == "```":
-        return ex.NL.join(lines[1:-1])
+    if len(lines) >= 2 and re.fullmatch(r"(`{3,})\s*markdown\s*", lines[0]):
+        fence = re.match(r"`+", lines[0]).group(0)
+        if re.fullmatch(re.escape(fence[0]) + "{" + str(len(fence)) + r",}\s*", lines[-1].strip()):
+            return ex.NL.join(lines[1:-1])
     return value
+
+
+def is_form_issue(text):
+    return all(h in text for h in ROUTING_HEADINGS)
 
 
 def check_issue(text, repo, cand_ids, launch, codes):
     fields = form_fields(repo)
-    sections, dup, unknown = split_issue(text.replace("\r\n", ex.NL), set(fields))
-    if dup:
-        codes.add("form_heading_duplicated")
-    if unknown:
-        codes.add("form_heading_unknown")
+    sections, flags = split_issue(text.replace("\r\n", ex.NL), set(fields))
+    codes |= flags
+    if "form_heading_duplicated" in flags:
+        return None
     values = {}
     for label, (fid, ftype, required, options) in fields.items():
         raw = sections.get(label)
@@ -214,6 +255,11 @@ def check_issue(text, repo, cand_ids, launch, codes):
                     codes.add(code)
         elif required and blank(value):
             codes.add(f"form_field_missing:{fid}")
+    who = (values.get("who") or "").strip()
+    if who in NEEDS_MODEL and blank(values.get("model")):
+        codes.add("form_field_missing:model")
+    if who in NEEDS_RELAY and blank(values.get("relay")):
+        codes.add("form_field_missing:relay")
     check_input_set(values.get("input_set"), launch, codes)
     codes.add("rights_unresolved" if unresolved_rights(values.get("rights")) else "rights_declared")
     answer = unfence(values.get("answer") or "")
@@ -230,31 +276,15 @@ def revision(repo):
         return "unknown"
 
 
-def validate(route, data, number, version, repo=ex.REPO):
-    """The typed result for one response. `data` is bytes; nothing from it is copied into the result."""
-    codes, assessments, checked = set(), {}, True
-    if route == "issue":
-        version = hashlib.sha256(data).hexdigest()
-    cands, _ = ex.manifest_at_tag(repo)
-    cand_ids = list(cands)
+def trusted_inputs(repo):
+    """(candidate IDs, launch commit, closes_utc) from the pinned tag in this trusted checkout."""
+    cands, closes = ex.manifest_at_tag(repo)
     launch = ex.git(repo, "rev-parse", f"{ex.TAG}^{{commit}}").strip()
-    if len(data) > MAX_BYTES:
-        codes.add("not_checked_too_large")
-        checked = False
-    else:
-        try:
-            text = data.decode("utf-8")
-        except UnicodeDecodeError:
-            codes.add("not_checked_not_utf8")
-            checked = False
-            text = None
-        if text is not None:
-            got = (check_issue(text, repo, cand_ids, launch, codes) if route == "issue"
-                   else check_file(text.replace("\r\n", ex.NL), cand_ids, launch, codes))
-            if got is None:
-                checked = "not_checked_yaml_limits" not in codes
-            else:
-                assessments = got
+    return list(cands), launch, closes
+
+
+def build(route, number, version, repo, codes, assessments, checked):
+    cand_ids, _, _ = trusted_inputs(repo)
     counts = {s: sum(1 for v in assessments.values() if v == s) for s in sorted(STATUSES)}
     result = {"schema": SCHEMA, "route": route, "number": int(number), "version": version,
               "validator_revision": revision(repo), "checked": checked, "codes": sorted(codes),
@@ -265,42 +295,81 @@ def validate(route, data, number, version, repo=ex.REPO):
     return result
 
 
+def no_current_response(route, number, version, repo=ex.REPO):
+    """The result that replaces earlier feedback when the item no longer holds a recognizable response."""
+    return build(route, number, version, repo, {"no_current_response"}, {}, False)
+
+
+def incomplete(route, number, version, repo=ex.REPO, extra=()):
+    return build(route, number, version, repo, {"incomplete_retrieval", *extra}, {}, False)
+
+
+def validate(route, data, number, version, repo=ex.REPO):
+    """The typed result for one response. `data` is the complete source bytes; nothing from it is copied into the
+    result. For an issue, the version is the SHA-256 of the complete body, whatever limits apply to parsing."""
+    codes, assessments = set(), {}
+    if route == "issue":
+        version = hashlib.sha256(data).hexdigest()
+    cand_ids, launch, _ = trusted_inputs(repo)
+    if len(data) > MAX_BYTES:
+        codes.add("not_checked_too_large")
+    else:
+        try:
+            text = data.decode("utf-8")
+        except UnicodeDecodeError:
+            codes.add("not_checked_not_utf8")
+            text = None
+        if text is not None:
+            got = (check_issue(text, repo, cand_ids, launch, codes) if route == "issue"
+                   else check_file(text.replace("\r\n", ex.NL), cand_ids, launch, codes))
+            if got is not None:
+                assessments = got
+    checked = not (codes & NOT_CHECKED)
+    if not checked:
+        assessments = {}
+        codes = {c for c in codes if c in NOT_CHECKED or c.startswith("pr_")}
+    return build(route, number, version, repo, codes, assessments, checked)
+
+
 def schema_problems(result, cand_ids):
-    """Strict schema check, shared by the validator and the renderer. Returns a list of problems (empty if valid)."""
-    p = []
+    """Strict schema check, shared by the validator and the renderer, including the relations between fields.
+    Returns a list of problems (empty if valid)."""
     if not isinstance(result, dict) or set(result) != RESULT_KEYS:
         return ["keys"]
+    p = []
     if result["schema"] != SCHEMA:
         p.append("schema")
-    if result["route"] not in ("file", "issue"):
+    route = result["route"]
+    if route not in ("file", "issue"):
         p.append("route")
     if not isinstance(result["number"], int) or isinstance(result["number"], bool) or not 0 < result["number"] < 10**7:
         p.append("number")
-    if not isinstance(result["version"], str) or not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", result["version"]):
+    want = {"file": r"[0-9a-f]{40}", "issue": r"[0-9a-f]{64}"}.get(route, r"$^")
+    if not isinstance(result["version"], str) or not re.fullmatch(want, result["version"]):
         p.append("version")
-    if not isinstance(result["validator_revision"], str) or not re.fullmatch(r"[0-9a-f]{40}|unknown",
+    if not isinstance(result["validator_revision"], str) or not re.fullmatch(r"[0-9a-f]{40}",
                                                                              result["validator_revision"]):
         p.append("validator_revision")
-    if not isinstance(result["checked"], bool):
+    checked, codes, a, c = result["checked"], result["codes"], result["assessments"], result["counts"]
+    if not isinstance(checked, bool):
         p.append("checked")
-    codes = result["codes"]
-    if not isinstance(codes, list) or len(codes) > 80 or not all(
-            isinstance(c, str) and (c in CODES or (FIELD_CODE.match(c) and c.split(":")[1] in
-                                                   set(TEMPLATE_FIELDS) | FORM_IDS)) for c in codes):
+    ok_codes = isinstance(codes, list) and len(codes) <= 80 and codes == sorted(set(codes)) and all(
+        isinstance(x, str) and (x in CODES or (FIELD_CODE.match(x) and x.split(":")[1] in
+                                               set(TEMPLATE_FIELDS) | FORM_IDS)) for x in codes)
+    if not ok_codes:
         p.append("codes")
-    a = result["assessments"]
-    if not isinstance(a, dict) or not all(k in cand_ids and v in STATUSES for k, v in a.items()) or (
-            a and set(a) != set(cand_ids)):
+    if not isinstance(a, dict) or not all(k in cand_ids and v in STATUSES for k, v in a.items()):
         p.append("assessments")
-    c = result["counts"]
-    if not isinstance(c, dict) or set(c) != STATUSES or not all(
-            isinstance(v, int) and not isinstance(v, bool) and 0 <= v <= len(cand_ids) for v in c.values()):
+    elif not isinstance(c, dict) or set(c) != STATUSES or c != {
+            s: sum(1 for v in a.values() if v == s) for s in sorted(STATUSES)}:
         p.append("counts")
+    if ok_codes and isinstance(a, dict) and isinstance(checked, bool):
+        stopped = bool(set(codes) & NOT_CHECKED)
+        if checked and (stopped or set(a) != set(cand_ids)):
+            p.append("state")
+        if not checked and (not stopped or a):
+            p.append("state")
     return p
-
-
-FORM_IDS = {"who", "name", "input_set", "model", "added_instructions", "interventions", "relay", "operator",
-            "rights", "exposure", "answer", "consent"}
 
 
 def main(argv=None):
@@ -311,7 +380,8 @@ def main(argv=None):
     ap.add_argument("--version", default="0" * 40, help="the pull request's head SHA (file route)")
     ap.add_argument("--repo", default=str(ex.REPO))
     a = ap.parse_args(argv)
-    data = Path(a.path).read_bytes()[:MAX_BYTES + 1]
+    with open(a.path, "rb") as f:
+        data = f.read(MAX_BYTES + 1)
     print(json.dumps(validate(a.route, data, a.number, a.version, Path(a.repo)), sort_keys=True))
 
 
