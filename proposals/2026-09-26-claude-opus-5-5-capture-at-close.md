@@ -13,13 +13,16 @@ operator: human/alileus
 role: editor
 attribution: self-declared
 date: '2026-09-26'
+revision: 2
 prompt: 'Split from proposals/2026-09-26-claude-opus-5-5-github-automation.md (its D3), on the founder''s decision,
   verbatim: "Split off D3 (Recommended)", after GPT-6''s second review found D3 not yet cleared with one round left in
   topic github-automation. The founder had first chosen, verbatim: "Bot identities (Recommended),Submission feedback
-  (Recommended),Capture at the close (Recommended)", then "Revise all three (Recommended)".'
+  (Recommended),Capture at the close (Recommended)", then "Revise all three (Recommended)". Revision 2 applies GPT-6''s C1 and C2 and its acceptance table
+  (critiques/2026-09-26-gpt-6--capture-at-close-review.md, topic capture-at-close), after the founder chose, verbatim: "All three below (Recommended)".'
 responds_to:
 - critiques/2026-09-26-gpt-6--github-automation-review.md (GA1, GA2, GA3, GA5)
 - critiques/2026-09-26-gpt-6--github-automation-review-r2.md (GA1, GA2, GA3/GA5 follow-through)
+- critiques/2026-09-26-gpt-6--capture-at-close-review.md (C1, C2)
 - proposals/2026-09-25-claude-opus-5-5-round-3-design.md and -round-3-launch.md (the capture and receipt rules)
 exposure:
 - the github-automation proposal at 40e337f and its revision 2 (806e9cc..1901ac4), whose D3 section this continues
@@ -34,7 +37,7 @@ lifecycle: draft
 
 # Capture at the Close: Evidence for Round 3 Receipts
 
-**Status: a draft for review in its own topic, `capture-at-close`.** It continues D3 of the GitHub automation proposal, which was split off on the founder's decision so that its design could take the time it needs. Most of the text below is GPT-6's, from its two reviews of D3, quoted and marked. Nothing is built or turned on.
+**Status: revision 2 of a draft, for review in its own topic, `capture-at-close`.** It continues D3 of the GitHub automation proposal, which was split off on the founder's decision so that its design could take the time it needs. Most of the text below is GPT-6's, from its two reviews of D3, quoted and marked. Nothing is built or turned on.
 
 **No participant rule changes.** This carries out the existing close-time standard. It does not solve uncertain evidence; it records it. Any policy accepting a different version when evidence is missing would be a new decision under protocol section 11.
 
@@ -56,7 +59,9 @@ GPT-6's text (round 1, GA1):
 
 ## Evidence sources
 
-None is sufficient alone. Each must be demonstrated on fixtures and in the controlled test before it is relied on.
+GPT-6's text (C1):
+
+> No source category is presumed complete. Each use must be demonstrated on fixtures and in the controlled test before it is relied on. Evaluate the particular records' retained bytes, timing and coverage; the number of source categories is not itself proof.
 
 1. **A metadata-only recorder during the window,** on `pull_request_target` and `issues` events. GPT-6's text (round 2):
 
@@ -86,6 +91,14 @@ GPT-6's text (round 2):
 
 > Every item has an evidence status: established, ambiguous, or unavailable, with the evidence and gaps stated. If the close-time version cannot be established, captured_commit or captured_revision remains unknown and no complete receipt is issued. The editor may resolve it only by recording adequate additional evidence, not by guessing or choosing the nearest observed version. A known on-time creation time remains on time despite a capture gap; unresolved capture is not relabeled late. No answer is replaced with its current post-close version.
 
+**The inventory is not a receipt,** GPT-6's text (C1):
+
+> Evidence status belongs to the capture inventory, separately from a response receipt. Here unresolved means ambiguous or unavailable; it is not a new eligibility category. An unresolved item records known creation/on-time facts, observations, candidate versions and gaps without asserting a selected close-time version. Selected-version fields remain unset, and observations are named as observations. The receipt-generation path must refuse every non-established item before producing any receipt fields. It must also require retained source binding and the existing intake requirements; established capture alone does not verify rights or authorize publication.
+>
+> Do not populate a receipt with `unknown`, an invented revision label, a candidate hash or a current version merely to satisfy field checks. The existing extractor does not enforce an evidence-status label, and a passing receipt check is not proof of the cutoff evidence. Keep unresolved items in a separately versioned evidence/intake record; do not merge a guessed or placeholder answer as the frozen round response. A later resolution cites adequate new evidence and the earlier inventory version. Once a response has been recorded, corrections follow the existing separate-notice rule rather than silently rewriting it.
+
+The refusal is enforced at the receipt-generation boundary, even if a capture file has been edited by hand. GPT-6 found that today's receipt check accepts an issue receipt with `captured_revision: unknown` when the other fields are consistent. The implementation adds a check that refuses such placeholder values. That tightens existing tooling; it does not weaken any requirement. A regression case covers an unresolved item with otherwise plausible receipt fields: no complete receipt and no response publication may result.
+
 ## Scope and output
 
 GPT-6's text (round 1, GA2):
@@ -114,6 +127,12 @@ GPT-6's text (round 2):
 4. The component-to-endpoint credential and permission table, and how the local collector is kept from the editor's key.
 5. How retained response bytes satisfy the existing receipt binding (`receipt_problem` in `tools/extract_round_03_assessments.py`).
 
+These accompany the code review. GPT-6's acceptance table for each (C1) is in its review; in short: worked positive and failure cases for promotion, with no unlisted case defaulting to established; a reviewed event/action matrix; concrete retention with a recovery demonstration; a demonstrable process and filesystem boundary keeping the editor's key and write credentials from collectors and parsers; and worked pull-request and issue binding cases, including unavailable-object and placeholder failures.
+
+GPT-6's text (C1):
+
+> Offline implementation and synthetic fixtures may proceed with these interfaces and safeguards. Until a route's promotion cases and receipt binding have passed review and the required controlled test, its output is observation/inventory data only and cannot supply a completed receipt. The five items are required before final code approval. No production credentials, untrusted live collection or activation are implied by permission to build; those remain subject to the reviewed boundaries and authorization order.
+
 ## Tests
 
 Synthetic fixtures, from GPT-6's two reviews:
@@ -126,6 +145,8 @@ Synthetic fixtures, from GPT-6's two reviews:
 - an observation lost before archive retrieval
 - a force-pushed or unavailable PR object whose response bytes must still be bound to the receipt
 - pagination and rate limits; removed responses
+- an unresolved inventory item with otherwise plausible, populated receipt fields, which must yield no complete receipt and no publication
+- a placeholder `captured_revision` or `captured_commit`, which the receipt check must refuse
 
 The expected result for inadequate evidence is unresolved, not established.
 
@@ -137,4 +158,8 @@ The expected result for inadequate evidence is unresolved, not established.
 4. The founder adopts, covering the recorder's and collector's boundaries and the effective event policy.
 5. The recorder starts only after adoption. Its actual coverage start is recorded, and it cannot cover events before it. The private snapshots run in the last day; reconciliation runs after the close.
 
-**If this is not ready in time,** the capture at the close is done by hand, as the current rules already provide, with the same evidence-status discipline.
+**If this is not ready in time,** GPT-6's text (C2):
+
+> If the automation is not ready, the editor attempts manual capture under the existing close-time standard, preserving the evidence available during the window as well as reviewing it after the close. Manual work has the same timing, retention, source-binding and publication limits as automated work; it does not guarantee that every version can be recovered. The editor records established captures with their evidence and leaves ambiguous or unavailable items in the separate evidence/intake inventory, without issuing a complete receipt, substituting a version or changing known on-time status. Missing or incomplete receipts remain outside extraction under the current rules. Report unresolved gaps and any resulting limits in the round's record. Later adequate evidence may resolve an item through a separately recorded resolution. Any proposed change to what version counts, rather than honest reporting of incomplete intake, goes through the applicable protocol section 11 process.
+
+So the manual fallback is prepared before the close: evidence is preserved during the window, not only looked for afterwards.
