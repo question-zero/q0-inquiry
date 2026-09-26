@@ -4,11 +4,10 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/verify_sandbox_derivation.py (GPT-6's round-2 and round-3 AC9 findings on the sandbox plan): the R, T, D chain, the tag's target, the manifest's candidates and hash, the form's exact default, and the refusal of every other change, including the negative fixtures GPT-6 named (activation only, an arbitrary default, an extra comment in the form). Revision 2 adds missing candidate paths, non-string IDs, an invalid closing time and a symlinked workflow (topic automation-code-ac1). Synthetic repositories only.
+# prompt: Offline tests for tools/verify_sandbox_derivation.py (GPT-6's round-2 and round-3 AC9 findings on the sandbox plan): the R, T, D chain, the tag's target, the manifest's candidates and hash, the form's exact default, and the refusal of every other change, including the negative fixtures GPT-6 named (activation only, an arbitrary default, an extra comment in the form). Revision 2 adds missing candidate paths, non-string IDs, an invalid closing time and a symlinked workflow (topic automation-code-ac1). Revision 3 gives the tests their own form fixture instead of the repository's form, whose default differs in a derived sandbox (the CI failure found in the sandbox test; GPT-6's final-approval follow-up). Synthetic repositories only.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the sandbox derivation check. Run: python -m unittest tools/test_verify_sandbox_derivation.py"""
 import hashlib
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -21,7 +20,10 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import verify_sandbox_derivation as vd  # noqa: E402
 
-FORM_SRC = HERE.parent / vd.FORM
+# The tests' own form: the repository's form changes its default in a derived sandbox, so it is not used here.
+FORM_FIXTURE = (b"name: Round 3 response\nbody:\n  - type: input\n    id: input_set\n    attributes:\n"
+                b"      label: Which text was answered?\n"
+                b"      value: \"round/03-open/v1 @ 1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d\"\n")
 TEXT = "\nSandbox round text.\n"
 
 
@@ -43,8 +45,7 @@ class Derivation(unittest.TestCase):
         self.git("config", "user.name", "t")
         self.put(vd.WORKFLOW_SRC, b"name: x\n")
         self.put(vd.MANIFEST, b"---\ncloses_utc: '2026-10-26T23:59:59Z'\ncandidates: [{id: p014, path: a}]\n---\n\nx\n")
-        (self.repo / vd.FORM).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(FORM_SRC, self.repo / vd.FORM)
+        self.put(vd.FORM, FORM_FIXTURE)
         self.put("tools/validate.py", b"print(1)\n")
         self.r = self.commit("reviewed")
 

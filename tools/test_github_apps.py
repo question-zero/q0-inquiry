@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Revision 4 adds its round-3 AC1 cases (worktree configuration, inspection failure, fixed categories with no setting names in any message) and the approval lookup's exact scope. Revision 5 adds zero and negative repository IDs (topic automation-code-ac1). Synthetic keys and a fake API; no network.
+# prompt: Offline tests for tools/github_apps/ (D1 of proposals/2026-09-26-claude-opus-5-5-github-automation.md). Revision 2 adds GPT-6's AC1-AC3 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the credential helper's destination checks, registration's destination, slug, access-control and failure paths, and minting against an approved identity mapping with returned-scope, expiry and revocation checks. Revision 3 adds GPT-6's round-2 cases: URL-specific repository settings, approval of a private repository through an authentication-enforcing fake, enumerated permission levels, and the final exit status after launch failures. Revision 4 adds its round-3 AC1 cases (worktree configuration, inspection failure, fixed categories with no setting names in any message) and the approval lookup's exact scope. Revision 5 adds zero and negative repository IDs (topic automation-code-ac1). Revision 6 runs the run-and-revoke test's real configuration check against a fresh checkout, so a header that CI's checkout persists doesn't refuse it (the CI failure found in the sandbox test; GPT-6's final-approval follow-up). Synthetic keys and a fake API; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the GitHub App helpers. Run: python -m unittest tools/test_github_apps.py
 
@@ -301,7 +301,12 @@ class Scope(unittest.TestCase):  # GPT-6 AC3
         self.assertEqual(cm.exception.code, app_token.REVOKE_UNCONFIRMED)
 
     def test_run_revokes_and_propagates_child_failure_and_revoke_failure(self):
-        with tempfile.TemporaryDirectory() as td:
+        # Run from a fresh checkout, so the real configuration check sees no settings from the surrounding checkout
+        # (in CI, actions/checkout persists an http.extraheader, which the check correctly refuses).
+        with tempfile.TemporaryDirectory() as td, tempfile.TemporaryDirectory() as clean:
+            subprocess.run(["git", "init", "-q", clean], check=True, capture_output=True)
+            real_check = app_token.config_problems
+            self.enterContext(patch.object(app_token, "config_problems", lambda cwd=None: real_check(clean)))
             (Path(td) / "question-zero-editor.json").write_text(json.dumps(CREDS), encoding="utf-8")
             (Path(td) / "question-zero-editor.approved.json").write_text(json.dumps(APPROVED), encoding="utf-8")
             for child, revoke_ok, expected in ((5, True, 5), (0, False, app_token.REVOKE_UNCONFIRMED)):
