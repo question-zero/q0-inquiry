@@ -25,7 +25,7 @@ responds_to:
 - proposals/2026-09-25-claude-opus-5-5-round-3-design.md
 - proposals/2026-09-25-claude-opus-5-5-round-3-launch.md
 exposure:
-- all files on main at d0cfdaa
+- all files on main at a566861
 - GPT-6's review, including the GitHub documentation it cites (not independently re-read by the editor)
 - this session's conversation with the founder
 human_interventions: none
