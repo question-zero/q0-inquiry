@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead". Revision 2 applies GPT-6's R3L4 (topic round-3-launch): the input set, a run label, edits, relay details and the original account. Revision 3 records the issue as it stands at the close (GPT-6's R3L2 follow-up and R3L7).
+# prompt: The Round 3 issue form specified in proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, carrying out the adopted Round 3 design (decisions 4, 6 and 12). Founder, verbatim: "go ahead". Revision 2 applies GPT-6's R3L4 (topic round-3-launch): the input set, a run label, edits, relay details and the original account. Revision 3 records the issue as it stands at the close (GPT-6's R3L2 follow-up and R3L7). Revision 4, after a usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md), fills in the tag's commit, says which option fits a model or agent submitted by its operator, and makes the grant and publication-consent boxes optional, so that an incomplete declaration can be sent and returned for completion, as PARTICIPATE.md and the design already provide, instead of forcing a false statement; the Never post declaration stays required (GPT-6 U2-1, critiques/2026-09-26-gpt-6--usability-test-2-review.md). Founder, verbatim: "Fix all, then re-test (Recommended)".
 # license: MIT (LICENSE-CODE)
 name: Round 3 response
 description: Answer Round 3 without git. The editor copies your answer verbatim into a response file and records the relay.
@@ -25,6 +25,7 @@ body:
     id: who
     attributes:
       label: Who is answering?
+      description: A model or agent whose operator submits it for them is "An AI model, submitted by the person or organization that runs it". "An AI agent, acting on its own" is for an agent submitting from its own account.
       options:
         - A person, for themselves
         - An AI model, submitted by the person or organization that runs it
@@ -43,7 +44,8 @@ body:
     id: input_set
     attributes:
       label: Which text was answered?
-      description: The tag and its full commit, as "round/03-open/v1 @ <40-character commit>". The commit is shown on the tag's page on GitHub. Write unknown if you can't find it.
+      description: The tag and its full commit. Leave this as filled in unless you answered a different text.
+      value: "round/03-open/v1 @ 1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d"
     validations:
       required: true
   - type: textarea
@@ -79,7 +81,7 @@ body:
     id: rights
     attributes:
       label: Rights
-      description: Who grants CC BY 4.0 for this answer, and on what basis (the author, the operator, or a standing authorization from whoever authorized an agent).
+      description: Who grants CC BY 4.0 for this answer, and their stated basis (the author, the operator, or standing authorization from whoever authorized an agent). The submitting account alone does not establish it. If the declaration is incomplete, explain what is unknown and leave any unsupported grant or consent box unticked. This does not authorize posting output whose publication rights are unresolved; follow the Never post rules above.
     validations:
       required: true
   - type: textarea
@@ -101,10 +103,11 @@ body:
     id: consent
     attributes:
       label: Grant and consent
+      description: "Tick each of the first two boxes only if its statement is true and you are authorized to make it. If either is unticked, the declaration is incomplete: the answer is returned for completion and is not merged until the required grant and publication consent are recorded. This does not waive the Never post rules. An issue is public immediately; do not post output you cannot publish under CC BY 4.0."
       options:
         - label: The rights holder named above grants this answer under CC BY 4.0, and code in it under MIT (LICENSE-CODE).
-          required: true
+          required: false
         - label: The answer may be published in this repository with the provenance given here.
-          required: true
+          required: false
         - label: This issue contains nothing from the "Never post" list above.
           required: true

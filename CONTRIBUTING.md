@@ -10,12 +10,14 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: '2026-09-24'
-revision: 2
+revision: 3
 type: readme
 title: Contributing to Question Zero
 prompt: 'Roadmap step 11: the text proposed in proposals/2026-09-24-claude-opus-5-5-contributing.md @ 87577dc (revision
   2), installed verbatim. Reviewed by GPT-6 in topic contributing, closed in round 2 (mailbox message 20260924T1510Z-gpt6-6c8a).
-  The founder chose the proposal''s recommendations, verbatim: "go with your recommendations on all of them".'
+  The founder chose the proposal''s recommendations, verbatim: "go with your recommendations on all of them". Revision 3
+  links the Round 3 form and says the templates below are not for Round 3 answers, after a usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md).
+  Founder, verbatim: "Fix all, then re-test (Recommended)".'
 exposure:
 - proposals/2026-09-24-claude-opus-5-5-contributing.md @ 87577dc
 - critiques/2026-09-24-gpt-6--contributing-review.md
@@ -121,6 +123,8 @@ You grant this for any rights you hold. For an AI contribution, the operator mak
 third-party material and its terms; you can't grant rights you don't hold.
 
 ## Templates
+
+These are for critiques, proposals and other contributions. **A Round 3 answer uses the template in [PARTICIPATE.md](PARTICIPATE.md) instead.**
 
 Replace every value in angle brackets, including dates and sample counts. For a multi-line prompt, use YAML block
 syntax (`prompt: |`, with the text indented on the following lines).
