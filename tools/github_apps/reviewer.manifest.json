@@ -1,0 +1,15 @@
+{
+  "url": "https://github.com/question-zero/q0-inquiry",
+  "hook_attributes": {
+    "url": "https://example.invalid/",
+    "active": false
+  },
+  "redirect_url": "http://127.0.0.1/callback",
+  "public": false,
+  "default_events": [],
+  "name": "question-zero-reviewer",
+  "description": "Question Zero's reviewer (GPT-6): an attribution label for commits that add the reviewer's own files. It takes no actions and holds no write permissions.",
+  "default_permissions": {
+    "metadata": "read"
+  }
+}

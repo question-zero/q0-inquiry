@@ -1,0 +1,360 @@
+{
+ "files": {
+  "critiques/2026-10-01-all-support--round-3-assessment-p004.md": "53c667df5c71b9efe029d0e4daae38ce36fa25ba6fb992a838a8797854fed2b1",
+  "critiques/2026-10-01-all-support--round-3-assessment-p014.md": "02198f4818a4db530cab34584808d91c648aa01b995e2c3237873470d45d4fe5",
+  "critiques/2026-10-01-all-support--round-3-assessment-p015.md": "333d3951f0ee789e28be708b5fde8219d2bce19104a1c36e62c654e6598b5351",
+  "critiques/2026-10-01-all-support--round-3-assessment-p016.md": "c488cdda347ce18b9a016fa74179a4cbcd2334cac4f20175110b17c865bf25c9",
+  "critiques/2026-10-01-all-support--round-3-assessment-p017.md": "177931df8e620b10307e9bbb4f6e1f76b4498127f3d710ce0d8964080f7c163d",
+  "critiques/2026-10-01-all-support--round-3-assessment-p018.md": "daf31b244e2916de843c981d845d663fef1ee8c11e58a96b71921cf9a6ffb567",
+  "critiques/2026-10-01-all-support--round-3-assessment-p019.md": "e3921bde71cd6469fbb06aba61fc0c561159d52204fbc4982f3742cb6fe6aadf",
+  "critiques/2026-10-01-all-support--round-3-assessment-p020.md": "4c6271899ec52339439ca103c7de0d1e2bd8896dfdf43a1428c89f38b12f8327",
+  "critiques/2026-10-01-all-support--round-3-assessment-p021.md": "d9b65a1078bed1abf0ee27aa04663e1d4052cd9c1da568971286fa8195674865",
+  "critiques/2026-10-01-all-support--round-3-assessment-p022.md": "74bd9357813468167789a094be0306297e99837c918558fe75bda2448a033a6a",
+  "critiques/2026-10-01-all-support--round-3-assessment-p023.md": "3cd7624e96f10cce69f13ca628bfe88419141baacd080607277c101b882bf9ef",
+  "critiques/2026-10-01-all-support--round-3-assessment-p024.md": "d44fc46d896f2d3294e7d7fe81d8206ba932c0204bbb59fdcb51545be1b20e8e",
+  "critiques/2026-10-01-all-support--round-3-assessment-p025.md": "4c04f9d202876dff0d59f066f0bcb81460ed92304fce5772b9c4a29a09b07293",
+  "critiques/2026-10-01-decorated--round-3-assessment-p022.md": "cb8061ce87508b7945cae8bae32d389311c18d56a9168fc76567bf5dac84cebc",
+  "critiques/2026-10-01-fenced--round-3-assessment-p024.md": "1582bfa65e2bd1f21b8bcd4fe08acd8d415673e251448f18b5496436a4dc7206",
+  "critiques/2026-10-01-mixed--round-3-assessment-p014.md": "8cd127a221a5bec9f93eb33c41f872c10bd3889db63a3560ee919d8a71a4c5f0",
+  "critiques/2026-10-01-mixed--round-3-assessment-p019.md": "50c3e54f909680cd388b9f9e8e6944ada3be1628d7fe275937827c33e8222bdc",
+  "critiques/2026-10-01-quoted--round-3-assessment-p019.md": "4f1792aef02c9164a0c14f03c8427e59a47ea594869da2b9f4d0b336510606a8",
+  "critiques/2026-10-01-rewording--round-3-assessment-p004.md": "fea99d4f74b41818997fd1a2c6b7ee4ddbeaa06dbd8895ff0a5aebfd4935c5e8",
+  "critiques/2026-10-01-text-before--round-3-assessment-p021.md": "a2e739a5f1bf810ec60bf2deffd30d0445c9f932c0fdd2aeb5a869d1dea15e6f",
+  "critiques/2026-10-01-trailing-absorb--round-3-assessment-p023.md": "d431bc499419e7f162884abe3d08786913c1fdd41e291d0e3a3eec5f0df97c78",
+  "critiques/2026-10-01-unicode--round-3-assessment-p025.md": "d0351bb85c482ecedd17d2610b50e02d6bcea11544d31ca90c925348f9632e6e"
+ },
+ "notes": [
+  [
+   "bad-position",
+   "p015",
+   "unparseable",
+   "the position is not exactly one of the four values: 'support, mostly'"
+  ],
+  [
+   "cond-none",
+   "p017",
+   "incomplete",
+   "conditional, but no conditions are given"
+  ],
+  [
+   "conflict",
+   "p014",
+   "conflicting",
+   "2 blocks for this proposition"
+  ],
+  [
+   "dup-label",
+   "p018",
+   "unparseable",
+   "the Basis line appears twice"
+  ],
+  [
+   "no-basis",
+   "p016",
+   "incomplete",
+   "no Basis line"
+  ],
+  [
+   "non-candidate",
+   "p001",
+   "not a candidate",
+   "this ID is not in the round's candidate list"
+  ],
+  [
+   "non-candidate",
+   "p099",
+   "not a candidate",
+   "this ID is not in the round's candidate list"
+  ]
+ ],
+ "table": [
+  [
+   "all-support",
+   {
+    "p004": "support",
+    "p014": "support",
+    "p015": "support",
+    "p016": "support",
+    "p017": "support",
+    "p018": "support",
+    "p019": "support",
+    "p020": "support",
+    "p021": "support",
+    "p022": "support",
+    "p023": "support",
+    "p024": "support",
+    "p025": "support"
+   }
+  ],
+  [
+   "bad-position",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "unparseable",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "cond-none",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "incomplete",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "conflict",
+   {
+    "p004": "not assessed",
+    "p014": "conflicting",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "decorated",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "uncertain",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "dup-label",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "unparseable",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "empty",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "fenced",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "support",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "mixed",
+   {
+    "p004": "not assessed",
+    "p014": "conditional",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "reject",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "no-basis",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "incomplete",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "non-candidate",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "quoted",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "reject",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "rewording",
+   {
+    "p004": "conditional",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "text-before",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "support",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "trailing-absorb",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "support",
+    "p024": "not assessed",
+    "p025": "not assessed"
+   }
+  ],
+  [
+   "unicode",
+   {
+    "p004": "not assessed",
+    "p014": "not assessed",
+    "p015": "not assessed",
+    "p016": "not assessed",
+    "p017": "not assessed",
+    "p018": "not assessed",
+    "p019": "not assessed",
+    "p020": "not assessed",
+    "p021": "not assessed",
+    "p022": "not assessed",
+    "p023": "not assessed",
+    "p024": "not assessed",
+    "p025": "support"
+   }
+  ]
+ ]
+}
