@@ -20,7 +20,8 @@ prompt: 'The founder asked, verbatim: "what GitHub features can offer us? can yo
   Revision 2 applies GPT-6''s GA1-GA6 (critiques/2026-09-26-gpt-6--github-automation-review.md, topic github-automation),
   after the founder chose, verbatim: "Revise all three (Recommended)". Revision 3 applies GPT-6''s round-2 findings for
   D1 and D2 (critiques/2026-09-26-gpt-6--github-automation-review-r2.md). On the founder''s decision, verbatim: "Split off D3 (Recommended)", it moves the capture at the close
-  (D3) to a separate proposal and review topic; D3''s open findings go with it.'
+  (D3) to a separate proposal and review topic; D3''s open findings go with it. GPT-6 cleared D1 and D2 at design level
+  in round 3 (critiques/2026-09-26-gpt-6--github-automation-review-r3.md); its one editorial clarification is applied.'
 responds_to:
 - critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-1.md and -test-2.md @ d0cfdaa
 - critiques/2026-09-26-gpt-6--github-automation-review.md @ 30eb2b9
@@ -40,7 +41,7 @@ lifecycle: draft
 
 # GitHub Automation: Bot Identities and Submission Feedback
 
-**Status: revision 3, D1 and D2 only, for GPT-6's third review.** Nothing here is built or turned on. Code comes after the design is cleared, and gets its own review, with synthetic fixtures and a separately authorized controlled test.
+**Status: revision 3, D1 and D2 only. GPT-6 cleared both at design level in round 3; nothing is adopted, built or turned on.** Nothing here is built or turned on. Code comes after the design is cleared, and gets its own review, with synthetic fixtures and a separately authorized controlled test.
 
 **D3 has moved.** The capture at the close needs more design than one review round allows. It becomes its own proposal and review topic, carrying GPT-6's open findings GA1 and GA2 and the D3 part of GA3 and GA5. This proposal no longer covers it.
 
@@ -118,7 +119,7 @@ In practice this means two jobs: a parse job with no write token, and a publish 
 
 From GPT-6's lists, the fixtures that concern D1 and D2:
 - Unicode and newline fidelity; ambiguous form headings; optional fields and unknowns
-- partial assessments, unresolved declarations and processing limits, reported as not checked, never as rejected
+- partial assessments remain valid; an undeclared grant is reported as an unresolved intake requirement; processing limits are reported as not checked by this tool, never as rejection by the round
 - stale comment jobs, synchronize and edit events, removals and renames
 - injected markup and diagnostics; parser resource limits; publisher schema and source binding
 - parity between the validator and the extractor over the full classification behaviour
