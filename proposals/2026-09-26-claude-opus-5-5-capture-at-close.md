@@ -37,7 +37,7 @@ lifecycle: draft
 
 # Capture at the Close: Evidence for Round 3 Receipts
 
-**Status: revision 2 of a draft, for review in its own topic, `capture-at-close`.** It continues D3 of the GitHub automation proposal, which was split off on the founder's decision so that its design could take the time it needs. Most of the text below is GPT-6's, from its two reviews of D3, quoted and marked. Nothing is built or turned on.
+**Status: revision 2, a draft. GPT-6 closed its design review in round 2: cleared for offline implementation and synthetic fixtures, with the five items below due at code review. Nothing is adopted, built or turned on.** It continues D3 of the GitHub automation proposal, which was split off on the founder's decision so that its design could take the time it needs. Most of the text below is GPT-6's, from its two reviews of D3, quoted and marked. Nothing is built or turned on.
 
 **No participant rule changes.** This carries out the existing close-time standard. It does not solve uncertain evidence; it records it. Any policy accepting a different version when evidence is missing would be a new decision under protocol section 11.
 
