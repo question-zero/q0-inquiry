@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-25
 # attribution: self-declared
-# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8). Revision 2 applies GPT-6's R3L1-R3L3 (topic round-3-launch): stale outputs fail --check, receipts are validated against the tagged deadline and bound to the version captured at the close with its cutoff evidence, and the source's samples and interventions are kept. There is no replacement mechanism: every response is captured at the close (GPT-6 R3L2 follow-up and R3L7).
+# prompt: Founder, verbatim: "go ahead". Extracts the Round 3 assessment blocks under the launch package (proposals/2026-09-25-claude-opus-5-5-round-3-launch.md, "Extraction"), reusing Round 2's block rules (proposals/2026-09-24-claude-opus-5-5-round-2-design.md, decision 8). Revision 2 applies GPT-6's R3L1-R3L3 (topic round-3-launch): stale outputs fail --check, receipts are validated against the tagged deadline and bound to the version captured at the close with its cutoff evidence, and the source's samples and interventions are kept. There is no replacement mechanism: every response is captured at the close (GPT-6 R3L2 follow-up and R3L7). Revision 3 moves the per-response classification into classify(), a pure function the advisory feedback validator shares (proposals/2026-09-26-claude-opus-5-5-github-automation.md, D2, GPT-6 GA4); the extraction output is unchanged.
 # license: MIT (LICENSE-CODE)
 """Extract the Round 3 assessment blocks into critiques/.
 
@@ -209,6 +209,55 @@ def receipt_problem(repo, rel, fm, body, closes):
     return "incomplete receipt", f"unknown route {route!r}"
 
 
+def classify(body, cand_ids):
+    """Classify one answer body against the candidate IDs, with the extraction rules and nothing else.
+
+    Pure: no files, no git, no receipts. Returns (lines, results, notes):
+      results  {pid: {"status": ...}} for every candidate, where status is "not assessed", "conflicting",
+               "unparseable", "incomplete", or the position; a read block also has "fields" and "span" (i, j)
+      notes    [(pid, kind, reason)] in the order extraction reports them; a reason may quote the answer's text,
+               so it is for the editor's report, never for public feedback
+    """
+    lines, found = blocks(body)
+    seen = {}
+    for pid, i, j in found:
+        seen.setdefault(pid, []).append((i, j))
+    notes = [(pid, "not a candidate", "this ID is not in the round's candidate list")
+             for pid in sorted(set(seen) - set(cand_ids))]
+    results = {}
+    for pid in cand_ids:
+        spans = seen.get(pid, [])
+        if not spans:
+            results[pid] = {"status": "not assessed"}
+            continue
+        if len(spans) > 1:
+            notes.append((pid, "conflicting", f"{len(spans)} blocks for this proposition"))
+            results[pid] = {"status": "conflicting"}
+            continue
+        i, j = spans[0]
+        fields, err = parse(lines, i, j)
+        if err:
+            notes.append((pid, "unparseable", err))
+            results[pid] = {"status": "unparseable"}
+            continue
+        pos = fields.get("Position", "")
+        if pos not in POSITIONS:
+            notes.append((pid, "unparseable", f"the position is not exactly one of the four values: {pos!r}"))
+            results[pid] = {"status": "unparseable"}
+            continue
+        cond = fields.get("Conditions")
+        if not fields.get("Basis"):
+            notes.append((pid, "incomplete", "no Basis line"))
+            results[pid] = {"status": "incomplete"}
+            continue
+        if pos == "conditional" and (not cond or cond.strip().strip('"').lower() == "none"):
+            notes.append((pid, "incomplete", "conditional, but no conditions are given"))
+            results[pid] = {"status": "incomplete"}
+            continue
+        results[pid] = {"status": pos, "fields": fields, "span": (i, j)}
+    return lines, results, notes
+
+
 def extract(repo, dry=False):
     """(files {path: text}, notes [(slug, pid or '-', kind, reason)], table [(slug, {pid: result})])."""
     launch = git(repo, "rev-parse", f"{TAG}^{{commit}}").strip()
@@ -235,44 +284,17 @@ def extract(repo, dry=False):
             continue
         eligible.append((rec, slug, rel, rec_commit, fm, body))
     for rec, slug, rel, rec_commit, fm, body in eligible:
-        lines, found = blocks(body)
-        seen = {}
-        for pid, i, j in found:
-            seen.setdefault(pid, []).append((i, j))
-        for pid in sorted(set(seen) - set(cands)):
-            notes.append((slug, pid, "not a candidate", "this ID is not in the round's candidate list"))
+        lines, results, found_notes = classify(body, list(cands))
+        notes.extend((slug, pid, kind, reason) for pid, kind, reason in found_notes)
         row = {}
         for pid, path in cands.items():
-            spans = seen.get(pid, [])
-            if not spans:
-                row[pid] = "not assessed"
+            res = results[pid]
+            row[pid] = res["status"]
+            if "fields" not in res:
                 continue
-            if len(spans) > 1:
-                notes.append((slug, pid, "conflicting", f"{len(spans)} blocks for this proposition"))
-                row[pid] = "conflicting"
-                continue
-            i, j = spans[0]
+            fields, (i, j) = res["fields"], res["span"]
             raw = NL.join(lines[i:j])
-            fields, err = parse(lines, i, j)
-            if err:
-                notes.append((slug, pid, "unparseable", err))
-                row[pid] = "unparseable"
-                continue
-            pos = fields.get("Position", "")
-            if pos not in POSITIONS:
-                notes.append((slug, pid, "unparseable", f"the position is not exactly one of the four values: {pos!r}"))
-                row[pid] = "unparseable"
-                continue
-            cond = fields.get("Conditions")
-            if not fields.get("Basis"):
-                notes.append((slug, pid, "incomplete", "no Basis line"))
-                row[pid] = "incomplete"
-                continue
-            if pos == "conditional" and (not cond or cond.strip().strip('"').lower() == "none"):
-                notes.append((slug, pid, "incomplete", "conditional, but no conditions are given"))
-                row[pid] = "incomplete"
-                continue
-            row[pid] = pos
+            pos, cond = fields["Position"], fields.get("Conditions")
             name = str(fm.get("author", "unknown")).split(" (")[0]
             a = {"type": "critique", "subtype": "assessment",
                  "title": f"Round 3 assessment of {pid} by {name}"}
