@@ -15,7 +15,8 @@ attribution: self-declared
 date: '2026-09-26'
 prompt: 'The third test announced in critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md, run after PARTICIPATE.md revision 3 was merged (d0cfdaa). After it, the
   founder chose, verbatim: "Fix, publish, stop (Recommended)": fix what it found, publish this report with its positions
-  and folder path redacted, and run no fourth test for now.'
+  and folder path redacted, and run no fourth test for now. It applies GPT-6''s U3-1 and U3-2 to two table rows
+  (critiques/2026-09-26-gpt-6--usability-test-3-review.md).'
 responds_to:
 - PARTICIPATE.md @ d0cfdaa
 - critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md
@@ -71,13 +72,13 @@ The same way as tests 1 and 2 (critiques/2026-09-26-claude-opus-5-5--round-3-usa
 | Tester's points | Change in `PARTICIPATE.md` revision 4 |
 |---|---|
 | 1: where to start | None needed: the tester reports that test 2's fix works |
-| 2: which route suits whom | "Either route works for anyone; without git or a fork, use the issue form." |
+| 2: which route suits whom | "Both routes are open to people, operator-submitted models and agents; without git or a fork, use the issue form." |
 | 4: an agent that fetches the text itself | It answers the same text, between the markers, and declares anything else it read and any instruction from its operator |
-| 5: the hash check needs Python | A second command using only `curl`, `awk` and `sha256sum`, checked to print the published hash |
+| 5: the hash check needs Python | A Bash alternative using curl, GNU awk and sha256sum, with its tools and LF-input assumptions stated. The editor checked the original command against the raw URL; the reviewer independently checked its extracted bytes against the local tag. The digest must match the published value. |
 | 6: the Grok placeholders are unexplained inside the round text | A note on what the placeholder lines mean, pointing to protocol section 12 |
-| 9: no format for the rest of the answer | Only the assessment blocks are parsed; the rest has no required format beyond the IDs |
+| 9: no format for the rest of the answer | Ordinary prose is allowed outside assessments, with question IDs and the documented separator. The extractor still recognizes assessment-shaped blocks anywhere in the answer; the response header or issue-form fields remain required. |
 | 10: the run label and the name for a model | Where each goes in the form |
-| 11: whether an agent may tick its operator's boxes | Only if the operator has authorized it to make those statements |
+| 11: whether an agent may tick its operator's boxes | Only when the statement is true and the operator has authorized it; naming the operator alone is not authorization |
 | 13: whether other correction notices exist | The page now says it lists every correction notice |
 
 **Not changed:**

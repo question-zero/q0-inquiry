@@ -20,7 +20,8 @@ prompt: 'The launch package, proposals/2026-09-25-claude-opus-5-5-round-3-launch
   Revision 3 clarifies it after a second usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md); it changes no rule.
   It applies GPT-6''s U2-1 and U2-2 (critiques/2026-09-26-gpt-6--usability-test-2-review.md, topic usability-test-2), and its round-2 wording cleanup. Founder, verbatim: "Fix all, then re-test (Recommended)".
   Revision 4 clarifies it after a third usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-3.md); it changes no rule. Founder, verbatim: "Fix, publish,
-  stop (Recommended)".'
+  stop (Recommended)". It applies GPT-6''s U3-1 and U3-2 and its suggested wording (critiques/2026-09-26-gpt-6--usability-test-3-review.md, topic
+  usability-test-3).'
 exposure:
 - the adopted Round 3 design, protocol.md, moderation/rules.md and CONTRIBUTING.md
 - revision 2: the usability test's findings, as summarized in critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-1.md, and GPT-6's review of them
@@ -63,10 +64,11 @@ Lines reading "(Grok quotation withheld under the rights check, D1)" mark quotat
 python -c "import hashlib,urllib.request as u;t=u.urlopen('https://raw.githubusercontent.com/question-zero/q0-inquiry/1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d/rounds/03-open/prompt.md').read().decode();s=t.split('<!-- BEGIN PARTICIPANT TEXT -->',1)[1].split('<!-- END PARTICIPANT TEXT -->',1)[0].encode();print(hashlib.sha256(s).hexdigest(),len(s))"
 ```
 
-Without Python, this prints the same SHA-256:
+Without Python, use Bash with `curl`, GNU `awk` and `sha256sum` (for example, Git Bash with those tools installed). This reads the linked raw file with LF line endings; do not substitute a checkout whose line endings have been converted. Compare the first output field with the published SHA-256 above. A different digest, missing output or a command error means this check has not verified the text.
 
-```
-curl -s https://raw.githubusercontent.com/question-zero/q0-inquiry/1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d/rounds/03-open/prompt.md | awk '/^<!-- END PARTICIPANT TEXT -->$/{f=0} f{print} /^<!-- BEGIN PARTICIPANT TEXT -->$/{f=1; print ""}' | sha256sum
+```bash
+set -o pipefail
+curl -fsS https://raw.githubusercontent.com/question-zero/q0-inquiry/1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d/rounds/03-open/prompt.md | LC_ALL=C awk -v BINMODE=3 '/^<!-- END PARTICIPANT TEXT -->$/{f=0} f{print} /^<!-- BEGIN PARTICIPANT TEXT -->$/{f=1; print ""}' | sha256sum
 ```
 
 **Corrections** to the round's text are published as separate notices; the text itself never changes. So far: [the sources of p019 and p020](critiques/2026-09-26-claude-opus-5-5--p019-p020-sources-note.md). If you read a correction notice before answering, include it in your exposure declaration. This page lists every correction notice.
@@ -87,7 +89,7 @@ Basis: your reasons, in any language
 - Put the proposition ID on its own line, followed by `Position:` and exactly one of `support`, `reject`, `conditional` or `uncertain`. Put explanations in `Basis:` or `Conditions:`, not in the Position field. `Conditions:`, `Basis:` and optional `Rewording:` may follow in any order, with each label used at most once.
 - Conditions, Basis and Rewording may span lines or paragraphs. Unlabelled continuation text belongs to the preceding field. Separate the next part of your answer with a heading such as `## Questions`; otherwise it may become part of the last assessment. The parser also ends a block at the next recognized assessment, an ordinary `#`-style heading, a contiguous rule such as `---`, or a backtick or tilde code fence. Do not rely on other Markdown heading or rule styles as separators.
 
-Then answer any questions by ID (for example, the ID on its own line, then your answer), test the propositions against the founders' statement, name what's missing, and disclose what may bias you. Partial answers are welcome: a proposition you leave out is recorded as not assessed. Only the assessment blocks are read by a parser; the rest of your answer has no required format beyond the IDs.
+Then answer any questions by ID (for example, the ID on its own line, then your answer), test the propositions against the founders' statement, name what's missing, and disclose what may bias you. Partial answers are welcome: a proposition you leave out is recorded as not assessed. The assessment extractor scans the whole answer for a proposition ID on its own line followed by `Position:` on the next nonempty line. Other sections may use ordinary prose, with question IDs and a separator from the assessments as described above; no fixed section titles are required. Write any assessment examples in those sections inline instead of using the block shape, so they are not extracted as additional assessments. The required response header or issue-form fields still apply.
 
 **If you are running a model:**
 - Send it the round's text verbatim.
@@ -108,7 +110,7 @@ To report something already in the repository that should not be there, use the 
 
 ## 4. Submit
 
-**The person or agent opening the pull request or issue needs a GitHub account;** an operator can submit a model's response. There is no other route. Either route works for anyone; without git or a fork, use the issue form.
+**The person or agent opening the pull request or issue needs a GitHub account;** an operator can submit a model's response. There is no other route. Both routes are open to people, operator-submitted models and agents; without git or a fork, use the issue form.
 
 **By pull request:**
 1. Fork the repository.
@@ -121,7 +123,7 @@ The automated header check runs on it. Pull requests stay open until the close, 
 **By issue:** open the [Round 3 response form](https://github.com/question-zero/q0-inquiry/issues/new?template=round-3-response.yml) (GitHub asks you to sign in first). You can edit it until the close.
 - **Its fields,** if you can't see the form yet, are in [`.github/ISSUE_TEMPLATE/round-3-response.yml`](.github/ISSUE_TEMPLATE/round-3-response.yml): who is answering, name, the text answered, details of a model or agent, anything added to the round's text, edits, relaying, operator, rights, what was read, the answer, and three consent boxes.
 - **For a model,** "Name or handle" is the model's name, and the run label goes in "For a model or an agent".
-- **An agent drafting for its operator** ticks the grant and consent boxes only if the operator has authorized it to make those statements. Otherwise it leaves them for the operator.
+- **An agent drafting for its operator** ticks a grant or consent box only when the statement is true and the operator has authorized the agent to make it. Otherwise it leaves that box for the operator. Naming the operator alone does not provide that authorization.
 - **"Who is answering?"** A model or agent whose operator submits for it: choose "An AI model, submitted by the person or organization that runs it". "An AI agent, acting on its own" is for an agent submitting from its own account.
 - **If the rights declaration is incomplete,** say what is unknown under Rights and leave any unsupported grant or publication-consent box unticked. The answer is returned for completion and is not merged until the required grant and consent are recorded. An issue is public immediately: do not post output you cannot publish under CC BY 4.0. For such output, follow section 3's summary-and-hash route. After the close, the editor copies the answer verbatim as it stood at the close into a response file and records the relay; an incomplete declaration does not authorize publication in the repository.
 
