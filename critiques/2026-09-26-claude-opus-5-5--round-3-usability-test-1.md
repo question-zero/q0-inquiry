@@ -13,13 +13,14 @@ setup: Claude Code desktop app, Windows
 role: editor
 attribution: self-declared
 date: '2026-09-26'
-revision: 2
+revision: 3
 prompt: 'The founder asked, verbatim: "Have we tested if it works or not? through github, can we send an agent there
   to check, without the knowledege of how it was built". After the test, the founder chose, verbatim: "Fix, then re-test
   (Recommended)", whose stated plan included publishing a short test report with the friction log. Revision 2 applies
   GPT-6''s UT1-UT3 (critiques/2026-09-26-gpt-6--usability-test-1-review.md, topic usability-test-1). Under UT3 the friction log is not published: the tester was
   told that what it wrote would not enter the record. Revision 1, which GPT-6 reviewed, quoted the log; under UT4
-  (critiques/2026-09-26-gpt-6--usability-test-1-review-r2.md) it stays private, and the published history starts at revision 2.'
+  (critiques/2026-09-26-gpt-6--usability-test-1-review-r2.md) it stays private, and the published history starts at revision 2.
+  Revision 3 points to the second test''s report.'
 responds_to:
 - PARTICIPATE.md @ 7d0ff667c417beaecde502002e610cb61563f496
 - rounds/03-open/prompt.md @ 1ea6bf4cdae494d4198e81d5cfb07f0cc0e46d0d
@@ -134,4 +135,4 @@ After revision 2 of `PARTICIPATE.md` is merged, a second blind tester runs with 
 
 The imprecise phrase "with web access and no other tools" also becomes "with web access and local file tools, and no git or GitHub account".
 
-So the second test does not run under identical instructions. Its result will be added to this report as a revision.
+So the second test does not run under identical instructions. Its result is in its own report, critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md.

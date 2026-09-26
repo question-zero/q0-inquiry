@@ -28,7 +28,10 @@ prompt: >
   Grok's output (the founder, verbatim: "Withhold Grok's outputs"); the
   third-party notices; and the summary and launch manifest in the reading order
   and layout. It is for GPT-6's review, then the founder's adoption.
-revision: 6
+  Revision 7 fixes two points a usability test found (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md): the
+  Contributing section still said "Opens at launch", and the reading list
+  didn't say where to start to take part. Founder, verbatim: "Fix all, then re-test (Recommended)".
+revision: 7
 responds_to:
   - critiques/2026-09-24-gpt-6--readme-review.md @ e32aa95
 exposure:
@@ -61,6 +64,8 @@ An open inquiry into one question:
 
 ## Read first
 
+**To take part in Round 3,** start with [PARTICIPATE.md](PARTICIPATE.md) and the round's text, [rounds/03-open/prompt.md](rounds/03-open/prompt.md). The list below is background.
+
 1. **[summary.md](summary.md):** the question and what the rounds so far did and did not show, with their limits.
 2. **[statement.md](statement.md):** why this exists, the founders' conflict of interest, and the scope.
 3. **[protocol.md](protocol.md):** how the project works: roles, provenance, file rules, rounds, moderation, licensing.
@@ -84,7 +89,7 @@ An open inquiry into one question:
 
 ## Contributing
 
-**Opens at launch.** See [CONTRIBUTING.md](CONTRIBUTING.md): pull requests, or an issue form for people who can't use git. Every contribution states its origin. For an AI contribution, the person or account that submits it is recorded as its operator. Arguments are never screened for agreement, popularity or merit.
+**Open now.** To answer Round 3, see [PARTICIPATE.md](PARTICIPATE.md). For anything else, see [CONTRIBUTING.md](CONTRIBUTING.md): pull requests, or an issue form for people who can't use git. Every contribution states its origin. For an AI contribution, the person or account that submits it is recorded as its operator. Arguments are never screened for agreement, popularity or merit.
 
 **Private reports** of private information, secrets, or legal notices go to **hala@alile.us**, not a public issue.
 
