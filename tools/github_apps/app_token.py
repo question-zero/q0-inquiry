@@ -36,7 +36,8 @@ from cryptography.hazmat.primitives.asymmetric import padding
 API = "https://api.github.com"
 ORG = "question-zero"
 SLUG = "question-zero-editor"
-ALLOWED_REPOS = {"q0-inquiry", ".github"}
+# Each App may be used only on its own repositories; the sandbox variant exists only for the controlled test.
+ALLOWED_REPOS = {"question-zero-editor": {"q0-inquiry", ".github"}, "question-zero-editor-sandbox": {"q0-sandbox"}}
 ALLOWED_PERMS = {"contents": {"read", "write"}, "pull_requests": {"read", "write"}, "issues": {"read", "write"},
                  "metadata": {"read"}}
 # A git credential helper that answers from the environment; the token never appears in its arguments.
@@ -81,15 +82,15 @@ def call(method, path, auth, data=None):
         return json.loads(body) if body else None
 
 
-def mint(creds, repo, perms, caller=call):
+def mint(creds, repo, perms, caller=call, slug=SLUG):
     """(token, expires_at) for one repository and a subset of permissions, after checking the expected IDs."""
-    if repo not in ALLOWED_REPOS:
+    if slug not in ALLOWED_REPOS or repo not in ALLOWED_REPOS[slug]:
         raise SystemExit(f"refused: {repo} is not a repository this App is meant for")
-    if creds.get("slug") != SLUG:
-        raise SystemExit("refused: these are not the editor App's credentials")
+    if creds.get("slug") != slug:
+        raise SystemExit("refused: these are not the expected App's credentials")
     jwt = "Bearer " + app_jwt(creds["id"], creds["pem"])
     app = caller("GET", "/app", jwt)
-    if app.get("id") != creds["id"] or app.get("slug") != SLUG:
+    if app.get("id") != creds["id"] or app.get("slug") != slug:
         raise SystemExit("refused: the key does not belong to the expected App")
     inst = caller("GET", f"/orgs/{ORG}/installation", jwt)
     if inst.get("app_id") != creds["id"]:
@@ -126,13 +127,15 @@ def main(argv=None):
     ap.add_argument("--secrets", required=True)
     ap.add_argument("--repo", required=True)
     ap.add_argument("--perm", action="append", default=[])
+    ap.add_argument("--sandbox", action="store_true", help="use the controlled-test App, on q0-sandbox only")
     ap.add_argument("command", nargs=argparse.REMAINDER)
     a = ap.parse_args(argv)
     command = a.command[1:] if a.command[:1] == ["--"] else a.command
     if not command:
         raise SystemExit("refused: give the command to run after --")
-    creds = json.loads((Path(a.secrets) / f"{SLUG}.json").read_text(encoding="utf-8"))
-    token, expires = mint(creds, a.repo, parse_perms(a.perm))
+    slug = SLUG + ("-sandbox" if a.sandbox else "")
+    creds = json.loads((Path(a.secrets) / f"{slug}.json").read_text(encoding="utf-8"))
+    token, expires = mint(creds, a.repo, parse_perms(a.perm), slug=slug)
     print(f"token for {a.repo} ({', '.join(f'{k}={v}' for k, v in sorted(parse_perms(a.perm).items()))}), "
           f"expires {expires}")
     try:

@@ -8,7 +8,10 @@
 # license: MIT (LICENSE-CODE)
 """Register one of Question Zero's GitHub Apps from its reviewed manifest. Run by the founder, locally, once per App.
 
-Usage: python tools/github_apps/register.py editor|reviewer --secrets DIR
+Usage: python tools/github_apps/register.py editor|reviewer --secrets DIR [--sandbox]
+
+With --sandbox, the App is registered as question-zero-<which>-sandbox, for the separately authorized controlled test
+only; it is installed on the private sandbox repository alone and deleted after the test.
 
 1. The script serves a page on a random loopback port only (127.0.0.1), with a fresh single-use state value.
 2. The founder opens that page in a browser signed in to GitHub. It sends the manifest to the organization's
@@ -40,9 +43,13 @@ HERE = Path(__file__).resolve().parent
 TIMEOUT_S = 600
 
 
-def manifest(which, port):
+def manifest(which, port, sandbox=False):
     m = json.loads((HERE / f"{which}.manifest.json").read_text(encoding="utf-8"))
     m["redirect_url"] = f"http://127.0.0.1:{port}/callback"
+    if sandbox:
+        m["name"] += "-sandbox"
+        m["url"] = f"https://github.com/{ORG}/q0-sandbox"
+        m["description"] = "Controlled test only; deleted after the test. " + m["description"]
     return m
 
 
@@ -74,8 +81,8 @@ def convert(code):
 
 
 class Flow:
-    def __init__(self, which, secrets_dir, converter=convert):
-        self.which, self.dir, self.converter = which, Path(secrets_dir), converter
+    def __init__(self, which, secrets_dir, converter=convert, sandbox=False):
+        self.which, self.dir, self.converter, self.sandbox = which, Path(secrets_dir), converter, sandbox
         self.state = secrets.token_urlsafe(32)
         self.used = False
         self.saved = None
@@ -89,7 +96,7 @@ class Flow:
             return 400, "The state did not match. Nothing was registered by this script."
         self.used = True
         data = self.converter(q["code"][0])
-        slug = data.get("slug") or f"question-zero-{self.which}"
+        slug = data.get("slug") or f"question-zero-{self.which}" + ("-sandbox" if self.sandbox else "")
         self.dir.mkdir(parents=True, exist_ok=True)
         path = self.dir / f"{slug}.json"
         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
@@ -108,7 +115,7 @@ def serve(flow):
         def do_GET(self):
             u = urllib.parse.urlsplit(self.path)
             if u.path == "/start" and not flow.used:
-                status, body = 200, start_page(manifest(flow.which, self.server.server_port), flow.state)
+                status, body = 200, start_page(manifest(flow.which, self.server.server_port, flow.sandbox), flow.state)
             elif u.path == "/callback":
                 status, body = flow.callback(u.query)
                 body = f"<!doctype html><meta charset=utf-8><p>{html.escape(body)}</p>"
@@ -132,12 +139,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split(chr(10))[0])
     ap.add_argument("which", choices=("editor", "reviewer"))
     ap.add_argument("--secrets", required=True, help="a private folder outside every repository")
+    ap.add_argument("--sandbox", action="store_true", help="register the controlled-test variant")
     a = ap.parse_args(argv)
     target = Path(a.secrets).resolve()
     top = subprocess.run(["git", "-C", str(target.parent), "rev-parse", "--show-toplevel"], capture_output=True, text=True)
     if top.returncode == 0:
         raise SystemExit("refused: the secrets folder is inside a git repository")
-    flow = Flow(a.which, target)
+    flow = Flow(a.which, target, sandbox=a.sandbox)
     server = serve(flow)
     print(f"Open http://127.0.0.1:{server.server_port}/start in a browser signed in to GitHub (expires in 10 minutes).")
     server.serve_forever()

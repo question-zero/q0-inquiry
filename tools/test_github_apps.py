@@ -95,6 +95,17 @@ class Scope(unittest.TestCase):
             app_token.mint(CREDS, "q0-inquiry", {"contents": "write"}, caller=fake)
         self.assertIn(("DELETE", "/installation/token", None), fake.calls)
 
+    def test_the_sandbox_app_is_confined_to_the_sandbox(self):
+        creds = dict(CREDS, slug="question-zero-editor-sandbox")
+        fake = Fake(slug="question-zero-editor-sandbox", repos=("q0-sandbox",))
+        token, _ = app_token.mint(creds, "q0-sandbox", {"contents": "write"}, caller=fake,
+                                  slug="question-zero-editor-sandbox")
+        self.assertEqual(token, "ghs_secret")
+        for repo, slug, c in (("q0-inquiry", "question-zero-editor-sandbox", creds), ("q0-sandbox", "question-zero-editor", CREDS)):
+            with self.subTest(repo=repo, slug=slug), self.assertRaises(SystemExit):
+                app_token.mint(c, repo, {"contents": "write"}, caller=Fake(), slug=slug)
+        self.assertEqual(register.manifest("editor", 1, sandbox=True)["name"], "question-zero-editor-sandbox")
+
     def test_bot_identity(self):
         self.assertEqual(app_token.bot_identity("question-zero-reviewer", caller=Fake()),
                          ("question-zero-reviewer[bot]", "99+question-zero-reviewer[bot]@users.noreply.github.com"))
