@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). The publisher's half: it accepts only a result that passes the validator's strict schema, bound to the expected item, version and route, and writes the comment from fixed templates only. Revision 2 applies GPT-6's AC4 and AC8 (critiques/2026-09-26-gpt-6--automation-code-review.md): the version is bound for both routes and the result must come from the pinned trusted revision; the rights sentences are GPT-6's; the launch commit, candidate count and closing time come from the trusted checkout, never from constants or submissions. Revision 3 adds the resource-limit sentence and says plainly when a header failure stopped the assessment check (GPT-6 round 2).
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). The publisher's half: it accepts only a result that passes the validator's strict schema, bound to the expected item, version and route, and writes the comment from fixed templates only. Revision 2 applies GPT-6's AC4 and AC8 (critiques/2026-09-26-gpt-6--automation-code-review.md): the version is bound for both routes and the result must come from the pinned trusted revision; the rights sentences are GPT-6's; the launch commit, candidate count and closing time come from the trusted checkout, never from constants or submissions. Revision 3 adds the resource-limit sentence and says plainly when a header failure stopped the assessment check (GPT-6 round 2). Revision 4 (topic automation-sandbox-report, GPT-6 F2): the comment no longer promises an update; it describes only the version it names, and says later changes may remain unchecked.
 # license: MIT (LICENSE-CODE)
 """Render one advisory feedback comment from a validator result. Fixed templates only.
 
@@ -93,7 +93,8 @@ def render(result, route, number, version, revision, repo=ex.REPO):
     what = "this pull request's head commit" if route == "file" else "this issue's body (SHA-256)"
     lines = [MARKER, "", "**Round 3 advisory check** (automatic; procedure only)", "",
              f"Checked {what}: `{result['version']}`, with validator revision `{result['validator_revision'][:12]}`. "
-             "If the response changes, this comment is updated for the new version.", ""]
+             "This comment describes only the version named above. Later changes may remain unchecked if feedback "
+             "is disabled or a run does not publish.", ""]
     notes = []
     for code in result["codes"]:
         if ":" in code:

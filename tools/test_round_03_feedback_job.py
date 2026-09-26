@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: Offline tests for tools/round_03_feedback_job.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), with GitHub's API replaced by a fake: both routes, a moved pull request, a stale result, several files, non-regular Git modes, and a copied marker in another user's comment. Revision 2 adds GPT-6's AC4-AC6 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the pinned trusted revision, an edit during the comment lookup, removal of the last response, loss of the form's headings, incomplete pagination, and the complete body's digest. Revision 3 adds GPT-6's round-2 regressions (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): an old rerun reconciles to the current version, an oversized page is incomplete, and a validator stopped by its limit gives a typed result. Synthetic data only; no network.
+# prompt: Offline tests for tools/round_03_feedback_job.py (D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md), with GitHub's API replaced by a fake: both routes, a moved pull request, a stale result, several files, non-regular Git modes, and a copied marker in another user's comment. Revision 2 adds GPT-6's AC4-AC6 regressions (critiques/2026-09-26-gpt-6--automation-code-review.md): the pinned trusted revision, an edit during the comment lookup, removal of the last response, loss of the form's headings, incomplete pagination, and the complete body's digest. Revision 3 adds GPT-6's round-2 regressions (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): an old rerun reconciles to the current version, an oversized page is incomplete, and a validator stopped by its limit gives a typed result. Revision 4 (topic automation-sandbox-report): same-repository fixtures; a fork or missing head repository is skipped before anything is read (SR3); the workflow's conditions; the comment's version-only wording (F2); POSIX-only checks of the real CPU and address-space limits and the typed result when either stops the child (SR2). Synthetic data only; no network.
 # license: MIT (LICENSE-CODE)
 """Offline tests for the feedback workflow's jobs. Run: python -m unittest tools/test_round_03_feedback_job.py"""
 import base64
@@ -79,15 +79,16 @@ class JobBase(tv.Base):
         return [c for c in self.fake.calls if c[0] in ("POST", "PATCH")]
 
     # pull requests
-    def pr_event(self, sha="a" * 40):
-        return {"repository": {"full_name": BASE}, "pull_request": {"number": 5, "head": {"sha": sha, "repo": {"full_name": FORK}}}}
+    def pr_event(self, sha="a" * 40, head=BASE):
+        return {"repository": {"full_name": BASE}, "pull_request": {"number": 5, "head": {"sha": sha, "repo": {"full_name": head}}}}
 
-    def serve_pr(self, files, tree=(), blobs=None, sha="a" * 40):
-        self.fake.routes[("GET", f"/repos/{BASE}/pulls/5")] = {"head": {"sha": sha, "repo": {"full_name": FORK}}}
+    def serve_pr(self, files, tree=(), blobs=None, sha="a" * 40, head=BASE):
+        self.fake.routes[("GET", f"/repos/{BASE}/pulls/5")] = {
+            "head": {"sha": sha, "repo": {"full_name": head} if head else None}}
         self.fake.routes[("GET", f"/repos/{BASE}/pulls/5/files?per_page={job.PER_PAGE}&page=1")] = files
-        self.fake.routes[("GET", f"/repos/{FORK}/git/trees/{sha}?recursive=1")] = {"truncated": False, "tree": list(tree)}
+        self.fake.routes[("GET", f"/repos/{head}/git/trees/{sha}?recursive=1")] = {"truncated": False, "tree": list(tree)}
         for blob_sha, data in (blobs or {}).items():
-            self.fake.routes[("GET", f"/repos/{FORK}/git/blobs/{blob_sha}")] = {
+            self.fake.routes[("GET", f"/repos/{head}/git/blobs/{blob_sha}")] = {
                 "encoding": "base64", "size": len(data), "content": base64.b64encode(data).decode()}
         self.comments(5, [])
 
@@ -205,6 +206,99 @@ class Parse(JobBase):
         self.comments(7, [{"id": 2, "user": {"login": job.BOT}, "body": rf.MARKER}])
         job.parse()
         self.assertEqual(self.result()["codes"], ["no_current_response"])
+
+
+class SameRepository(JobBase):
+    """Forks are not cleared (GPT-6 SR3): nothing is read from them and nothing is published."""
+
+    def test_a_fork_or_a_missing_head_repository_is_skipped_before_anything_is_read(self):
+        data = self.response_file(tv.block("p014"))
+        for head in (FORK, None):
+            with self.subTest(head=head):
+                self.fake.calls.clear()
+                self.out.write_text("", encoding="utf-8")
+                self.event(self.pr_event(head=head))
+                self.serve_pr([{"filename": PATH, "status": "added"}], tree=[self.regular(PATH, data)],
+                              blobs={"b" * 40: data}, head=head)
+                job.parse()
+                self.assertIsNone(self.result())
+                self.assertEqual([c[1] for c in self.fake.calls], [f"/repos/{BASE}/pulls/5"])
+                self.assertFalse(self.writes())
+
+    def test_a_same_repository_pull_request_is_still_checked(self):
+        data = self.response_file(tv.block("p014"))
+        self.event(self.pr_event())
+        self.serve_pr([{"filename": PATH, "status": "added"}], tree=[self.regular(PATH, data)], blobs={"b" * 40: data})
+        job.parse()
+        self.assertEqual(self.result()["counts"]["read"], 1)
+
+    def test_the_workflow_excludes_forks_from_both_jobs_and_keeps_issues(self):
+        import yaml
+        wf = yaml.safe_load((HERE / "workflows" / "round-3-feedback.yml").read_text(encoding="utf-8"))
+        for name in ("parse", "publish"):
+            cond = " ".join(wf["jobs"][name]["if"].split())
+            with self.subTest(job=name):
+                self.assertIn("vars.Q0_ROUND3_FEEDBACK == 'on'", cond)
+                self.assertIn("(github.event_name == 'issues' || "
+                              "github.event.pull_request.head.repo.full_name == github.repository)", cond)
+
+    def test_the_comment_promises_no_update(self):
+        body = self.issue_body(tv.block("p014")).decode()
+        self.issue_event(body)
+        job.parse()
+        text = rf.render(self.result(), "issue", 7, hashlib.sha256(body.encode()).hexdigest(), self.trusted, self.repo)
+        self.assertIn("This comment describes only the version named above.", text)
+        self.assertNotIn("is updated", text)
+
+
+@unittest.skipUnless(os.name == "posix", "the resource limits exist only on POSIX")
+class PosixLimits(JobBase):
+    """The validator child's real limits, on a POSIX host such as the CI runner (GPT-6 SR2, AC6)."""
+
+    def child(self, code, timeout=30):
+        import subprocess
+        return subprocess.run([sys.executable, "-c", code], capture_output=True, timeout=timeout,
+                              preexec_fn=job.limits)
+
+    def test_the_child_runs_under_the_configured_limits(self):
+        r = self.child("import resource; print(resource.getrlimit(resource.RLIMIT_AS)[0], "
+                       "resource.getrlimit(resource.RLIMIT_CPU)[0])")
+        self.assertEqual(r.stdout.split(), [str(job.LIMIT_MEMORY).encode(), str(job.LIMIT_SECONDS).encode()])
+        print(f"POSIX limits in the child: address space {job.LIMIT_MEMORY} bytes, CPU {job.LIMIT_SECONDS} s")
+
+    def test_the_cpu_limit_stops_a_busy_child(self):
+        import signal
+        orig = job.LIMIT_SECONDS
+        job.LIMIT_SECONDS = 1
+        try:
+            r = self.child("while True: pass", timeout=30)
+        finally:
+            job.LIMIT_SECONDS = orig
+        self.assertEqual(r.returncode, -signal.SIGXCPU)
+        print(f"POSIX CPU limit: a busy child stopped by signal {-r.returncode} (SIGXCPU)")
+
+    def test_the_address_space_limit_stops_an_oversized_allocation(self):
+        r = self.child("import sys\ntry:\n    b = bytearray(%d)\nexcept MemoryError:\n    sys.exit(3)\nsys.exit(0)"
+                       % (job.LIMIT_MEMORY + 512 * 1024 * 1024))
+        self.assertEqual(r.returncode, 3)
+        print("POSIX address-space limit: an allocation over the limit raised MemoryError in the child")
+
+    def test_a_child_stopped_by_either_limit_gives_the_typed_result(self):
+        data = self.response_file(tv.block("p014"))
+        hogs = {"cpu": "while True: pass\n",
+                "memory": "b = bytearray(%d)\n" % (job.LIMIT_MEMORY + 512 * 1024 * 1024)}
+        orig = (job.VALIDATOR, job.LIMIT_SECONDS)
+        try:
+            for name, code in hogs.items():
+                with self.subTest(limit=name), tempfile.TemporaryDirectory() as td:
+                    hog = Path(td) / "hog.py"
+                    hog.write_text(code, encoding="utf-8")
+                    job.VALIDATOR, job.LIMIT_SECONDS = hog, 2
+                    r = job.validate_isolated("file", data, 5, "a" * 40)
+                    self.assertEqual((r["codes"], r["checked"]), (["not_checked_resources"], False))
+                    print(f"POSIX {name} limit: validate_isolated gave not_checked_resources")
+        finally:
+            job.VALIDATOR, job.LIMIT_SECONDS = orig
 
 
 class Publish(JobBase):

@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one trusted commit for both jobs; runs for every pull request and issue event so removals are seen; publication serialized per item without cancelling a write in progress; parser memory and time bounds. Revision 3 (GPT-6 round 2): the time and memory limits move into the job script, which runs the validator as a supervised child process and reports a typed not-checked result when a limit stops it; every run checks the item's current version.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6). Advisory feedback on Round 3 issues and pull requests. NOT ACTIVE: it is kept in tools/workflows/, where GitHub does not run it. After GPT-6's code review, the separately authorized sandbox test and the founder's adoption (which must cover this workflow's change in operating security posture), the founder installs it in .github/workflows/ through their own account and sets the repository variable Q0_ROUND3_FEEDBACK to `on`. Either step alone does nothing. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one trusted commit for both jobs; runs for every pull request and issue event so removals are seen; publication serialized per item without cancelling a write in progress; parser memory and time bounds. Revision 3 (GPT-6 round 2): the time and memory limits move into the job script, which runs the validator as a supervised child process and reports a typed not-checked result when a limit stops it; every run checks the item's current version. Revision 4 (topic automation-sandbox-report, GPT-6 SR3): issues and same-repository pull requests only.
 # license: MIT (LICENSE-CODE)
 #
 # Security boundary (proposal, D2, GPT-6 GA3 and AC4):
@@ -15,6 +15,8 @@
 #   through ${{ }} in a shell; the job script reads the event payload file as JSON.
 # - The parse job has read-only permissions and no write token. The publish job receives only the typed result,
 #   holds only comment permissions, re-reads the item immediately before writing, and renders from fixed templates.
+# - Issues and same-repository pull requests only. Pull requests from forks are not cleared (GPT-6 SR3): both jobs'
+#   conditions exclude them, and the job script refuses a head repository other than this one.
 # - No secrets and no App key are used. Actions are pinned to commit SHAs.
 # - The job names differ from the required `check`; this workflow never sets a required status and never blocks.
 name: Round 3 advisory feedback
@@ -29,7 +31,11 @@ permissions: {}
 
 jobs:
   parse:
-    if: vars.Q0_ROUND3_FEEDBACK == 'on'
+    # Issues, and pull requests whose head is in this repository. Forks are not cleared (GPT-6 SR3); the parser
+    # refuses them too.
+    if: >-
+      vars.Q0_ROUND3_FEEDBACK == 'on' && (github.event_name == 'issues' ||
+      github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 5
     concurrency:
@@ -59,7 +65,9 @@ jobs:
 
   publish:
     needs: parse
-    if: vars.Q0_ROUND3_FEEDBACK == 'on' && needs.parse.outputs.result != ''
+    if: >-
+      vars.Q0_ROUND3_FEEDBACK == 'on' && needs.parse.outputs.result != '' && (github.event_name == 'issues' ||
+      github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 5
     concurrency:

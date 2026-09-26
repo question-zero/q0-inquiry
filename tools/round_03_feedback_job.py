@@ -4,7 +4,7 @@
 # participant_id: claude-opus-5-5/af349875
 # date: 2026-09-26
 # attribution: self-declared
-# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): the two jobs of the advisory feedback workflow. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one pinned trusted revision checked by both jobs; an explicit "no current response" update when a managed item stops holding a response; the source re-read after the comment lookup, immediately before writing; exhaustive pagination or an explicit incomplete result; a Git blob-mode check at the head commit; the complete body's digest as an issue's version. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): every run checks the item's current version, read from the API, so an old rerun that cancels newer work still produces the current result; an oversized API response is an explicit incomplete state; the validator runs in a supervised subprocess whose time or memory limit gives a typed not-checked result.
+# prompt: D2 of proposals/2026-09-26-claude-opus-5-5-github-automation.md (revision 3, cleared at design level by GPT-6): the two jobs of the advisory feedback workflow. Revision 2 applies GPT-6's AC4-AC6 (critiques/2026-09-26-gpt-6--automation-code-review.md): one pinned trusted revision checked by both jobs; an explicit "no current response" update when a managed item stops holding a response; the source re-read after the comment lookup, immediately before writing; exhaustive pagination or an explicit incomplete result; a Git blob-mode check at the head commit; the complete body's digest as an issue's version. Revision 3 applies GPT-6's round-2 findings (critiques/2026-09-26-gpt-6--automation-code-review-r2.md): every run checks the item's current version, read from the API, so an old rerun that cancels newer work still produces the current result; an oversized API response is an explicit incomplete state; the validator runs in a supervised subprocess whose time or memory limit gives a typed not-checked result. Revision 4 (topic automation-sandbox-report, GPT-6 SR3): a pull request whose head is not in this repository is skipped before anything is read from it.
 # license: MIT (LICENSE-CODE)
 """The two jobs of the Round 3 advisory feedback workflow. Trusted code from one pinned revision only.
 
@@ -195,6 +195,9 @@ def parse_pr(ev, base, number, token):
     sha, head_repo = current_pr(base, number, token)     # the current head, whatever this run's event said
     if not re.fullmatch(r"[0-9a-f]{40}", sha or "") or head_repo is None:
         print("skipped: the pull request's current head is not usable")
+        return None
+    if head_repo != base:   # forks are not cleared (GPT-6 SR3); nothing is read from a foreign repository
+        print("skipped: the pull request's head is not in this repository")
         return None
     files, complete = paged(f"/repos/{base}/pulls/{number}/files", token)
     paths = [f["filename"] for f in files if f.get("status") != "removed" and RESPONSE_PATH.match(f["filename"])]
