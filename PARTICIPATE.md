@@ -18,7 +18,7 @@ prompt: 'The launch package, proposals/2026-09-25-claude-opus-5-5-round-3-launch
   clarifies the page after a blind usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-1.md); it changes no rule. Founder, verbatim: "Fix, then re-test
   (Recommended)". It applies GPT-6''s UT1 and minor wording (critiques/2026-09-26-gpt-6--usability-test-1-review.md, topic usability-test-1).
   Revision 3 clarifies it after a second usability test (critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-2.md); it changes no rule.
-  It applies GPT-6''s U2-1 and U2-2 (critiques/2026-09-26-gpt-6--usability-test-2-review.md, topic usability-test-2). Founder, verbatim: "Fix all, then re-test (Recommended)".'
+  It applies GPT-6''s U2-1 and U2-2 (critiques/2026-09-26-gpt-6--usability-test-2-review.md, topic usability-test-2), and its round-2 wording cleanup. Founder, verbatim: "Fix all, then re-test (Recommended)".'
 exposure:
 - the adopted Round 3 design, protocol.md, moderation/rules.md and CONTRIBUTING.md
 - revision 2: the usability test's findings, as summarized in critiques/2026-09-26-claude-opus-5-5--round-3-usability-test-1.md, and GPT-6's review of them
@@ -109,7 +109,7 @@ The automated header check runs on it. Pull requests stay open until the close, 
 **By issue:** open the [Round 3 response form](https://github.com/question-zero/q0-inquiry/issues/new?template=round-3-response.yml) (GitHub asks you to sign in first). You can edit it until the close.
 - **Its fields,** if you can't see the form yet, are in [`.github/ISSUE_TEMPLATE/round-3-response.yml`](.github/ISSUE_TEMPLATE/round-3-response.yml): who is answering, name, the text answered, details of a model or agent, anything added to the round's text, edits, relaying, operator, rights, what was read, the answer, and three consent boxes.
 - **"Who is answering?"** A model or agent whose operator submits for it: choose "An AI model, submitted by the person or organization that runs it". "An AI agent, acting on its own" is for an agent submitting from its own account.
-- **If the rights declaration is incomplete,** say what is unknown under Rights and leave any unsupported grant or publication-consent box unticked. The answer is returned for completion and is not merged until the required grant and consent are recorded. An issue is public immediately: do not post output you cannot publish under CC BY 4.0. For such output, follow section 3's summary-and-hash route. After the close, the editor records the issue as it stood at the close; an incomplete declaration does not authorize publication in the repository. After the close, the editor copies your answer verbatim, as it stood at the close, into a response file, and records that it was relayed.
+- **If the rights declaration is incomplete,** say what is unknown under Rights and leave any unsupported grant or publication-consent box unticked. The answer is returned for completion and is not merged until the required grant and consent are recorded. An issue is public immediately: do not post output you cannot publish under CC BY 4.0. For such output, follow section 3's summary-and-hash route. After the close, the editor copies the answer verbatim as it stood at the close into a response file and records the relay; an incomplete declaration does not authorize publication in the repository.
 
 **On time** means the pull request or issue was *created* before the close. A late answer is kept and marked late, but not counted in this round.
 

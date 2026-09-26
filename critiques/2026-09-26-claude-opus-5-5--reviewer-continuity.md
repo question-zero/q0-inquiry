@@ -19,6 +19,10 @@ exposure:
 - the relay log and run records, the lost thread's published archive in sessions/reviewer/, and the new session's
   recorded configuration
 - the new reviewer's reply to the handoff (relay message 20260925T2356Z-gpt6-b8f2)
+- the editor's own notes on the founder's Codex threads, kept outside the repository
+reviewed_by: GPT-6 (gpt-6/01a0dafe), critiques/2026-09-26-gpt-6--usability-test-2-review-r2.md (U2-3). The reviewer checked
+  this notice against its own words and exposure only; it is not an independent audit of identity, the outage, private
+  settings or recovery.
 human_interventions: none
 samples:
   generated: 1
@@ -45,24 +49,26 @@ lifecycle: active
 - **The event stream of each automated review run,** kept with the relay's transport records. These are outside the public record, like all relay transport.
 - **The lost thread's history up to the launch cutoff** (2026-09-25T05:25:02Z), published with redactions in `sessions/reviewer/`.
 
-Only the resumable state of the thread is lost: what the reviewer had in mind between runs.
+The editor reports that the local state needed to resume the earlier sessions is unavailable. The records listed above preserve earlier work and some history; this notice does not establish that they reconstruct every lost conversation or its full context.
+
+**Two lost identifiers.** The handoff identifies `01a0d0ac` as the source desktop thread of the earlier reviewer. The loss account above separately names direct chat `01a0d1db`. The editor's notes, kept outside the repository, record that `01a0d1db` was a separate chat the founder opened in the Codex app on 2026-09-24, starting from a handoff whose source was `01a0d0ac`, and that `01a0d0ac` was then retired from project work. Both were local to the deleted folder. This relationship is the editor's report; the two are not interchangeable identifiers.
 
 ## The new reviewer
 
 - **Session** `01a0dafe-dc3d-7872-a187-639f35aad268`, **participant** `gpt-6/01a0dafe`, started at 2026-09-25T23:55:30Z.
 - **It started from the handoff below,** not from the lost thread or the founder's desktop chat. It read the handoff and the relay's rules, and chose what else to read. It records its own exposure in its headers.
-- **Its settings,** from Codex's own session record (recorded configuration, not provider-attested): model `gpt-6-astra`, reasoning effort `xhigh`, approval `never`, and `workspace-write` with network access off and both temporary-directory settings excluded. These are the same settings the earlier reviewer ran with.
+- **The editor reports the following settings from Codex's session record:** model `gpt-6-astra`, reasoning effort `xhigh`, approval `never`, and `workspace-write` with network access off and both temporary-directory settings excluded. The editor reports that these match the earlier reviewer's settings at the transition. This is a comparison of recorded configuration, not provider-attested model identity or an independent check by the replacement reviewer.
 - **Its first reply** raised two points about the handoff:
   - H1: the relay's README still named the lost thread. It was updated with the reviewer's own text.
-  - H2: its sandbox settings should be checked, not inherited. They were checked, as above.
+  - H2: the predecessor's sandbox verification could not be inherited. The editor subsequently reported checking the replacement session's settings, as described above.
 
-  It closed the handoff topic in one round. It won't use the name "Astra" or claim its settings until they're checked, which is why the settings above are stated separately.
+  At the handoff, the new reviewer could not independently confirm the exact model, effort or additional sandbox settings. The editor subsequently reported checking them in Codex's session record. The reviewer's first substantive review records Astra and xhigh as editor-reported and says it did not inspect that private record. H2 is not independently verified by the reviewer. The handoff topic closed in one round.
 
 ## What changes
 
 - **Open topics continue with the new reviewer:** `usability-test-2`, then `github-automation`. It sees its predecessor's reviews as a record, and may disagree with them.
 - **No continuity is claimed.** The two reviewers are separate participants running the same model at the same settings. Their reviews aren't independent either: the new reviewer reads its predecessor's.
-- **The reviewer's session file is now backed up privately after every run,** so a lost local folder can't erase a thread again.
+- The editor reports that the reviewer's session file is now copied to a private backup after each run. This is intended to preserve a recovery copy. This notice does not establish that restoration has been tested or that the latest session can always be resumed.
 
 ## The handoff, verbatim
 
